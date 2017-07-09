@@ -117,42 +117,22 @@
 <h2 class="hasAnchor">
 <a href="#bar-chart" class="anchor"></a>Bar Chart</h2>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/rcwChart.html">rcwChart</a></span>(rcwData, <span class="dt">type =</span> <span class="st">"bar"</span>)</code></pre></div>
-<div id="htmlwidget-0be38985d789fc03f787" style="width:600px;height:300px;" class="rcwChart html-widget"></div>
-<script type="application/json" data-for="htmlwidget-0be38985d789fc03f787">{"x":{"type":"bar","data":[{"datapoints":[{"x":1000,"y":15,"highlightIndex":-1},{"x":1001,"y":-20,"highlightIndex":-1},{"x":1010,"y":10,"highlightIndex":0},{"x":1011,"y":40,"highlightIndex":-1},{"x":1100,"y":30,"highlightIndex":-1},{"x":1101,"y":25,"highlightIndex":-1},{"x":1110,"y":65,"highlightIndex":1},{"x":1111,"y":27,"highlightIndex":-1}]}],"options":{"base":{"width":"600","height":"300"}}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-3741731a951a8fe1bdf5" style="width:600px;height:300px;" class="rcwChart html-widget"></div>
+<script type="application/json" data-for="htmlwidget-3741731a951a8fe1bdf5">{"x":{"type":"bar","data":[{"datapoints":[{"x":1000,"y":15,"highlightIndex":-1},{"x":1001,"y":-20,"highlightIndex":-1},{"x":1010,"y":10,"highlightIndex":0},{"x":1011,"y":40,"highlightIndex":-1},{"x":1100,"y":30,"highlightIndex":-1},{"x":1101,"y":25,"highlightIndex":-1},{"x":1110,"y":65,"highlightIndex":1},{"x":1111,"y":27,"highlightIndex":-1}]}],"options":{"base":{"width":"600","height":"300"}}},"evals":[],"jsHooks":[]}</script>
 </div>
 <div id="scatter-chart" class="section level2">
 <h2 class="hasAnchor">
 <a href="#scatter-chart" class="anchor"></a>Scatter Chart</h2>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/rcwChart.html">rcwChart</a></span>(rcwData, <span class="dt">type =</span> <span class="st">"scatter"</span>)</code></pre></div>
-<div id="htmlwidget-3261dd8ba06a76c77035" style="width:600px;height:300px;" class="rcwChart html-widget"></div>
-<script type="application/json" data-for="htmlwidget-3261dd8ba06a76c77035">{"x":{"type":"scatter","data":[{"datapoints":[{"x":1000,"y":15,"highlightIndex":-1},{"x":1001,"y":-20,"highlightIndex":-1},{"x":1010,"y":10,"highlightIndex":0},{"x":1011,"y":40,"highlightIndex":-1},{"x":1100,"y":30,"highlightIndex":-1},{"x":1101,"y":25,"highlightIndex":-1},{"x":1110,"y":65,"highlightIndex":1},{"x":1111,"y":27,"highlightIndex":-1}]}],"options":{"base":{"width":"600","height":"300"}}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-6942b6cd4c951db5ef73" style="width:600px;height:300px;" class="rcwChart html-widget"></div>
+<script type="application/json" data-for="htmlwidget-6942b6cd4c951db5ef73">{"x":{"type":"scatter","data":[{"datapoints":[{"x":1000,"y":15,"highlightIndex":-1},{"x":1001,"y":-20,"highlightIndex":-1},{"x":1010,"y":10,"highlightIndex":0},{"x":1011,"y":40,"highlightIndex":-1},{"x":1100,"y":30,"highlightIndex":-1},{"x":1101,"y":25,"highlightIndex":-1},{"x":1110,"y":65,"highlightIndex":1},{"x":1111,"y":27,"highlightIndex":-1}]}],"options":{"base":{"width":"600","height":"300"}}},"evals":[],"jsHooks":[]}</script>
 </div>
 <div id="row-chart" class="section level2">
 <h2 class="hasAnchor">
 <a href="#row-chart" class="anchor"></a>Row Chart</h2>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/rcwChart.html">rcwChart</a></span>(rcwData, <span class="dt">type =</span> <span class="st">"row"</span>)</code></pre></div>
-<div id="htmlwidget-35ace30e93cfe422a4d1" style="width:600px;height:300px;" class="rcwChart html-widget"></div>
-<script type="application/json" data-for="htmlwidget-35ace30e93cfe422a4d1">{"x":{"type":"row","data":[{"datapoints":[{"x":1000,"y":15,"highlightIndex":-1},{"x":1001,"y":-20,"highlightIndex":-1},{"x":1010,"y":10,"highlightIndex":0},{"x":1011,"y":40,"highlightIndex":-1},{"x":1100,"y":30,"highlightIndex":-1},{"x":1101,"y":25,"highlightIndex":-1},{"x":1110,"y":65,"highlightIndex":1},{"x":1111,"y":27,"highlightIndex":-1}]}],"options":{"base":{"width":"600","height":"300"}}},"evals":[],"jsHooks":[]}</script><div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">wBar &lt;-<span class="st"> </span><span class="kw"><a href="../reference/rcwChart.html">rcwChart</a></span>(rcwData, <span class="dt">type =</span> <span class="st">"bar"</span>)
-if (rcwopts$save) {
-  htmlwidgets::<span class="kw">saveWidget</span>(wBar,
-                          <span class="dt">file =</span> <span class="kw">file.path</span>(<span class="kw">getwd</span>(), <span class="st">"htmlwidget/rcw-bar.html"</span>),
-                          <span class="dt">selfcontained =</span> <span class="ot">FALSE</span>)
-}
-if (rcwopts$inline) wBar</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">wScatter &lt;-<span class="st"> </span><span class="kw"><a href="../reference/rcwChart.html">rcwChart</a></span>(rcwData, <span class="dt">type =</span> <span class="st">"scatter"</span>)
-if (rcwopts$save) {
-  htmlwidgets::<span class="kw">saveWidget</span>(wScatter,
-                          <span class="dt">file =</span> <span class="kw">file.path</span>(<span class="kw">getwd</span>(), <span class="st">"htmlwidget/rcw-scatter.html"</span>),
-                          <span class="dt">selfcontained =</span> <span class="ot">FALSE</span>)
-}
-if (rcwopts$inline) wScatter</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">wRow &lt;-<span class="st"> </span><span class="kw"><a href="../reference/rcwChart.html">rcwChart</a></span>(rcwData, <span class="dt">type =</span> <span class="st">"row"</span>)
-if (rcwopts$save) {
-  htmlwidgets::<span class="kw">saveWidget</span>(wRow,
-                          <span class="dt">file =</span> <span class="kw">file.path</span>(<span class="kw">getwd</span>(), <span class="st">"htmlwidget/rcw-row.html"</span>),
-                          <span class="dt">selfcontained =</span> <span class="ot">FALSE</span>)
-}
-if (rcwopts$inline) wRow</code></pre></div>
+<div id="htmlwidget-31c52dfba7aed8dc4e67" style="width:600px;height:300px;" class="rcwChart html-widget"></div>
+<script type="application/json" data-for="htmlwidget-31c52dfba7aed8dc4e67">{"x":{"type":"row","data":[{"datapoints":[{"x":1000,"y":15,"highlightIndex":-1},{"x":1001,"y":-20,"highlightIndex":-1},{"x":1010,"y":10,"highlightIndex":0},{"x":1011,"y":40,"highlightIndex":-1},{"x":1100,"y":30,"highlightIndex":-1},{"x":1101,"y":25,"highlightIndex":-1},{"x":1110,"y":65,"highlightIndex":1},{"x":1111,"y":27,"highlightIndex":-1}]}],"options":{"base":{"width":"600","height":"300"}}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
   </div>
