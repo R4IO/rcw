@@ -1,0 +1,12 @@
+[{
+    "datapoints": [
+    {"x": 1000, "y": 15, "highlightIndex": -1},
+    {"x": 1001, "y": -20, "highlightIndex": -1},
+    {"x": 1010, "y": 10, "highlightIndex": 0},
+    {"x": 1011, "y": 40, "highlightIndex": -1},
+    {"x": 1100, "y": 30, "highlightIndex": -1},
+    {"x": 1101, "y": 25, "highlightIndex": -1},
+    {"x": 1110, "y": 65, "highlightIndex": 1},
+    {"x": 1111, "y": 27, "highlightIndex": -1}
+    ]
+}]
