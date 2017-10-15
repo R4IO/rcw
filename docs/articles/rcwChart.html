@@ -38,6 +38,15 @@
 <li>
       <a href="../articles/rcwChart.html">rcwChart</a>
     </li>
+    <li>
+      <a href="../articles/intro_reactR.html">reactR</a>
+    </li>
+    <li>
+      <a href="../articles/intro_listviewer.html">listviewer</a>
+    </li>
+    <li>
+      <a href="../articles/intro_stockchartR.html">stockchartR</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -58,7 +67,7 @@
     <div class="page-header toc-ignore">
       <h1>rcwChart</h1>
             
-            <h4 class="date">2017-07-10</h4>
+            <h4 class="date">2017-07-13</h4>
           </div>
 
     
@@ -71,7 +80,8 @@
 <h2 class="hasAnchor">
 <a href="#data" class="anchor"></a>Data</h2>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">rcwData &lt;-<span class="st"> </span><span class="kw">data.frame</span>(
-    <span class="dt">x =</span> <span class="kw">c</span>(<span class="dv">1000</span>, <span class="dv">1001</span>, <span class="dv">1010</span>, <span class="dv">1011</span>, <span class="dv">1100</span>, <span class="dv">1101</span>, <span class="dv">1110</span>, <span class="dv">1111</span>),
+    ## x = c(1000, 1001, 1010, 1011, 1100, 1101, 1110, 1111),
+    <span class="dt">x =</span> <span class="kw">c</span>(<span class="dv">2008</span>, <span class="dv">2009</span>, <span class="dv">2010</span>, <span class="dv">2011</span>, <span class="dv">2012</span>, <span class="dv">2013</span>, <span class="dv">2014</span>, <span class="dv">2015</span>),
     <span class="dt">y =</span> <span class="kw">c</span>(<span class="dv">15</span>, -<span class="dv">20</span>, <span class="dv">10</span>, <span class="dv">40</span>, <span class="dv">30</span>, <span class="dv">25</span>, <span class="dv">65</span>, <span class="dv">27</span>),
     <span class="dt">highlightIndex =</span> <span class="kw">c</span>(-<span class="dv">1</span>, -<span class="dv">1</span>, <span class="dv">0</span>, -<span class="dv">1</span>, -<span class="dv">1</span>, -<span class="dv">1</span>, <span class="dv">1</span>, -<span class="dv">1</span>))
 knitr::<span class="kw">kable</span>(rcwData)</code></pre></div>
@@ -83,42 +93,42 @@ knitr::<span class="kw">kable</span>(rcwData)</code></pre></div>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="right">1000</td>
+<td align="right">2008</td>
 <td align="right">15</td>
 <td align="right">-1</td>
 </tr>
 <tr class="even">
-<td align="right">1001</td>
+<td align="right">2009</td>
 <td align="right">-20</td>
 <td align="right">-1</td>
 </tr>
 <tr class="odd">
-<td align="right">1010</td>
+<td align="right">2010</td>
 <td align="right">10</td>
 <td align="right">0</td>
 </tr>
 <tr class="even">
-<td align="right">1011</td>
+<td align="right">2011</td>
 <td align="right">40</td>
 <td align="right">-1</td>
 </tr>
 <tr class="odd">
-<td align="right">1100</td>
+<td align="right">2012</td>
 <td align="right">30</td>
 <td align="right">-1</td>
 </tr>
 <tr class="even">
-<td align="right">1101</td>
+<td align="right">2013</td>
 <td align="right">25</td>
 <td align="right">-1</td>
 </tr>
 <tr class="odd">
-<td align="right">1110</td>
+<td align="right">2014</td>
 <td align="right">65</td>
 <td align="right">1</td>
 </tr>
 <tr class="even">
-<td align="right">1111</td>
+<td align="right">2015</td>
 <td align="right">27</td>
 <td align="right">-1</td>
 </tr>
@@ -129,22 +139,27 @@ knitr::<span class="kw">kable</span>(rcwData)</code></pre></div>
 <h2 class="hasAnchor">
 <a href="#bar-chart" class="anchor"></a>Bar Chart</h2>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/rcwChart.html">rcwChart</a></span>(rcwData, <span class="dt">type =</span> <span class="st">"bar"</span>)</code></pre></div>
-<div id="htmlwidget-55d3af5a0c176f27509f" style="width:600px;height:300px;" class="rcwChart html-widget"></div>
-<script type="application/json" data-for="htmlwidget-55d3af5a0c176f27509f">{"x":{"type":"bar","data":[{"datapoints":[{"x":1000,"y":15,"highlightIndex":-1},{"x":1001,"y":-20,"highlightIndex":-1},{"x":1010,"y":10,"highlightIndex":0},{"x":1011,"y":40,"highlightIndex":-1},{"x":1100,"y":30,"highlightIndex":-1},{"x":1101,"y":25,"highlightIndex":-1},{"x":1110,"y":65,"highlightIndex":1},{"x":1111,"y":27,"highlightIndex":-1}]}],"options":{"base":{"width":"600","height":"300"}}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-f4449708526022f37381" style="width:600px;height:300px;" class="rcwChart html-widget"></div>
+<script type="application/json" data-for="htmlwidget-f4449708526022f37381">{"x":{"type":"bar","data":[{"datapoints":[{"x":2008,"y":15,"highlightIndex":-1},{"x":2009,"y":-20,"highlightIndex":-1},{"x":2010,"y":10,"highlightIndex":0},{"x":2011,"y":40,"highlightIndex":-1},{"x":2012,"y":30,"highlightIndex":-1},{"x":2013,"y":25,"highlightIndex":-1},{"x":2014,"y":65,"highlightIndex":1},{"x":2015,"y":27,"highlightIndex":-1}]}],"options":{"base":{"width":"600","height":"300"}}},"evals":[],"jsHooks":[]}</script>
 </div>
 <div id="scatter-chart" class="section level2">
 <h2 class="hasAnchor">
 <a href="#scatter-chart" class="anchor"></a>Scatter Chart</h2>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/rcwChart.html">rcwChart</a></span>(rcwData, <span class="dt">type =</span> <span class="st">"scatter"</span>)</code></pre></div>
-<div id="htmlwidget-3b77cad1e9bb33bf6da6" style="width:600px;height:300px;" class="rcwChart html-widget"></div>
-<script type="application/json" data-for="htmlwidget-3b77cad1e9bb33bf6da6">{"x":{"type":"scatter","data":[{"datapoints":[{"x":1000,"y":15,"highlightIndex":-1},{"x":1001,"y":-20,"highlightIndex":-1},{"x":1010,"y":10,"highlightIndex":0},{"x":1011,"y":40,"highlightIndex":-1},{"x":1100,"y":30,"highlightIndex":-1},{"x":1101,"y":25,"highlightIndex":-1},{"x":1110,"y":65,"highlightIndex":1},{"x":1111,"y":27,"highlightIndex":-1}]}],"options":{"base":{"width":"600","height":"300"}}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-8775dd8ddbdd52140dc0" style="width:600px;height:300px;" class="rcwChart html-widget"></div>
+<script type="application/json" data-for="htmlwidget-8775dd8ddbdd52140dc0">{"x":{"type":"scatter","data":[{"datapoints":[{"x":2008,"y":15,"highlightIndex":-1},{"x":2009,"y":-20,"highlightIndex":-1},{"x":2010,"y":10,"highlightIndex":0},{"x":2011,"y":40,"highlightIndex":-1},{"x":2012,"y":30,"highlightIndex":-1},{"x":2013,"y":25,"highlightIndex":-1},{"x":2014,"y":65,"highlightIndex":1},{"x":2015,"y":27,"highlightIndex":-1}]}],"options":{"base":{"width":"600","height":"300"}}},"evals":[],"jsHooks":[]}</script>
 </div>
 <div id="row-chart" class="section level2">
 <h2 class="hasAnchor">
 <a href="#row-chart" class="anchor"></a>Row Chart</h2>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/rcwChart.html">rcwChart</a></span>(rcwData, <span class="dt">type =</span> <span class="st">"row"</span>)</code></pre></div>
-<div id="htmlwidget-1f526b2e23cb98660f05" style="width:600px;height:300px;" class="rcwChart html-widget"></div>
-<script type="application/json" data-for="htmlwidget-1f526b2e23cb98660f05">{"x":{"type":"row","data":[{"datapoints":[{"x":1000,"y":15,"highlightIndex":-1},{"x":1001,"y":-20,"highlightIndex":-1},{"x":1010,"y":10,"highlightIndex":0},{"x":1011,"y":40,"highlightIndex":-1},{"x":1100,"y":30,"highlightIndex":-1},{"x":1101,"y":25,"highlightIndex":-1},{"x":1110,"y":65,"highlightIndex":1},{"x":1111,"y":27,"highlightIndex":-1}]}],"options":{"base":{"width":"600","height":"300"}}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-dd2fdcc270004663bbf3" style="width:600px;height:300px;" class="rcwChart html-widget"></div>
+<script type="application/json" data-for="htmlwidget-dd2fdcc270004663bbf3">{"x":{"type":"row","data":[{"datapoints":[{"x":2008,"y":15,"highlightIndex":-1},{"x":2009,"y":-20,"highlightIndex":-1},{"x":2010,"y":10,"highlightIndex":0},{"x":2011,"y":40,"highlightIndex":-1},{"x":2012,"y":30,"highlightIndex":-1},{"x":2013,"y":25,"highlightIndex":-1},{"x":2014,"y":65,"highlightIndex":1},{"x":2015,"y":27,"highlightIndex":-1}]}],"options":{"base":{"width":"600","height":"300"}}},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="objective" class="section level2">
+<h2 class="hasAnchor">
+<a href="#objective" class="anchor"></a>Objective</h2>
+<p><img src="img/screenshot-chart-generator.png" width="100%"></p>
 </div>
 </div>
   </div>
@@ -158,6 +173,7 @@ knitr::<span class="kw">kable</span>(rcwData)</code></pre></div>
       <li><a href="#bar-chart">Bar Chart</a></li>
       <li><a href="#scatter-chart">Scatter Chart</a></li>
       <li><a href="#row-chart">Row Chart</a></li>
+      <li><a href="#objective">Objective</a></li>
       </ul>
 </div>
       </div>
