@@ -12,7 +12,7 @@ HTMLWidgets.widget({
 
         return {
 
-            renderValue: function (x) {
+            renderValue: function () {
 
                 var tooltip = function tooltip(color) {
                     return '  font-size: 12px;  font-family: \'Signika\';  color: ' + color + ';  padding: 5px;  border: 1px solid ' + color + ';  background: white;  opacity: .8;';
@@ -82,9 +82,10 @@ HTMLWidgets.widget({
                 };
 
 
-                new rcwCharts.BarChart(container,
-                                       _.merge(commonOptions, barChartOptions),
-                                       barChartData);
+                var barChart = new rcwCharts.BarChart(container,
+                                       _.merge(commonOptions(), barChartOptions()),
+                                       barChartData());
+
 
             },
 
