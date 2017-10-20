@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<meta name="date" content="2017-10-20" />
+
+<title>rcwChart</title>
+
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+
+
+<link rel="stylesheet" href="/home/xps13/R/x86_64-redhat-linux-gnu-library/3.4/rmarkdown/rmarkdown/templates/html_vignette/resources/vignette.css" type="text/css" />
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">rcwChart</h1>
+<h4 class="date"><em>2017-10-20</em></h4>
+
+
+
+<ul>
+<li><a href="https://codepen.io/bowerth/pen/EXrdpP">codepen mock example</a></li>
+</ul>
+<div id="data" class="section level2">
+<h2>Data</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">rcwData &lt;-<span class="st"> </span><span class="kw">data.frame</span>(
+    ## x = c(1000, 1001, 1010, 1011, 1100, 1101, 1110, 1111),
+    <span class="dt">x =</span> <span class="kw">c</span>(<span class="dv">2008</span>, <span class="dv">2009</span>, <span class="dv">2010</span>, <span class="dv">2011</span>, <span class="dv">2012</span>, <span class="dv">2013</span>, <span class="dv">2014</span>, <span class="dv">2015</span>),
+    <span class="dt">y =</span> <span class="kw">c</span>(<span class="dv">15</span>, -<span class="dv">20</span>, <span class="dv">10</span>, <span class="dv">40</span>, <span class="dv">30</span>, <span class="dv">25</span>, <span class="dv">65</span>, <span class="dv">27</span>),
+    <span class="dt">highlightIndex =</span> <span class="kw">c</span>(-<span class="dv">1</span>, -<span class="dv">1</span>, <span class="dv">0</span>, -<span class="dv">1</span>, -<span class="dv">1</span>, -<span class="dv">1</span>, <span class="dv">1</span>, -<span class="dv">1</span>))
+knitr::<span class="kw">kable</span>(rcwData)</code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="right">x</th>
+<th align="right">y</th>
+<th align="right">highlightIndex</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">2008</td>
+<td align="right">15</td>
+<td align="right">-1</td>
+</tr>
+<tr class="even">
+<td align="right">2009</td>
+<td align="right">-20</td>
+<td align="right">-1</td>
+</tr>
+<tr class="odd">
+<td align="right">2010</td>
+<td align="right">10</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="right">2011</td>
+<td align="right">40</td>
+<td align="right">-1</td>
+</tr>
+<tr class="odd">
+<td align="right">2012</td>
+<td align="right">30</td>
+<td align="right">-1</td>
+</tr>
+<tr class="even">
+<td align="right">2013</td>
+<td align="right">25</td>
+<td align="right">-1</td>
+</tr>
+<tr class="odd">
+<td align="right">2014</td>
+<td align="right">65</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="right">2015</td>
+<td align="right">27</td>
+<td align="right">-1</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="bar-chart" class="section level2">
+<h2>Bar Chart</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rcwChart</span>(rcwData, <span class="dt">type =</span> <span class="st">&quot;bar&quot;</span>)</code></pre></div>
+</div>
+<div id="scatter-chart" class="section level2">
+<h2>Scatter Chart</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rcwChart</span>(rcwData, <span class="dt">type =</span> <span class="st">&quot;scatter&quot;</span>)</code></pre></div>
+</div>
+<div id="row-chart" class="section level2">
+<h2>Row Chart</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rcwChart</span>(rcwData, <span class="dt">type =</span> <span class="st">&quot;row&quot;</span>)</code></pre></div>
+</div>
+<div id="objective" class="section level2">
+<h2>Objective</h2>
+</div>
+<div id="save" class="section level2">
+<h2>SAVE</h2>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<script src="rcw-bar_files/htmlwidgets-0.9/htmlwidgets.js"></script>
+<script src="rcw-bar_files/d3-3.5.17/d3.min.js"></script>
+<script src="rcw-bar_files/lodash.js-4.16.1/lodash.min.js"></script>
+<script src="rcw-bar_files/rcw-charts-3.11.0/rcw-charts.lib.js"></script>
+<script src="rcw-bar_files/rcwChart-binding-0.0.0.9000/rcwChart.js"></script>
+
+</head>
+<body style="background-color:white;">
+<div id="htmlwidget_container">
+  <div id="htmlwidget-7921c2aadc0dff95145b" style="width:600px;height:300px;" class="rcwChart html-widget"></div>
+</div>
+<script type="application/json" data-for="htmlwidget-7921c2aadc0dff95145b">{"x":{"type":"bar","data":[{"datapoints":[{"x":2008,"y":15,"highlightIndex":-1},{"x":2009,"y":-20,"highlightIndex":-1},{"x":2010,"y":10,"highlightIndex":0},{"x":2011,"y":40,"highlightIndex":-1},{"x":2012,"y":30,"highlightIndex":-1},{"x":2013,"y":25,"highlightIndex":-1},{"x":2014,"y":65,"highlightIndex":1},{"x":2015,"y":27,"highlightIndex":-1}]}],"options":{"base":{"width":"600","height":"300"}}},"evals":[],"jsHooks":[]}</script>
+<script type="application/htmlwidget-sizing" data-for="htmlwidget-7921c2aadc0dff95145b">{"viewer":{"width":"600","height":"300","padding":15,"fill":false},"browser":{"width":"600","height":"300","padding":40,"fill":false}}</script>
+</body>
+</html>
+</div>
+
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
