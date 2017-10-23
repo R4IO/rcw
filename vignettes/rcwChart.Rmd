@@ -18,18 +18,66 @@ library(magrittr)
 rcwopts <- list(inline = TRUE, save = TRUE)
 ```
 
-<!-- - [codepen mock example](https://codepen.io/bowerth/pen/EXrdpP) -->
+## Limitations
 
-## Data
+- [web-components/blob/dev/lib/rcw-charts/docs/limitations.md](https://github.com/cis-itn-oecd/web-components/blob/dev/lib/rcw-charts/docs/limitations.md)
 
-```{r data, echo=TRUE, results='as.is'}
-knitr::kable(rcw_rand)
+- **tooltip**: if multiple charts are rendered in the same page, only the first one will have his tooltip display correctly
+
+
+## Bar Chart
+
+```{r bar-chart, echo=TRUE}
+rcwChart(rcw_sym2, type = "bar")
+```
+
+### Data
+
+```{r data-bar, echo=TRUE, results='as.is'}
+## knitr::kable(rcw_rand)
+knitr::kable(rcw_sym2)
 ```
 
 
-## Stacked Bar Chart
+## Row Chart
 
-```{r stacked-chart, eval=FALSE}
+```{r row-chart, echo=TRUE}
+rowData <- rcw_rand
+rowData <- subset(rcw_rand, select = c("y", "x", "highlightIndex", "baselineIndex"))
+names(rowData) <- c("x", "y", "highlightIndex", "baselineIndex")
+rcwChart(rowData, type = "row")
+```
+
+### Data
+
+- RowChart requires a numeric vector at `x` and a character vector at `y` 
+
+```{r data-row, echo=TRUE, results='as.is'}
+knitr::kable(head(rcw_rand, 10))
+```
+
+
+## Scatter Chart
+
+```{r scatter-chart, eval=TRUE}
+scatterData <- rcw_rand
+scatterData$x <- scatterData$y * sample(seq(0, 1, 0.01), nrow(scatterData))
+rcwChart(scatterData, type = "scatter")
+```
+
+### Data
+
+- ScatterChart requires numeric vectors both at `x` and `y` 
+
+```{r data, echo=FALSE}
+## knitr::kable(head(scatterData, 10))
+dplyr::tbl_df(scatterData)
+```
+
+
+<!-- ## Stacked Bar Chart -->
+
+```{r stacked-chart, eval=FALSE, echo=FALSE}
 ## stackedData <- rcw_stacked
 ## stackedData$x <- stackedData$y * sample(seq(0, 1, 0.01), nrow(stackedData))
 ## library(rcw)
@@ -37,8 +85,7 @@ rcwChart(rcw_stacked, type = "stacked", x = "x", y = "y", fill = "layer")
 ```
 
 
-## SAVE
-
+<!-- ## SAVE -->
 
 ```{r bar-chart-save, eval=FALSE, echo=FALSE}
 wBar <- rcwChart(rcw_ts, type = "bar")
