@@ -34,21 +34,15 @@ HTMLWidgets.widget({
               padding: { top: 20 },
               innerPadding: { left: 20, right: 20, bottom: 10 }
             },
-                  axis: {
+              axis: {
                 x: {
-                  tick: {
-                    thickness: 0,
-                    size: 0
-                  },
+                  tick: { thickness: 0, size: 0 },
                   format: {
                     proc: function proc(datum) {
                       return datum;
                     }
                   },
-                  ordinal: {
-                    gap: 0.3,
-                    padding: 0.3
-                  }
+                  ordinal: { gap: 0.3, padding: 0.3 }
                 },
                 y: { padding: 10,
                     tick: { thickness: 0 },
@@ -56,12 +50,12 @@ HTMLWidgets.widget({
                     linear: {
                     pivot: { value: 0 }
                   }
-                  }
+                }
               },
-                  grid: {
+              grid: {
                 x: { thickness: 0 }
               },
-                  serie: {
+              serie: {
                 tooltip: {
                   layout: function layout(serie, datum, color) {
                     return '        <div style="' + tooltip(color) + '">          <div style="text-align: right;">            ' + datum.x + '          </div>          <div style="text-align: right; font-family: \'Signika\'; font-size: 16px;">            ' + _.round(datum.y, 2) + '          </div>        </div>      ';
@@ -88,19 +82,13 @@ HTMLWidgets.widget({
                   }
                 },
                 y: {
-                  tick: {
-                    thickness: 0,
-                    size: 0
-                  },
+                  tick: { thickness: 0, size: 0 },
                   format: {
                     proc: function proc(datum) {
                       return datum;
                     }
                   },
-                  ordinal: {
-                    gap: 0.3,
-                    padding: 0.3
-                  }
+                  ordinal: { gap: 0.3, padding: 0.3 }
                 }
               },
               grid: {
@@ -114,6 +102,46 @@ HTMLWidgets.widget({
                 }
               }
             };
+          },
+          scatterChartOptions = function scatterChartOptions() {
+            return { 
+              base: {
+                width: r.width,
+                height: r.width,
+                padding: { top: 40, right: 10 },
+                innerPadding: { left: 20, right: 20, bottom: 10 }
+              },
+              axis: {
+                x: { 
+                  padding: 10,
+                  tick: { thickness: 0, size: 0 },
+                  font: { baseline: 'ideographic' },
+                  linear: {
+                    pivot: { value: 0 }
+                  }
+                },
+                y: {
+                  padding: 10,
+                  tick: { thickness: 0, size: 0 },
+                  format: {
+                    proc: function proc(datum) {
+                      return datum;
+                    }
+                  },
+                  ordinal: { gap: 0.3, padding: 0.3 }
+                }
+              },
+              grid: {
+                x: { thickness: 0 }
+              },
+              serie: {
+                tooltip: {
+                  layout: function layout(serie, datum, color) {
+                    return '        <div style="' + tooltip(color) + '">          <div style="text-align: right;">          x:' + datum.x + '          </div>          <div style="text-align: right; font-family: \'Signika\'; font-size: 16px;">          y:' + datum.y + '          </div>        </div>      ';
+                  }
+                }
+              }
+            };
           };
 
           if (r.type === "bar") {
@@ -122,13 +150,17 @@ HTMLWidgets.widget({
                                  r.data);
           } else if (r.type === "scatter") {
             var rcwChart = new rcwCharts.ScatterChart(container,                                  
-                                 _.merge(commonOptions(), barChartOptions()),
+                                 _.merge(commonOptions(), scatterChartOptions()),
                                  r.data);
           } else if (r.type === "row") {
             var rcwChart = new rcwCharts.RowChart(container, 
                                  _.merge(commonOptions(), rowChartOptions()),
                                  r.data);
-          } 
+          } else if (r.type === "stacked") {
+            var rcwChart = new rcwCharts.StackedBarChart(container,
+                                 _.merge(commonOptions(), barChartOptions()),
+                                 r.data);
+          }
 
       },
 

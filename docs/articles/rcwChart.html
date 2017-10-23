@@ -62,22 +62,166 @@
 <!--/.navbar -->
 
       
-      </header><div class="row">
+      </header><script src="rcwChart_files/htmlwidgets-0.9/htmlwidgets.js"></script><link href="rcwChart_files/signika-0/signika.css" rel="stylesheet">
+<script src="rcwChart_files/d3-3.5.17/d3.min.js"></script><script src="rcwChart_files/lodash.js-4.16.1/lodash.min.js"></script><script src="rcwChart_files/rcw-charts-3.11.0/rcw-charts.lib.js"></script><script src="rcwChart_files/rcwChart-binding-0.0.0.9000/rcwChart.js"></script><div class="row">
   <div class="col-md-9">
     <div class="page-header toc-ignore">
       <h1>rcwChart</h1>
             
-            <h4 class="date">2017-10-20</h4>
+            <h4 class="date">2017-10-23</h4>
           </div>
 
     
     
 <div class="contents">
-<!-- - [codepen mock example](https://codepen.io/bowerth/pen/EXrdpP) -->
-<div id="data" class="section level2">
+<div id="limitations" class="section level2">
 <h2 class="hasAnchor">
-<a href="#data" class="anchor"></a>Data</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">knitr::<span class="kw">kable</span>(rcw_rand)</code></pre></div>
+<a href="#limitations" class="anchor"></a>Limitations</h2>
+<ul>
+<li><p><a href="https://github.com/cis-itn-oecd/web-components/blob/dev/lib/rcw-charts/docs/limitations.md">web-components/blob/dev/lib/rcw-charts/docs/limitations.md</a></p></li>
+<li><p><strong>tooltip</strong>: if multiple charts are rendered in the same page, only the first one will have his tooltip display correctly</p></li>
+</ul>
+</div>
+<div id="bar-chart" class="section level2">
+<h2 class="hasAnchor">
+<a href="#bar-chart" class="anchor"></a>Bar Chart</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/rcwChart.html">rcwChart</a></span>(rcw_sym2, <span class="dt">type =</span> <span class="st">"bar"</span>)</code></pre></div>
+<div id="htmlwidget-541198b8d946ac854d55" style="width:700px;height:350px;" class="rcwChart html-widget"></div>
+<script type="application/json" data-for="htmlwidget-541198b8d946ac854d55">{"x":{"type":"bar","data":[{"datapoints":[{"x":"Hungary","y":5.5,"highlightIndex":-1,"baselineIndex":-1},{"x":"Sweden","y":5.6,"highlightIndex":-1,"baselineIndex":-1},{"x":"Estonia","y":5.7,"highlightIndex":-1,"baselineIndex":-1},{"x":"Finland","y":5.8,"highlightIndex":-1,"baselineIndex":-1},{"x":"Belgium","y":5.9,"highlightIndex":-1,"baselineIndex":-1},{"x":"Turkey","y":6,"highlightIndex":-1,"baselineIndex":-1},{"x":"France","y":6.5,"highlightIndex":-1,"baselineIndex":-1},{"x":"Poland","y":6.6,"highlightIndex":-1,"baselineIndex":-1},{"x":"Slovenia","y":6.8,"highlightIndex":-1,"baselineIndex":-1},{"x":"European Union","y":7.4,"highlightIndex":-1,"baselineIndex":0},{"x":"Euro area (18 countries)","y":8.2,"highlightIndex":-1,"baselineIndex":-1},{"x":"Ireland","y":8.7,"highlightIndex":0,"baselineIndex":-1},{"x":"Italy","y":8.9,"highlightIndex":-1,"baselineIndex":-1},{"x":"Slovak Republic","y":9.9,"highlightIndex":-1,"baselineIndex":-1},{"x":"Portugal","y":10.9,"highlightIndex":-1,"baselineIndex":-1},{"x":"South Africa","y":12.3,"highlightIndex":1,"baselineIndex":-1},{"x":"Spain (2 digits)","y":16.86,"highlightIndex":-1,"baselineIndex":-1}]}],"options":{"base":{"width":"700","height":"350"}}},"evals":[],"jsHooks":[]}</script><div id="data" class="section level3">
+<h3 class="hasAnchor">
+<a href="#data" class="anchor"></a>Data</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## knitr::kable(rcw_rand)
+knitr::<span class="kw">kable</span>(rcw_sym2)</code></pre></div>
+<table class="table">
+<thead><tr class="header">
+<th align="left">x</th>
+<th align="right">y</th>
+<th align="right">highlightIndex</th>
+<th align="right">baselineIndex</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">Hungary</td>
+<td align="right">5.50</td>
+<td align="right">-1</td>
+<td align="right">-1</td>
+</tr>
+<tr class="even">
+<td align="left">Sweden</td>
+<td align="right">5.60</td>
+<td align="right">-1</td>
+<td align="right">-1</td>
+</tr>
+<tr class="odd">
+<td align="left">Estonia</td>
+<td align="right">5.70</td>
+<td align="right">-1</td>
+<td align="right">-1</td>
+</tr>
+<tr class="even">
+<td align="left">Finland</td>
+<td align="right">5.80</td>
+<td align="right">-1</td>
+<td align="right">-1</td>
+</tr>
+<tr class="odd">
+<td align="left">Belgium</td>
+<td align="right">5.90</td>
+<td align="right">-1</td>
+<td align="right">-1</td>
+</tr>
+<tr class="even">
+<td align="left">Turkey</td>
+<td align="right">6.00</td>
+<td align="right">-1</td>
+<td align="right">-1</td>
+</tr>
+<tr class="odd">
+<td align="left">France</td>
+<td align="right">6.50</td>
+<td align="right">-1</td>
+<td align="right">-1</td>
+</tr>
+<tr class="even">
+<td align="left">Poland</td>
+<td align="right">6.60</td>
+<td align="right">-1</td>
+<td align="right">-1</td>
+</tr>
+<tr class="odd">
+<td align="left">Slovenia</td>
+<td align="right">6.80</td>
+<td align="right">-1</td>
+<td align="right">-1</td>
+</tr>
+<tr class="even">
+<td align="left">European Union</td>
+<td align="right">7.40</td>
+<td align="right">-1</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">Euro area (18 countries)</td>
+<td align="right">8.20</td>
+<td align="right">-1</td>
+<td align="right">-1</td>
+</tr>
+<tr class="even">
+<td align="left">Ireland</td>
+<td align="right">8.70</td>
+<td align="right">0</td>
+<td align="right">-1</td>
+</tr>
+<tr class="odd">
+<td align="left">Italy</td>
+<td align="right">8.90</td>
+<td align="right">-1</td>
+<td align="right">-1</td>
+</tr>
+<tr class="even">
+<td align="left">Slovak Republic</td>
+<td align="right">9.90</td>
+<td align="right">-1</td>
+<td align="right">-1</td>
+</tr>
+<tr class="odd">
+<td align="left">Portugal</td>
+<td align="right">10.90</td>
+<td align="right">-1</td>
+<td align="right">-1</td>
+</tr>
+<tr class="even">
+<td align="left">South Africa</td>
+<td align="right">12.30</td>
+<td align="right">1</td>
+<td align="right">-1</td>
+</tr>
+<tr class="odd">
+<td align="left">Spain (2 digits)</td>
+<td align="right">16.86</td>
+<td align="right">-1</td>
+<td align="right">-1</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="row-chart" class="section level2">
+<h2 class="hasAnchor">
+<a href="#row-chart" class="anchor"></a>Row Chart</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">rowData &lt;-<span class="st"> </span>rcw_rand
+rowData &lt;-<span class="st"> </span><span class="kw">subset</span>(rcw_rand, <span class="dt">select =</span> <span class="kw">c</span>(<span class="st">"y"</span>, <span class="st">"x"</span>, <span class="st">"highlightIndex"</span>, <span class="st">"baselineIndex"</span>))
+<span class="kw">names</span>(rowData) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">"x"</span>, <span class="st">"y"</span>, <span class="st">"highlightIndex"</span>, <span class="st">"baselineIndex"</span>)
+<span class="kw"><a href="../reference/rcwChart.html">rcwChart</a></span>(rowData, <span class="dt">type =</span> <span class="st">"row"</span>)</code></pre></div>
+<div id="htmlwidget-67b5e487c79a72e7eb0b" style="width:700px;height:350px;" class="rcwChart html-widget"></div>
+<script type="application/json" data-for="htmlwidget-67b5e487c79a72e7eb0b">{"x":{"type":"row","data":[{"datapoints":[{"x":51,"y":"lalala hello things end ","highlightIndex":-1,"baselineIndex":-1},{"x":1,"y":"label2","highlightIndex":-1,"baselineIndex":-1},{"x":19,"y":"label3","highlightIndex":-1,"baselineIndex":-1},{"x":76,"y":"label4","highlightIndex":-1,"baselineIndex":0},{"x":76,"y":"label5","highlightIndex":-1,"baselineIndex":-1},{"x":16,"y":"label6","highlightIndex":-1,"baselineIndex":-1},{"x":35,"y":"label7","highlightIndex":-1,"baselineIndex":-1},{"x":15,"y":"label8","highlightIndex":0,"baselineIndex":-1},{"x":-17,"y":"label9","highlightIndex":-1,"baselineIndex":-1},{"x":85,"y":"label10","highlightIndex":-1,"baselineIndex":-1},{"x":-5,"y":"label11","highlightIndex":1,"baselineIndex":-1},{"x":-20.1,"y":"label12","highlightIndex":-1,"baselineIndex":-1},{"x":66,"y":"label13","highlightIndex":-1,"baselineIndex":-1},{"x":6,"y":"label14","highlightIndex":-1,"baselineIndex":-1},{"x":-7,"y":"label15","highlightIndex":-1,"baselineIndex":-1},{"x":67,"y":"label16","highlightIndex":-1,"baselineIndex":-1},{"x":20,"y":"label17","highlightIndex":-1,"baselineIndex":-1},{"x":76,"y":"label18","highlightIndex":-1,"baselineIndex":-1},{"x":26,"y":"label19","highlightIndex":-1,"baselineIndex":-1},{"x":24,"y":"label20","highlightIndex":-1,"baselineIndex":-1},{"x":28,"y":"label21","highlightIndex":-1,"baselineIndex":-1},{"x":12,"y":"label22","highlightIndex":-1,"baselineIndex":-1},{"x":-10,"y":"label23","highlightIndex":-1,"baselineIndex":-1},{"x":51,"y":"label24","highlightIndex":-1,"baselineIndex":-1},{"x":5,"y":"label25","highlightIndex":-1,"baselineIndex":-1},{"x":-6,"y":"label26","highlightIndex":-1,"baselineIndex":-1},{"x":54,"y":"label27","highlightIndex":-1,"baselineIndex":-1},{"x":91,"y":"label28","highlightIndex":-1,"baselineIndex":-1},{"x":75,"y":"label29","highlightIndex":-1,"baselineIndex":-1},{"x":68,"y":"label30","highlightIndex":-1,"baselineIndex":-1}]}],"options":{"base":{"width":"700","height":"350"}}},"evals":[],"jsHooks":[]}</script><div id="data-1" class="section level3">
+<h3 class="hasAnchor">
+<a href="#data-1" class="anchor"></a>Data</h3>
+<ul>
+<li>RowChart requires a numeric vector at <code>x</code> and a character vector at <code>y</code>
+</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">knitr::<span class="kw">kable</span>(<span class="kw">head</span>(rcw_rand, <span class="dv">10</span>))</code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">x</th>
@@ -88,210 +232,101 @@
 <tbody>
 <tr class="odd">
 <td align="left">lalala hello things end</td>
-<td align="right">98.0</td>
+<td align="right">51</td>
 <td align="right">-1</td>
 <td align="right">-1</td>
 </tr>
 <tr class="even">
 <td align="left">label2</td>
-<td align="right">94.0</td>
+<td align="right">1</td>
 <td align="right">-1</td>
 <td align="right">-1</td>
 </tr>
 <tr class="odd">
 <td align="left">label3</td>
-<td align="right">67.0</td>
+<td align="right">19</td>
 <td align="right">-1</td>
 <td align="right">-1</td>
 </tr>
 <tr class="even">
 <td align="left">label4</td>
-<td align="right">69.0</td>
+<td align="right">76</td>
 <td align="right">-1</td>
 <td align="right">0</td>
 </tr>
 <tr class="odd">
 <td align="left">label5</td>
-<td align="right">15.0</td>
+<td align="right">76</td>
 <td align="right">-1</td>
 <td align="right">-1</td>
 </tr>
 <tr class="even">
 <td align="left">label6</td>
-<td align="right">-16.0</td>
+<td align="right">16</td>
 <td align="right">-1</td>
 <td align="right">-1</td>
 </tr>
 <tr class="odd">
 <td align="left">label7</td>
-<td align="right">85.0</td>
+<td align="right">35</td>
 <td align="right">-1</td>
 <td align="right">-1</td>
 </tr>
 <tr class="even">
 <td align="left">label8</td>
-<td align="right">15.0</td>
+<td align="right">15</td>
 <td align="right">0</td>
 <td align="right">-1</td>
 </tr>
 <tr class="odd">
 <td align="left">label9</td>
-<td align="right">5.0</td>
+<td align="right">-17</td>
 <td align="right">-1</td>
 <td align="right">-1</td>
 </tr>
 <tr class="even">
 <td align="left">label10</td>
-<td align="right">57.0</td>
-<td align="right">-1</td>
-<td align="right">-1</td>
-</tr>
-<tr class="odd">
-<td align="left">label11</td>
-<td align="right">-5.0</td>
-<td align="right">1</td>
-<td align="right">-1</td>
-</tr>
-<tr class="even">
-<td align="left">label12</td>
-<td align="right">-20.1</td>
-<td align="right">-1</td>
-<td align="right">-1</td>
-</tr>
-<tr class="odd">
-<td align="left">label13</td>
-<td align="right">82.0</td>
-<td align="right">-1</td>
-<td align="right">-1</td>
-</tr>
-<tr class="even">
-<td align="left">label14</td>
-<td align="right">25.0</td>
-<td align="right">-1</td>
-<td align="right">-1</td>
-</tr>
-<tr class="odd">
-<td align="left">label15</td>
-<td align="right">38.0</td>
-<td align="right">-1</td>
-<td align="right">-1</td>
-</tr>
-<tr class="even">
-<td align="left">label16</td>
-<td align="right">95.0</td>
-<td align="right">-1</td>
-<td align="right">-1</td>
-</tr>
-<tr class="odd">
-<td align="left">label17</td>
-<td align="right">13.0</td>
-<td align="right">-1</td>
-<td align="right">-1</td>
-</tr>
-<tr class="even">
-<td align="left">label18</td>
-<td align="right">-12.0</td>
-<td align="right">-1</td>
-<td align="right">-1</td>
-</tr>
-<tr class="odd">
-<td align="left">label19</td>
-<td align="right">52.0</td>
-<td align="right">-1</td>
-<td align="right">-1</td>
-</tr>
-<tr class="even">
-<td align="left">label20</td>
-<td align="right">89.0</td>
-<td align="right">-1</td>
-<td align="right">-1</td>
-</tr>
-<tr class="odd">
-<td align="left">label21</td>
-<td align="right">-17.0</td>
-<td align="right">-1</td>
-<td align="right">-1</td>
-</tr>
-<tr class="even">
-<td align="left">label22</td>
-<td align="right">71.0</td>
-<td align="right">-1</td>
-<td align="right">-1</td>
-</tr>
-<tr class="odd">
-<td align="left">label23</td>
-<td align="right">52.0</td>
-<td align="right">-1</td>
-<td align="right">-1</td>
-</tr>
-<tr class="even">
-<td align="left">label24</td>
-<td align="right">51.0</td>
-<td align="right">-1</td>
-<td align="right">-1</td>
-</tr>
-<tr class="odd">
-<td align="left">label25</td>
-<td align="right">34.0</td>
-<td align="right">-1</td>
-<td align="right">-1</td>
-</tr>
-<tr class="even">
-<td align="left">label26</td>
-<td align="right">96.0</td>
-<td align="right">-1</td>
-<td align="right">-1</td>
-</tr>
-<tr class="odd">
-<td align="left">label27</td>
-<td align="right">13.0</td>
-<td align="right">-1</td>
-<td align="right">-1</td>
-</tr>
-<tr class="even">
-<td align="left">label28</td>
-<td align="right">45.0</td>
-<td align="right">-1</td>
-<td align="right">-1</td>
-</tr>
-<tr class="odd">
-<td align="left">label29</td>
-<td align="right">-14.0</td>
-<td align="right">-1</td>
-<td align="right">-1</td>
-</tr>
-<tr class="even">
-<td align="left">label30</td>
-<td align="right">93.0</td>
+<td align="right">85</td>
 <td align="right">-1</td>
 <td align="right">-1</td>
 </tr>
 </tbody>
 </table>
 </div>
+</div>
 <div id="scatter-chart" class="section level2">
 <h2 class="hasAnchor">
 <a href="#scatter-chart" class="anchor"></a>Scatter Chart</h2>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">scatterData &lt;-<span class="st"> </span>rcw_rand
-scatterData$x &lt;-<span class="st"> </span>scatterData$y *<span class="st"> </span><span class="kw">sample</span>(<span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.01</span>), <span class="kw">nrow</span>(scatterData))
-<span class="kw"><a href="../reference/rcwChart.html">rcwChart</a></span>(scatterData, <span class="dt">type =</span> <span class="st">"scatter"</span>)</code></pre></div>
+scatterData$x &lt;-<span class="st"> </span>scatterData$y *<span class="st"> </span><span class="kw">sample</span>(<span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.01</span>), <span class="kw">nrow</span>(scatterData))</code></pre></div>
+<pre><code>## Warning in sample.int(length(x), size, replace, prob): '.Random.seed' is
+## not an integer vector but of type 'NULL', so ignored</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/rcwChart.html">rcwChart</a></span>(scatterData, <span class="dt">type =</span> <span class="st">"scatter"</span>)</code></pre></div>
+<div id="htmlwidget-a57eaaccaee0524e1922" style="width:700px;height:350px;" class="rcwChart html-widget"></div>
+<script type="application/json" data-for="htmlwidget-a57eaaccaee0524e1922">{"x":{"type":"scatter","data":[{"datapoints":[{"x":9.69,"y":51,"highlightIndex":-1,"baselineIndex":-1},{"x":0.59,"y":1,"highlightIndex":-1,"baselineIndex":-1},{"x":17.67,"y":19,"highlightIndex":-1,"baselineIndex":-1},{"x":54.72,"y":76,"highlightIndex":-1,"baselineIndex":0},{"x":39.52,"y":76,"highlightIndex":-1,"baselineIndex":-1},{"x":5.6,"y":16,"highlightIndex":-1,"baselineIndex":-1},{"x":5.95,"y":35,"highlightIndex":-1,"baselineIndex":-1},{"x":14.4,"y":15,"highlightIndex":0,"baselineIndex":-1},{"x":-4.59,"y":-17,"highlightIndex":-1,"baselineIndex":-1},{"x":28.05,"y":85,"highlightIndex":-1,"baselineIndex":-1},{"x":-2.9,"y":-5,"highlightIndex":1,"baselineIndex":-1},{"x":-16.884,"y":-20.1,"highlightIndex":-1,"baselineIndex":-1},{"x":44.22,"y":66,"highlightIndex":-1,"baselineIndex":-1},{"x":5.88,"y":6,"highlightIndex":-1,"baselineIndex":-1},{"x":-4.41,"y":-7,"highlightIndex":-1,"baselineIndex":-1},{"x":50.25,"y":67,"highlightIndex":-1,"baselineIndex":-1},{"x":17,"y":20,"highlightIndex":-1,"baselineIndex":-1},{"x":15.96,"y":76,"highlightIndex":-1,"baselineIndex":-1},{"x":16.12,"y":26,"highlightIndex":-1,"baselineIndex":-1},{"x":23.28,"y":24,"highlightIndex":-1,"baselineIndex":-1},{"x":22.96,"y":28,"highlightIndex":-1,"baselineIndex":-1},{"x":7.32,"y":12,"highlightIndex":-1,"baselineIndex":-1},{"x":-0.2,"y":-10,"highlightIndex":-1,"baselineIndex":-1},{"x":12.24,"y":51,"highlightIndex":-1,"baselineIndex":-1},{"x":2.5,"y":5,"highlightIndex":-1,"baselineIndex":-1},{"x":-4.2,"y":-6,"highlightIndex":-1,"baselineIndex":-1},{"x":54,"y":54,"highlightIndex":-1,"baselineIndex":-1},{"x":30.94,"y":91,"highlightIndex":-1,"baselineIndex":-1},{"x":48,"y":75,"highlightIndex":-1,"baselineIndex":-1},{"x":14.96,"y":68,"highlightIndex":-1,"baselineIndex":-1}]}],"options":{"base":{"width":"700","height":"350"}}},"evals":[],"jsHooks":[]}</script><div id="data-2" class="section level3">
+<h3 class="hasAnchor">
+<a href="#data-2" class="anchor"></a>Data</h3>
+<ul>
+<li>ScatterChart requires numeric vectors both at <code>x</code> and <code>y</code>
+</li>
+</ul>
+<pre><code>## # A tibble: 30 x 4
+##        x     y highlightIndex baselineIndex
+##    &lt;dbl&gt; &lt;dbl&gt;          &lt;int&gt;         &lt;int&gt;
+##  1  9.69    51             -1            -1
+##  2  0.59     1             -1            -1
+##  3 17.67    19             -1            -1
+##  4 54.72    76             -1             0
+##  5 39.52    76             -1            -1
+##  6  5.60    16             -1            -1
+##  7  5.95    35             -1            -1
+##  8 14.40    15              0            -1
+##  9 -4.59   -17             -1            -1
+## 10 28.05    85             -1            -1
+## # ... with 20 more rows</code></pre>
+<!-- ## Stacked Bar Chart -->
+<!-- ## SAVE -->
 </div>
-<div id="row-chart" class="section level2">
-<h2 class="hasAnchor">
-<a href="#row-chart" class="anchor"></a>Row Chart</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">rowData &lt;-<span class="st"> </span>rcw_rand
-rowData &lt;-<span class="st"> </span><span class="kw">subset</span>(rcw_rand, <span class="dt">select =</span> <span class="kw">c</span>(<span class="st">"y"</span>, <span class="st">"x"</span>, <span class="st">"highlightIndex"</span>, <span class="st">"baselineIndex"</span>))
-<span class="kw">names</span>(rowData) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">"x"</span>, <span class="st">"y"</span>, <span class="st">"highlightIndex"</span>, <span class="st">"baselineIndex"</span>)
-dplyr::<span class="kw">tbl_df</span>(rowData)
-<span class="kw"><a href="../reference/rcwChart.html">rcwChart</a></span>(rowData, <span class="dt">type =</span> <span class="st">"row"</span>)</code></pre></div>
-</div>
-<div id="objective" class="section level2">
-<h2 class="hasAnchor">
-<a href="#objective" class="anchor"></a>Objective</h2>
-</div>
-<div id="save" class="section level2">
-<h2 class="hasAnchor">
-<a href="#save" class="anchor"></a>SAVE</h2>
 </div>
 </div>
   </div>
@@ -301,11 +336,10 @@ dplyr::<span class="kw">tbl_df</span>(rowData)
       <h2 class="hasAnchor">
 <a href="#tocnav" class="anchor"></a>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-<li><a href="#data">Data</a></li>
-      <li><a href="#scatter-chart">Scatter Chart</a></li>
+<li><a href="#limitations">Limitations</a></li>
+      <li><a href="#bar-chart">Bar Chart</a></li>
       <li><a href="#row-chart">Row Chart</a></li>
-      <li><a href="#objective">Objective</a></li>
-      <li><a href="#save">SAVE</a></li>
+      <li><a href="#scatter-chart">Scatter Chart</a></li>
       </ul>
 </div>
       </div>

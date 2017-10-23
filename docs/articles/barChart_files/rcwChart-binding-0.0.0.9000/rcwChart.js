@@ -156,7 +156,11 @@ HTMLWidgets.widget({
             var rcwChart = new rcwCharts.RowChart(container, 
                                  _.merge(commonOptions(), rowChartOptions()),
                                  r.data);
-          } 
+          } else if (r.type === "stacked") {
+            var rcwChart = new rcwCharts.StackedBarChart(container,
+                                 _.merge(commonOptions(), barChartOptions()),
+                                 r.data);
+          }
 
       },
 
