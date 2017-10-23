@@ -62,13 +62,13 @@
       <a href="../articles/rcwChart.html">rcwChart</a>
     </li>
     <li>
-      <a href="../articles/intro_reactR.html">reactR</a>
+      <a href="../articles/barChart.html">Bar Chart</a>
     </li>
     <li>
-      <a href="../articles/intro_listviewer.html">listviewer</a>
+      <a href="../articles/rowChart.html">Row Chart</a>
     </li>
     <li>
-      <a href="../articles/intro_stockchartR.html">stockchartR</a>
+      <a href="../articles/scatterChart.html">Scatter Chart</a>
     </li>
   </ul>
 </li>
@@ -94,12 +94,11 @@
     </div>
 
     
-    <p><code>rcwChart</code> creates simple D3 JavaScript force directed network
-graphs.</p>
+    <p><code>rcwChart</code> creates simple D3 JavaScript graphs.</p>
     
 
-    <pre class="usage"><span class='fu'>rcwChart</span>(<span class='no'>data</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='fu'>stop</span>(<span class='st'>"'type' must be provided"</span>), <span class='kw'>height</span> <span class='kw'>=</span> <span class='st'>"300"</span>,
-  <span class='kw'>width</span> <span class='kw'>=</span> <span class='st'>"600"</span>)
+    <pre class="usage"><span class='fu'>rcwChart</span>(<span class='no'>data</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='fu'>stop</span>(<span class='st'>"'type' must be provided"</span>), <span class='kw'>height</span> <span class='kw'>=</span> <span class='st'>"350"</span>,
+  <span class='kw'>width</span> <span class='kw'>=</span> <span class='st'>"700"</span>)
 
 <span class='fu'>rcwChartOutput</span>(<span class='no'>outputId</span>, <span class='kw'>width</span> <span class='kw'>=</span> <span class='st'>"100%"</span>, <span class='kw'>height</span> <span class='kw'>=</span> <span class='st'>"500px"</span>)
 
@@ -110,41 +109,40 @@ graphs.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>data</th>
-      <td><p>a data frame object with three columns. The first two are the
-names of the linked units. The third records an edge value. (Currently the
-third column doesn't affect the graph.)</p></td>
+      <td><p>a data frame object with three columns. The first column
+corresponds to the x-axis, the second to the y-axis and the third indicates
+the highlighting pattern: negative integers indicate non-highlighted
+values, odd and even numbers are distinguished with permanent color
+highlighting, odd numbers include zero.</p></td>
     </tr>
     <tr>
       <th>type</th>
-      <td><p>a valid chart type e.g. <code>"bar"</code>, <code>"scatter"</code>, <code>"row"</code> etc.</p></td>
+      <td><p>a valid chart type e.g. <code>"bar"</code>, <code>"scatter"</code>,
+<code>"row"</code> etc.</p></td>
     </tr>
     <tr>
       <th>height</th>
-      <td><p>height for the network graph's frame area in pixels (if
+      <td><p>height for the graph's frame area in pixels (if
 <code>NULL</code> then height is automatically determined based on context)</p></td>
     </tr>
     <tr>
       <th>width</th>
-      <td><p>numeric width for the network graph's frame area in pixels (if
+      <td><p>numeric width for the graph's frame area in pixels (if
 <code>NULL</code> then width is automatically determined based on context)</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
 
-    <p>D3.js was created by Michael Bostock. See <a href='http://d3js.org/'>http://d3js.org/</a> and,
-  more specifically for directed networks
-  <a href='https://github.com/mbostock/d3/wiki/Force-Layout'>https://github.com/mbostock/d3/wiki/Force-Layout</a></p>
+    <p>D3.js was created by Michael Bostock, see <a href='http://d3js.org/'>http://d3js.org/</a>.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># Fake data</span>
-<span class='no'>Source</span> <span class='kw'>&lt;-</span> <span class='fu'>c</span>(<span class='st'>"A"</span>, <span class='st'>"A"</span>, <span class='st'>"A"</span>, <span class='st'>"A"</span>, <span class='st'>"B"</span>, <span class='st'>"B"</span>, <span class='st'>"C"</span>, <span class='st'>"C"</span>, <span class='st'>"D"</span>)
-<span class='no'>Target</span> <span class='kw'>&lt;-</span> <span class='fu'>c</span>(<span class='st'>"B"</span>, <span class='st'>"C"</span>, <span class='st'>"D"</span>, <span class='st'>"J"</span>, <span class='st'>"E"</span>, <span class='st'>"F"</span>, <span class='st'>"G"</span>, <span class='st'>"H"</span>, <span class='st'>"I"</span>)
-<span class='no'>NetworkData</span> <span class='kw'>&lt;-</span> <span class='fu'>data.frame</span>(<span class='no'>Source</span>, <span class='no'>Target</span>)
-
-<span class='co'># Create graph</span>
-<span class='fu'>rcwChart</span>(<span class='no'>NetworkData</span>)</div><div class='output co'>#&gt; <span class='error'>Error in rcwChart(NetworkData): 'type' must be provided</span></div><div class='input'>
+    <pre class="examples"><div class='input'><span class='no'>rcwData</span> <span class='kw'>&lt;-</span> <span class='fu'>data.frame</span>(
+  <span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>1000</span>, <span class='fl'>1001</span>, <span class='fl'>1010</span>, <span class='fl'>1011</span>, <span class='fl'>1100</span>, <span class='fl'>1101</span>, <span class='fl'>1110</span>, <span class='fl'>1111</span>),
+  <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>15</span>, -<span class='fl'>20</span>, <span class='fl'>10</span>, <span class='fl'>40</span>, <span class='fl'>30</span>, <span class='fl'>25</span>, <span class='fl'>65</span>, <span class='fl'>27</span>),
+  <span class='kw'>highlightIndex</span> <span class='kw'>=</span> <span class='fu'>c</span>(-<span class='fl'>1</span>, -<span class='fl'>1</span>, <span class='fl'>0</span>, -<span class='fl'>1</span>, -<span class='fl'>1</span>, -<span class='fl'>1</span>, <span class='fl'>1</span>, -<span class='fl'>1</span>))
+<span class='fu'>rcwChart</span>(<span class='no'>rcwData</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"bar"</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: file("") only supports open = "w+" and open = "w+b": using the former</span></div><div class='output co'>#&gt; <span class='error'>Error in dirname(to): a character vector argument expected</span></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

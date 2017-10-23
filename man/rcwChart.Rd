@@ -4,17 +4,20 @@
 \alias{rcwChart}
 \alias{rcwChartOutput}
 \alias{renderrcwChart}
+\alias{rcwData}
 \title{Function for creating rcw D3 graphs.}
 \source{
 D3.js was created by Michael Bostock, see \url{http://d3js.org/}.
 }
 \usage{
-rcwChart(data, type = stop("'type' must be provided"), height = "300",
-  width = "600")
+rcwChart(data, type = stop("'type' must be provided"), height = "350",
+  width = "700", ...)
 
 rcwChartOutput(outputId, width = "100\%", height = "500px")
 
 renderrcwChart(expr, env = parent.frame(), quoted = FALSE)
+
+rcwData(data, type, x, y, fill = "layer")
 }
 \arguments{
 \item{data}{a data frame object with three columns. The first column

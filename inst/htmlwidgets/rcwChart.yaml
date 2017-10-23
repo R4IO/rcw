@@ -1,4 +1,8 @@
 dependencies:
+  - name: signika
+    version: 0
+    src: "htmlwidgets/lib/signika-0"
+    style: "signika.css"
   - name: d3
     version: 3.5.17
     src: htmlwidgets/lib/d3-3.5.17

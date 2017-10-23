@@ -15,6 +15,12 @@
 
 <title>rcwChart</title>
 
+<script src="rcw_files/htmlwidgets-0.9/htmlwidgets.js"></script>
+<link href="rcw_files/signika-0/signika.css" rel="stylesheet" />
+<script src="rcw_files/d3-3.5.17/d3.min.js"></script>
+<script src="rcw_files/lodash.js-4.16.1/lodash.min.js"></script>
+<script src="rcw_files/rcw-charts-3.11.0/rcw-charts.lib.js"></script>
+<script src="rcw_files/rcwChart-binding-0.0.0.9000/rcwChart.js"></script>
 
 
 <style type="text/css">code{white-space: pre;}</style>
@@ -72,105 +78,224 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 
 
-<ul>
-<li><a href="https://codepen.io/bowerth/pen/EXrdpP">codepen mock example</a></li>
-</ul>
+<!-- - [codepen mock example](https://codepen.io/bowerth/pen/EXrdpP) -->
 <div id="data" class="section level2">
 <h2>Data</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">rcwData &lt;-<span class="st"> </span><span class="kw">data.frame</span>(
-    ## x = c(1000, 1001, 1010, 1011, 1100, 1101, 1110, 1111),
-    <span class="dt">x =</span> <span class="kw">c</span>(<span class="dv">2008</span>, <span class="dv">2009</span>, <span class="dv">2010</span>, <span class="dv">2011</span>, <span class="dv">2012</span>, <span class="dv">2013</span>, <span class="dv">2014</span>, <span class="dv">2015</span>),
-    <span class="dt">y =</span> <span class="kw">c</span>(<span class="dv">15</span>, -<span class="dv">20</span>, <span class="dv">10</span>, <span class="dv">40</span>, <span class="dv">30</span>, <span class="dv">25</span>, <span class="dv">65</span>, <span class="dv">27</span>),
-    <span class="dt">highlightIndex =</span> <span class="kw">c</span>(-<span class="dv">1</span>, -<span class="dv">1</span>, <span class="dv">0</span>, -<span class="dv">1</span>, -<span class="dv">1</span>, -<span class="dv">1</span>, <span class="dv">1</span>, -<span class="dv">1</span>))
-knitr::<span class="kw">kable</span>(rcwData)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">knitr::<span class="kw">kable</span>(rcw_rand)</code></pre></div>
 <table>
 <thead>
 <tr class="header">
-<th align="right">x</th>
+<th align="left">x</th>
 <th align="right">y</th>
 <th align="right">highlightIndex</th>
+<th align="right">baselineIndex</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="right">2008</td>
-<td align="right">15</td>
+<td align="left">lalala hello things end</td>
+<td align="right">98.0</td>
+<td align="right">-1</td>
 <td align="right">-1</td>
 </tr>
 <tr class="even">
-<td align="right">2009</td>
-<td align="right">-20</td>
+<td align="left">label2</td>
+<td align="right">94.0</td>
+<td align="right">-1</td>
 <td align="right">-1</td>
 </tr>
 <tr class="odd">
-<td align="right">2010</td>
-<td align="right">10</td>
+<td align="left">label3</td>
+<td align="right">67.0</td>
+<td align="right">-1</td>
+<td align="right">-1</td>
+</tr>
+<tr class="even">
+<td align="left">label4</td>
+<td align="right">69.0</td>
+<td align="right">-1</td>
 <td align="right">0</td>
 </tr>
-<tr class="even">
-<td align="right">2011</td>
-<td align="right">40</td>
-<td align="right">-1</td>
-</tr>
 <tr class="odd">
-<td align="right">2012</td>
-<td align="right">30</td>
+<td align="left">label5</td>
+<td align="right">15.0</td>
+<td align="right">-1</td>
 <td align="right">-1</td>
 </tr>
 <tr class="even">
-<td align="right">2013</td>
-<td align="right">25</td>
+<td align="left">label6</td>
+<td align="right">-16.0</td>
+<td align="right">-1</td>
 <td align="right">-1</td>
 </tr>
 <tr class="odd">
-<td align="right">2014</td>
-<td align="right">65</td>
+<td align="left">label7</td>
+<td align="right">85.0</td>
+<td align="right">-1</td>
+<td align="right">-1</td>
+</tr>
+<tr class="even">
+<td align="left">label8</td>
+<td align="right">15.0</td>
+<td align="right">0</td>
+<td align="right">-1</td>
+</tr>
+<tr class="odd">
+<td align="left">label9</td>
+<td align="right">5.0</td>
+<td align="right">-1</td>
+<td align="right">-1</td>
+</tr>
+<tr class="even">
+<td align="left">label10</td>
+<td align="right">57.0</td>
+<td align="right">-1</td>
+<td align="right">-1</td>
+</tr>
+<tr class="odd">
+<td align="left">label11</td>
+<td align="right">-5.0</td>
 <td align="right">1</td>
+<td align="right">-1</td>
 </tr>
 <tr class="even">
-<td align="right">2015</td>
-<td align="right">27</td>
+<td align="left">label12</td>
+<td align="right">-20.1</td>
+<td align="right">-1</td>
+<td align="right">-1</td>
+</tr>
+<tr class="odd">
+<td align="left">label13</td>
+<td align="right">82.0</td>
+<td align="right">-1</td>
+<td align="right">-1</td>
+</tr>
+<tr class="even">
+<td align="left">label14</td>
+<td align="right">25.0</td>
+<td align="right">-1</td>
+<td align="right">-1</td>
+</tr>
+<tr class="odd">
+<td align="left">label15</td>
+<td align="right">38.0</td>
+<td align="right">-1</td>
+<td align="right">-1</td>
+</tr>
+<tr class="even">
+<td align="left">label16</td>
+<td align="right">95.0</td>
+<td align="right">-1</td>
+<td align="right">-1</td>
+</tr>
+<tr class="odd">
+<td align="left">label17</td>
+<td align="right">13.0</td>
+<td align="right">-1</td>
+<td align="right">-1</td>
+</tr>
+<tr class="even">
+<td align="left">label18</td>
+<td align="right">-12.0</td>
+<td align="right">-1</td>
+<td align="right">-1</td>
+</tr>
+<tr class="odd">
+<td align="left">label19</td>
+<td align="right">52.0</td>
+<td align="right">-1</td>
+<td align="right">-1</td>
+</tr>
+<tr class="even">
+<td align="left">label20</td>
+<td align="right">89.0</td>
+<td align="right">-1</td>
+<td align="right">-1</td>
+</tr>
+<tr class="odd">
+<td align="left">label21</td>
+<td align="right">-17.0</td>
+<td align="right">-1</td>
+<td align="right">-1</td>
+</tr>
+<tr class="even">
+<td align="left">label22</td>
+<td align="right">71.0</td>
+<td align="right">-1</td>
+<td align="right">-1</td>
+</tr>
+<tr class="odd">
+<td align="left">label23</td>
+<td align="right">52.0</td>
+<td align="right">-1</td>
+<td align="right">-1</td>
+</tr>
+<tr class="even">
+<td align="left">label24</td>
+<td align="right">51.0</td>
+<td align="right">-1</td>
+<td align="right">-1</td>
+</tr>
+<tr class="odd">
+<td align="left">label25</td>
+<td align="right">34.0</td>
+<td align="right">-1</td>
+<td align="right">-1</td>
+</tr>
+<tr class="even">
+<td align="left">label26</td>
+<td align="right">96.0</td>
+<td align="right">-1</td>
+<td align="right">-1</td>
+</tr>
+<tr class="odd">
+<td align="left">label27</td>
+<td align="right">13.0</td>
+<td align="right">-1</td>
+<td align="right">-1</td>
+</tr>
+<tr class="even">
+<td align="left">label28</td>
+<td align="right">45.0</td>
+<td align="right">-1</td>
+<td align="right">-1</td>
+</tr>
+<tr class="odd">
+<td align="left">label29</td>
+<td align="right">-14.0</td>
+<td align="right">-1</td>
+<td align="right">-1</td>
+</tr>
+<tr class="even">
+<td align="left">label30</td>
+<td align="right">93.0</td>
+<td align="right">-1</td>
 <td align="right">-1</td>
 </tr>
 </tbody>
 </table>
 </div>
-<div id="bar-chart" class="section level2">
-<h2>Bar Chart</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rcwChart</span>(rcwData, <span class="dt">type =</span> <span class="st">&quot;bar&quot;</span>)</code></pre></div>
-</div>
 <div id="scatter-chart" class="section level2">
 <h2>Scatter Chart</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rcwChart</span>(rcwData, <span class="dt">type =</span> <span class="st">&quot;scatter&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">scatterData &lt;-<span class="st"> </span>rcw_rand
+scatterData$x &lt;-<span class="st"> </span>scatterData$y *<span class="st"> </span><span class="kw">sample</span>(<span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.01</span>), <span class="kw">nrow</span>(scatterData))
+<span class="kw">rcwChart</span>(scatterData, <span class="dt">type =</span> <span class="st">&quot;scatter&quot;</span>)</code></pre></div>
+<div id="htmlwidget-a3054200e2a3aba24f4b" style="width:700px;height:350px;" class="rcwChart html-widget"></div>
+<script type="application/json" data-for="htmlwidget-a3054200e2a3aba24f4b">{"x":{"type":"scatter","data":[{"datapoints":[{"x":91.14,"y":98,"highlightIndex":-1,"baselineIndex":-1},{"x":84.6,"y":94,"highlightIndex":-1,"baselineIndex":-1},{"x":29.48,"y":67,"highlightIndex":-1,"baselineIndex":-1},{"x":48.99,"y":69,"highlightIndex":-1,"baselineIndex":0},{"x":12.15,"y":15,"highlightIndex":-1,"baselineIndex":-1},{"x":-8,"y":-16,"highlightIndex":-1,"baselineIndex":-1},{"x":59.5,"y":85,"highlightIndex":-1,"baselineIndex":-1},{"x":0.75,"y":15,"highlightIndex":0,"baselineIndex":-1},{"x":1.45,"y":5,"highlightIndex":-1,"baselineIndex":-1},{"x":34.2,"y":57,"highlightIndex":-1,"baselineIndex":-1},{"x":-2.95,"y":-5,"highlightIndex":1,"baselineIndex":-1},{"x":-11.256,"y":-20.1,"highlightIndex":-1,"baselineIndex":-1},{"x":27.06,"y":82,"highlightIndex":-1,"baselineIndex":-1},{"x":8.5,"y":25,"highlightIndex":-1,"baselineIndex":-1},{"x":33.06,"y":38,"highlightIndex":-1,"baselineIndex":-1},{"x":19.95,"y":95,"highlightIndex":-1,"baselineIndex":-1},{"x":11.83,"y":13,"highlightIndex":-1,"baselineIndex":-1},{"x":-8.28,"y":-12,"highlightIndex":-1,"baselineIndex":-1},{"x":18.72,"y":52,"highlightIndex":-1,"baselineIndex":-1},{"x":28.48,"y":89,"highlightIndex":-1,"baselineIndex":-1},{"x":-2.38,"y":-17,"highlightIndex":-1,"baselineIndex":-1},{"x":34.08,"y":71,"highlightIndex":-1,"baselineIndex":-1},{"x":35.36,"y":52,"highlightIndex":-1,"baselineIndex":-1},{"x":34.17,"y":51,"highlightIndex":-1,"baselineIndex":-1},{"x":14.62,"y":34,"highlightIndex":-1,"baselineIndex":-1},{"x":21.12,"y":96,"highlightIndex":-1,"baselineIndex":-1},{"x":8.32,"y":13,"highlightIndex":-1,"baselineIndex":-1},{"x":9,"y":45,"highlightIndex":-1,"baselineIndex":-1},{"x":-2.1,"y":-14,"highlightIndex":-1,"baselineIndex":-1},{"x":3.72,"y":93,"highlightIndex":-1,"baselineIndex":-1}]}],"options":{"base":{"width":"700","height":"350"}}},"evals":[],"jsHooks":[]}</script>
 </div>
 <div id="row-chart" class="section level2">
 <h2>Row Chart</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rcwChart</span>(rcwData, <span class="dt">type =</span> <span class="st">&quot;row&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">rowData &lt;-<span class="st"> </span>rcw_rand
+rowData &lt;-<span class="st"> </span><span class="kw">subset</span>(rcw_rand, <span class="dt">select =</span> <span class="kw">c</span>(<span class="st">&quot;y&quot;</span>, <span class="st">&quot;x&quot;</span>, <span class="st">&quot;highlightIndex&quot;</span>, <span class="st">&quot;baselineIndex&quot;</span>))
+<span class="kw">names</span>(rowData) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;x&quot;</span>, <span class="st">&quot;y&quot;</span>, <span class="st">&quot;highlightIndex&quot;</span>, <span class="st">&quot;baselineIndex&quot;</span>)
+dplyr::<span class="kw">tbl_df</span>(rowData)
+<span class="kw">rcwChart</span>(rowData, <span class="dt">type =</span> <span class="st">&quot;row&quot;</span>)</code></pre></div>
 </div>
 <div id="objective" class="section level2">
 <h2>Objective</h2>
 </div>
 <div id="save" class="section level2">
 <h2>SAVE</h2>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="utf-8"/>
-<script src="rcw-bar_files/htmlwidgets-0.9/htmlwidgets.js"></script>
-<script src="rcw-bar_files/d3-3.5.17/d3.min.js"></script>
-<script src="rcw-bar_files/lodash.js-4.16.1/lodash.min.js"></script>
-<script src="rcw-bar_files/rcw-charts-3.11.0/rcw-charts.lib.js"></script>
-<script src="rcw-bar_files/rcwChart-binding-0.0.0.9000/rcwChart.js"></script>
-
-</head>
-<body style="background-color:white;">
-<div id="htmlwidget_container">
-  <div id="htmlwidget-7921c2aadc0dff95145b" style="width:600px;height:300px;" class="rcwChart html-widget"></div>
-</div>
-<script type="application/json" data-for="htmlwidget-7921c2aadc0dff95145b">{"x":{"type":"bar","data":[{"datapoints":[{"x":2008,"y":15,"highlightIndex":-1},{"x":2009,"y":-20,"highlightIndex":-1},{"x":2010,"y":10,"highlightIndex":0},{"x":2011,"y":40,"highlightIndex":-1},{"x":2012,"y":30,"highlightIndex":-1},{"x":2013,"y":25,"highlightIndex":-1},{"x":2014,"y":65,"highlightIndex":1},{"x":2015,"y":27,"highlightIndex":-1}]}],"options":{"base":{"width":"600","height":"300"}}},"evals":[],"jsHooks":[]}</script>
-<script type="application/htmlwidget-sizing" data-for="htmlwidget-7921c2aadc0dff95145b">{"viewer":{"width":"600","height":"300","padding":15,"fill":false},"browser":{"width":"600","height":"300","padding":40,"fill":false}}</script>
-</body>
-</html>
 </div>
 
 

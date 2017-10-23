@@ -1,7 +1,7 @@
 
 # rcw
 
-```{r svg1, out.width='10%', echo=FALSE, eval=TRUE}
+```{r svg1, out.width='10%', echo=FALSE, eval=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/r4io/rcw/master/assets/img/rcw_logo.png")
 ```
 

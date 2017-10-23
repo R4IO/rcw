@@ -1,4 +1,4 @@
-/*global HTMLWidgets, rcwCharts, x*/
+/*global HTMLWidgets, rcwCharts, _, x,*/
 HTMLWidgets.widget({
 
   name: "rcwChart",
@@ -13,7 +13,7 @@ HTMLWidgets.widget({
     
     return {
 
-      renderValue: function (x) {
+      renderValue: function (r) {
 
         var tooltip = function tooltip(color) {
           return '  font-size: 12px;  font-family: \'Signika\';  color: ' + color + ';  padding: 5px;  border: 1px solid ' + color + ';  background: white;  opacity: .8;';
@@ -29,26 +29,20 @@ HTMLWidgets.widget({
           },
           barChartOptions = function barChartOptions() {
             return { base: {
-              width: 800,
-              height: 400,
+              width: r.width,
+              height: r.width,
               padding: { top: 20 },
               innerPadding: { left: 20, right: 20, bottom: 10 }
             },
-                  axis: {
+              axis: {
                 x: {
-                  tick: {
-                    thickness: 0,
-                    size: 0
-                  },
+                  tick: { thickness: 0, size: 0 },
                   format: {
                     proc: function proc(datum) {
                       return datum;
                     }
                   },
-                  ordinal: {
-                    gap: 0.3,
-                    padding: 0.3
-                  }
+                  ordinal: { gap: 0.3, padding: 0.3 }
                 },
                 y: { padding: 10,
                     tick: { thickness: 0 },
@@ -56,12 +50,12 @@ HTMLWidgets.widget({
                     linear: {
                     pivot: { value: 0 }
                   }
-                  }
+                }
               },
-                  grid: {
+              grid: {
                 x: { thickness: 0 }
               },
-                  serie: {
+              serie: {
                 tooltip: {
                   layout: function layout(serie, datum, color) {
                     return '        <div style="' + tooltip(color) + '">          <div style="text-align: right;">            ' + datum.x + '          </div>          <div style="text-align: right; font-family: \'Signika\'; font-size: 16px;">            ' + _.round(datum.y, 2) + '          </div>        </div>      ';
@@ -70,29 +64,104 @@ HTMLWidgets.widget({
               }
               };
           },
-          barChartData = function barChartData() {
-            return [{ datapoints: [
-              { x: 'Hungary', y: 5.5 },
-              { x: 'Sweden', y: 5.6 },
-              { x: 'Estonia', y: 5.7 },
-              { x: 'Finland', y: 5.8 },
-              { x: 'Belgium', y: 5.9 },
-              { x: 'Turkey', y: 6 },
-              { x: 'France', y: 6.5 },
-              { x: 'Poland', y: 6.6 },
-              { x: 'Slovenia', y: 6.8 },
-              { x: 'European Union', y: 7.4, baselineIndex: 0 },
-              { x: 'Euro area (18 countries)', y: 8.2 },
-              { x: 'Ireland', y: 8.7, highlightIndex: 0 },
-              { x: 'Italy', y: 8.9 },
-              { x: 'Slovak Republic', y: 9.9 },
-              { x: 'Portugal', y: 10.9 },
-              { x: 'South Africa', y: 12.3, highlightIndex: 1 },
-              { x: 'Spain (2 digits)', y: 16.86 }] }];
+          rowChartOptions = function rowChartOptions() {
+            return { 
+              base: {
+                width: r.width,
+                height: r.width,
+                padding: { top: 20 },
+                innerPadding: { left: 20, right: 20, bottom: 10 }
+              },
+              axis: {
+                x: { 
+                  padding: 10,
+                  tick: { thickness: 0 },
+                  font: { baseline: 'ideographic' },
+                  linear: {
+                    pivot: { value: 0 }
+                  }
+                },
+                y: {
+                  tick: { thickness: 0, size: 0 },
+                  format: {
+                    proc: function proc(datum) {
+                      return datum;
+                    }
+                  },
+                  ordinal: { gap: 0.3, padding: 0.3 }
+                }
+              },
+              grid: {
+                x: { thickness: 0 }
+              },
+              serie: {
+                tooltip: {
+                  layout: function layout(serie, datum, color) {
+                    return '        <div style="' + tooltip(color) + '">          <div style="text-align: right;">            ' + datum.y + '          </div>          <div style="text-align: right; font-family: \'Signika\'; font-size: 16px;">            ' + _.round(datum.x, 2) + '          </div>        </div>      ';
+                  }
+                }
+              }
+            };
           },
-          barChart = new rcwCharts.BarChart(container,
-                               _.merge(commonOptions(), barChartOptions()),
-                               barChartData());
+          scatterChartOptions = function scatterChartOptions() {
+            return { 
+              base: {
+                width: r.width,
+                height: r.width,
+                padding: { top: 40, right: 10 },
+                innerPadding: { left: 20, right: 20, bottom: 10 }
+              },
+              axis: {
+                x: { 
+                  padding: 10,
+                  tick: { thickness: 0, size: 0 },
+                  font: { baseline: 'ideographic' },
+                  linear: {
+                    pivot: { value: 0 }
+                  }
+                },
+                y: {
+                  padding: 10,
+                  tick: { thickness: 0, size: 0 },
+                  format: {
+                    proc: function proc(datum) {
+                      return datum;
+                    }
+                  },
+                  ordinal: { gap: 0.3, padding: 0.3 }
+                }
+              },
+              grid: {
+                x: { thickness: 0 }
+              },
+              serie: {
+                tooltip: {
+                  layout: function layout(serie, datum, color) {
+                    return '        <div style="' + tooltip(color) + '">          <div style="text-align: right;">          x:' + datum.x + '          </div>          <div style="text-align: right; font-family: \'Signika\'; font-size: 16px;">          y:' + datum.y + '          </div>        </div>      ';
+                  }
+                }
+              }
+            };
+          };
+
+          if (r.type === "bar") {
+            var rcwChart = new rcwCharts.BarChart(container,
+                                 _.merge(commonOptions(), barChartOptions()),
+                                 r.data);
+          } else if (r.type === "scatter") {
+            var rcwChart = new rcwCharts.ScatterChart(container,                                  
+                                 _.merge(commonOptions(), scatterChartOptions()),
+                                 r.data);
+          } else if (r.type === "row") {
+            var rcwChart = new rcwCharts.RowChart(container, 
+                                 _.merge(commonOptions(), rowChartOptions()),
+                                 r.data);
+          } else if (r.type === "stacked") {
+            var rcwChart = new rcwCharts.StackedBarChart(container,
+                                 _.merge(commonOptions(), barChartOptions()),
+                                 r.data);
+          }
+
       },
 
       resize: function (width, height) {

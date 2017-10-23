@@ -26,17 +26,11 @@
 #' @export
 rcwChart <- function(data,
                      type=stop("'type' must be provided"),
-                     height = "300",
-                     width = "600") {
+                     height = "350", # 300
+                     width = "700",
+                     ...) { # 600
 
-  ## validate input
-  ## if (!is.list(data))
-  ##   stop("data must be a list class object.")
-  ## dataJson <- htmlwidgets:::toJSON2(data)
-  if (!is.data.frame(data))
-    stop("data must be a data frame class object.")
-  dat <- list(datapoints = data)
-  dataJson <- jsonlite::toJSON(list(dat))
+  dataJson <- rcwData(data=data, type=type, x=x, y=y, fill=fill)
 
   ## create options
   chartOptions = list(
@@ -69,6 +63,7 @@ rcwChart <- function(data,
 
 }
 
+
 #' @rdname rcwChart
 #' @export
 rcwChartOutput <- function(outputId, width = "100%", height = "500px") {
@@ -76,9 +71,56 @@ rcwChartOutput <- function(outputId, width = "100%", height = "500px") {
                     package = "rcw")
 }
 
+
 #' @rdname rcwChart
 #' @export
 renderrcwChart <- function(expr, env = parent.frame(), quoted = FALSE) {
   if (!quoted) { expr <- substitute(expr) } # force quoted
   shinyRenderWidget(expr, rcwChartOutput, env, quoted = TRUE)
 }
+
+
+#' @rdname rcwChart
+#' @export
+rcwData <- function(data, type, x, y, fill="layer") {
+
+  ## validate input
+  ## if (!is.list(data))
+  ##   stop("data must be a list class object.")
+  ## dataJson <- htmlwidgets:::toJSON2(data)
+  if (!is.data.frame(data))
+    stop("data must be a data frame class object.")
+
+  if (type == "stacked") {
+    data_w <- tidyr::spread_(data, key = fill, value = y)
+
+    cols <- unique(data[[fill]])
+    cols_idx <- match(cols, names(data_w))
+
+    dp <- list()
+    ## i <- 1
+    for (i in c(1:nrow(data_w))) {
+      dp[[i]] <- list(x = data_w$x[[i]],
+                      y = unname(unlist(data_w[i, cols_idx])))
+    }
+
+    layer <- list()
+    for (i in seq(along = cols)) {
+      layer[[i]] <- list(id = i,
+                         label = cols[i])
+    }
+
+    dat <- list(datapoints = dp,
+                layerSeries = layer)
+  } else {
+    dat <- list(datapoints = data)
+  }
+  dataJson <- jsonlite::toJSON(list(dat))
+  return(dataJson)
+}
+## library(rcw)
+## fill <- "layer"
+## x <- "x"
+## y <- "y"
+## data <- rcw_stacked
+##   head(data)

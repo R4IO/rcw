@@ -14,11 +14,11 @@ navbar:
     menu:
     - text: rcwChart
       href: articles/rcwChart.html
-    - text: reactR
-      href: articles/intro_reactR.html
-    - text: listviewer
-      href: articles/intro_listviewer.html
-    - text: stockchartR
-      href: articles/intro_stockchartR.html
+    - text: Bar Chart
+      href: articles/barChart.html
+    - text: Row Chart
+      href: articles/rowChart.html
+    - text: Scatter Chart
+      href: articles/scatterChart.html
   - text: Reference
     href: reference/index.html

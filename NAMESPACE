@@ -2,4 +2,5 @@
 
 export(rcwChart)
 export(rcwChartOutput)
+export(rcwData)
 export(renderrcwChart)
