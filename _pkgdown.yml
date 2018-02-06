@@ -1,0 +1,24 @@
+template:
+  params:
+    bootswatch: yeti
+
+reference:
+  - title: Functions
+    desc:  Functions used in vignettes.
+    contents:
+    - rcwChart
+
+navbar:
+  left:
+  - text: "Example"
+    menu:
+    - text: rcwChart
+      href: articles/rcwChart.html
+    - text: Bar Chart
+      href: articles/barChart.html
+    - text: Row Chart
+      href: articles/rowChart.html
+    - text: Scatter Chart
+      href: articles/scatterChart.html
+  - text: Reference
+    href: reference/index.html

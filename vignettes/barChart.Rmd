@@ -1,0 +1,32 @@
+---
+title: "Bar Chart"
+author: ""
+date: "`r Sys.Date()`"
+output:
+  rmarkdown::html_vignette:
+    self_contained: false
+    lib_dir: rcw_files
+vignette: >
+  %\VignetteIndexEntry{Bar Chart}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+
+```{r setup, echo=FALSE, message=FALSE}
+library(rcw)
+```
+
+
+## Bar Chart
+
+```{r bar-chart, echo=TRUE}
+rcwChart(rcw_sym2, type = "bar")
+```
+
+
+## Data `rcw_sym2`
+
+```{r data, echo=FALSE, results='asis'}
+knitr::kable(rcw_sym2)
+```

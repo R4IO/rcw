@@ -1,0 +1,37 @@
+---
+title: "Row Chart"
+author: ""
+date: "`r Sys.Date()`"
+output:
+  rmarkdown::html_vignette:
+    self_contained: false
+    lib_dir: rcw_files
+vignette: >
+  %\VignetteIndexEntry{Row Chart}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+
+```{r setup, echo=FALSE, message=FALSE}
+library(rcw)
+```
+
+
+## Row Chart
+
+```{r row-chart, echo=TRUE}
+rowData <- rcw_rand
+rowData <- subset(rcw_rand, select = c("y", "x", "highlightIndex", "baselineIndex"))
+names(rowData) <- c("x", "y", "highlightIndex", "baselineIndex")
+rcwChart(rowData, type = "row")
+```
+
+
+## Data `rowData`
+
+- RowChart requires a numeric vector at `x` and a character vector at `y` 
+
+```{r data, echo=FALSE, results='asis'}
+knitr::kable(head(rowData, 10))
+```

@@ -1,0 +1,124 @@
+---
+title: "rcwChart"
+author: ""
+date: "`r Sys.Date()`"
+output:
+  rmarkdown::html_vignette:
+    self_contained: false
+    lib_dir: rcw_files
+vignette: >
+  %\VignetteIndexEntry{rcwchart}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, echo=FALSE, message=FALSE}
+library(rcw)
+library(magrittr)
+rcwopts <- list(inline = TRUE, save = TRUE)
+```
+
+## Limitations
+
+- [web-components/blob/dev/lib/rcw-charts/docs/limitations.md](https://github.com/cis-itn-oecd/web-components/blob/dev/lib/rcw-charts/docs/limitations.md)
+
+- **tooltip**: if multiple charts are rendered in the same page, only the first one will have his tooltip display correctly
+
+
+## Bar Chart
+
+```{r bar-chart, echo=TRUE}
+rcwChart(rcw_sym2, type = "bar")
+```
+
+### Data
+
+```{r data-bar, echo=TRUE, results='as.is'}
+## knitr::kable(rcw_rand)
+knitr::kable(rcw_sym2)
+```
+
+
+## Row Chart
+
+```{r row-chart, echo=TRUE}
+rowData <- rcw_rand
+rowData <- subset(rcw_rand, select = c("y", "x", "highlightIndex", "baselineIndex"))
+names(rowData) <- c("x", "y", "highlightIndex", "baselineIndex")
+rcwChart(rowData, type = "row")
+```
+
+### Data
+
+- RowChart requires a numeric vector at `x` and a character vector at `y` 
+
+```{r data-row, echo=TRUE, results='as.is'}
+knitr::kable(head(rcw_rand, 10))
+```
+
+
+## Scatter Chart
+
+```{r scatter-chart, eval=TRUE}
+scatterData <- rcw_rand
+scatterData$x <- scatterData$y * sample(seq(0, 1, 0.01), nrow(scatterData))
+rcwChart(scatterData, type = "scatter")
+```
+
+### Data
+
+- ScatterChart requires numeric vectors both at `x` and `y` 
+
+```{r data, echo=FALSE}
+## knitr::kable(head(scatterData, 10))
+dplyr::tbl_df(scatterData)
+```
+
+
+<!-- ## Stacked Bar Chart -->
+
+```{r stacked-chart, eval=FALSE, echo=FALSE}
+## stackedData <- rcw_stacked
+## stackedData$x <- stackedData$y * sample(seq(0, 1, 0.01), nrow(stackedData))
+## library(rcw)
+rcwChart(rcw_stacked, type = "stacked", x = "x", y = "y", fill = "layer")
+```
+
+
+<!-- ## SAVE -->
+
+```{r bar-chart-save, eval=FALSE, echo=FALSE}
+wBar <- rcwChart(rcw_ts, type = "bar")
+if (rcwopts$save) {
+  htmlwidgets::saveWidget(wBar,
+                          ## file = file.path(getwd(), "htmlwidget/rcw-bar.html"),
+                          file = "./rcw-bar.html",
+                          selfcontained = FALSE)
+}
+if (rcwopts$inline) wBar
+## if (rcwopts$inline)
+## htmltools::includeHTML("./rcw-bar.html")
+```
+
+
+```{r scatter-chart-save, eval=FALSE, echo=FALSE}
+wScatter <- rcwChart(rcw_ts, type = "scatter")
+if (rcwopts$save) {
+  htmlwidgets::saveWidget(wScatter,
+                          file = file.path(getwd(), "htmlwidget/rcw-scatter.html"),
+                          selfcontained = FALSE)
+}
+if (rcwopts$inline) wScatter
+```
+
+
+```{r row-chart-save, eval=FALSE, echo=FALSE}
+wRow <- rcwChart(rcw_ts, type = "row")
+if (rcwopts$save) {
+  htmlwidgets::saveWidget(wRow,
+                          file = file.path(getwd(), "htmlwidget/rcw-row.html"),
+                          selfcontained = FALSE)
+}
+if (rcwopts$inline) wRow
+```
+

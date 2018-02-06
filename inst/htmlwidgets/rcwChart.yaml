@@ -1,0 +1,21 @@
+dependencies:
+  - name: signika
+    version: 0
+    src: "htmlwidgets/lib/signika-0"
+    style: "signika.css"
+  - name: d3
+    version: 3.5.17
+    src: htmlwidgets/lib/d3-3.5.17
+    script: d3.min.js
+  - name: lodash.js
+    version: 4.16.1
+    src: htmlwidgets/lib/lodash-4.16.1
+    script: lodash.min.js
+  # - name: rcw-charts
+  #   version: 3.11.0
+  #   src: htmlwidgets/lib/rcw-charts-3.11.0
+  #   script: rcw-charts.lib.js
+  - name: rcw-charts
+    version: 4.0.3
+    src: htmlwidgets/lib/rcw-charts-4.0.3
+    script: rcw-charts.lib.js

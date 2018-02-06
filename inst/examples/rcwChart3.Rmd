@@ -1,0 +1,81 @@
+---
+title: "rcwChart3"
+output:
+  flexdashboard::flex_dashboard:
+    self_contained: false
+    lib_dir: rcwChart3_files
+    storyboard: true
+    data-commentary-width: 400
+---
+
+### BarChart {data-commentary-width=500}
+
+```{r setup, echo=FALSE}
+library(rcw)
+rcwData <- data.frame(
+    ## x = c(1000, 1001, 1010, 1011, 1100, 1101, 1110, 1111),
+    x = c(2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015),
+    y = c(15, -20, 10, 40, 30, 25, 65, 27),
+    highlightIndex = c(-1, -1, 0, -1, -1, -1, 1, -1))
+```
+
+```{r rcw-bar, echo=TRUE}
+rcwChart(rcwData, type = "bar")
+```
+
+***
+
+```js
+new rcwCharts.BarChart( document.getElementById('root1'), options, data);
+```
+
+
+### ScatterChart {data-commentary-width=500}
+
+```{r rcw-scatter, echo=TRUE}
+rcwChart(rcwData, type = "scatter")
+```
+
+***
+
+```js
+new rcwCharts.ScatterChart(document.getElementById('root2'), options, data);
+```
+
+### RowChart {data-commentary-width=500}
+
+```{r rcw-row, echo=TRUE}
+rcwChart(rcwData, type = "row")
+```
+
+***
+
+```js
+new rcwCharts.RowChart( document.getElementById('root3'), options, data);
+```
+
+
+### Data Table {data-commentary-width=400}
+
+```{r rcw-datatable, eval=require('DT'), echo=FALSE}
+DT::datatable(
+  rcwData,
+  fillContainer = TRUE,
+  options = list(pageLength = 10)
+)
+```
+
+***
+
+```json
+const data = [{ datapoints: [
+{x: 1000, y: 15, highlightIndex: -1},
+{x: 1001, y: -20, highlightIndex: -1},
+{x: 1010, y: 10, highlightIndex: 0},
+{x: 1011, y: 40, highlightIndex: -1},
+{x: 1100, y: 30, highlightIndex: -1},
+{x: 1101, y: 25, highlightIndex: -1},
+{x: 1110, y: 65, highlightIndex: 1},
+{x: 1111, y: 27, highlightIndex: -1}
+] }];
+```

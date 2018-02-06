@@ -1,0 +1,101 @@
+---
+title: "htmlwidgets"
+author: |
+  | Bo Werth
+subtitle: integrating JS in R
+output:
+  ioslides_presentation:
+    self_contained: false
+    lib_dir: libs
+    logo: ../images/Rlogo.png
+    smaller: yes
+    transition: 0.01
+    widescreen: yes
+    
+---
+
+# Examples
+
+## Bar Chart
+
+```{r, echo=TRUE}
+library(rcw)
+library(magrittr)
+rcwChart(rcw_sym2, type = "bar")
+
+```
+
+## Row Chart
+
+```{r, echo=TRUE}
+rowData <- rcw_rand
+rowData <- subset(rcw_rand, select = c("y", "x", "highlightIndex", "baselineIndex"))
+names(rowData) <- c("x", "y", "highlightIndex", "baselineIndex")
+rcwChart(rowData, type = "row")
+
+```
+
+# Issues
+
+
+## Usefulness for Reporting
+
+- more than one chart per page
+- tooltips are only showing correctly for the first chart
+- no engine to render portable image files (e.g. svg)
+
+
+
+## Integration
+
+- a lot of wrapper code is needed to pass options
+- ECMAScript 6 -> E5 (browser compatibility)
+
+```javascript
+commonOptions = function commonOptions() {
+    return { axis: { x: axis(), y: axis() }, grid: { x: grid(), y: grid() }, 
+             background: { color: '#DBEBF2' }, serie: { colors: ['#8EA4B1'], 
+             overColors: ['#39617D'], highlightColors: ['#E73741', '#0F8FD9', 
+             '#993484', '#DF521E', '#719E24', '#E1B400', '#32A674', '#0B68AF'], 
+             baselineColors: ['#0B1E2D'], annotation: { font: { family: 'Signika', size: 11 } } } };
+}
+
+serie: {
+    tooltip: {
+      layout: function layout(serie, datum, color) {
+        return '<div style="' + tooltip(color) + '"><div style="text-align: right;">x:' + datum.x + 
+               '</div><div style="text-align: right; font-family: \'Signika\'; font-size: 16px;">y:' + 
+               datum.y + '</div></div>';
+      }
+    }
+}
+
+var rcwChart = new rcwCharts.BarChart(container, _.merge(commonOptions(), barChartOptions()), r.data);
+
+```
+
+
+
+## Data format
+
+- high requirements regarding data format (e.g. highlighted values)
+
+```{r row-table-sym2, results="asis"}
+knitr::kable(rcw_sym2[1:6, ])
+
+```
+
+
+## Data format
+
+- high requirements regarding data format (e.g. highlighted values)
+
+```{r row-table-rand, results="asis"}
+knitr::kable(rcw_rand[1:6, ])
+
+```
+
+
+## Next Steps
+
+- More examples (e.g. line chart)
