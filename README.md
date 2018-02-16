@@ -10,6 +10,21 @@ Install Package
     cd rcw
     devtools::install()
 
+Example Usage
+-------------
+
+Creating a bar chart
+
+    library(rcw)
+    rcwData <- data.frame(
+      x = c(1000, 1001, 1010, 1011, 1100, 1101, 1110, 1111),
+      y = c(15, -20, 10, 40, 30, 25, 65, 27),
+      highlightIndex = c(-1, -1, 0, -1, -1, -1, 1, -1)
+    )
+    rcwChart(rcwData, type = "bar", height=300)
+
+<img src="https://raw.githubusercontent.com/r4io/rcw/master/assets/img/screenshot_bar_chart.png" width="100%" />
+
 <!-- get JS library and map -->
 <!-- : execute `./node_modules/.bin/wce bundle --lib` in `web-components/lib/rcw-charts` (upon error, set permissions using `chmod -R u+x .`) -->
 <!-- render README -->
