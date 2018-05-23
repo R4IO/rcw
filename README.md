@@ -36,4 +36,3 @@ Creating a bar chart
 <!-- :   `Rscript -e 'pkgdown::build_site()'` -->
 <!-- update articles -->
 <!-- :   `Rscript -e 'pkgdown::build_articles()'` -->
-
