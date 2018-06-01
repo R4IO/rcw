@@ -13,6 +13,7 @@
 #'   \code{NULL} then height is automatically determined based on context)
 #' @param width numeric width for the graph's frame area in pixels (if
 #'   \code{NULL} then width is automatically determined based on context)
+#' @param config boolean return the JSON configuration object for API
 #'
 #' @examples
 #' rcwData <- data.frame(
@@ -28,9 +29,12 @@ rcwChart <- function(data,
                      type=stop("'type' must be provided"),
                      height = "400", # 300
                      width = "800",
+                     config = FALSE,
                      ...) { # 600
 
   dataJson <- rcwData(data=data, type=type, x=x, y=y, fill=fill)
+
+  if (config) return(dataJson)
 
   ## create options
   chartOptions = list(
