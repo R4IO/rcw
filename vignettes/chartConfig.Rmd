@@ -1,0 +1,134 @@
+---
+title: "Chart Config"
+author: ""
+date: "`r Sys.Date()`"
+output:
+  rmarkdown::html_vignette:
+    self_contained: false
+    lib_dir: rcw_files
+vignette: >
+  %\VignetteIndexEntry{Chart Config}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, echo=TRUE, message=FALSE, eval=TRUE}
+library(rcw)
+library(jsonlite)
+
+flow <- "KEI"
+opts <- c("startTime=2015", "endTime=2015", "dimensionAtObservation=AllDimensions")
+
+## specify JSON template
+jsonfile <- system.file("templates/default.json", package = "rcw")
+
+```
+
+
+## Single Config
+
+Create single chart from SDMX query
+
+```{r single-config, echo=TRUE, eval=TRUE}
+
+query <- "PRINTO01+PRMNTO01.AUS+AUT+BEL+CAN+CHL+CZE+DNK+EST+FIN+FRA.GP.A"
+
+query_url <- create_query_url(flow = flow, query = query, opts = opts)
+
+chartconfig <- create_config(
+  source = query_url,
+  title = "Key Short-Term Economic Indicators",
+  subtitle = c("Measure: Growth previous period",
+               "Frequency: Annual",
+               "Time: 2015"),
+  type = "BarChart", # "RowChart"
+  path = jsonfile
+)
+
+str(chartconfig)
+
+```
+
+
+```{r single-config-post, echo=TRUE, eval=TRUE}
+
+chart_url <-
+  post_config(
+    config = chartconfig,
+    url = "http://stats.oecd.org",      # this is the default value
+    response = TRUE
+  )
+
+## browseURL(url = chart_url)              # open URL in browser
+
+```
+
+See result at `r chart_url`
+
+
+## Multi Config
+
+Create one chart per variable
+
+```{r multi-config, echo=TRUE, eval=TRUE}
+
+var_ls <- list(
+  list(code = "PRINTO01", label = "Industrial Production"),
+  list(code = "PRMNTO01", label = "Total Manufacturing")
+)
+
+cou_c <- c("AUS", "AUT", "BEL", "CAN", "CHL", "CZE", "DNK", "EST", "FIN", "FRA")
+cou_str <- paste(cou_c, collapse = "+")
+
+subtitle <- c("Measure: Growth previous period", "Frequency: Annual", "Time: 2015")
+
+query_url_ls <- lapply(var_ls, function(x) {
+  query <- paste(x$code, cou_str, "GP", "A", sep = ".")
+  url <- create_query_url(flow = flow, query = query, opts = opts)
+  config <- create_config(source = url,
+                          title = "Key Short-Term Economic Indicators",
+                          subtitle = c(x$label, subtitle),
+                          type = "BarChart",
+                          path = jsonfile)
+  list(
+    code = x$code,
+    label = x$label,
+    config = config
+  )
+})
+
+str(query_url_ls)
+
+```
+
+
+```{r multi-config-post, echo=TRUE, eval=TRUE}
+
+chart_url_c <-
+  sapply(query_url_ls,
+         function(x) post_config(config = x$config,
+                                 url = "http://stats.oecd.org"))
+
+## sapply(chart_url_c, browseURL)
+
+```
+
+See result at `r chart_url_c[1]` and `r chart_url_c[2]`
+
+
+<!-- ## Create debug information -->
+
+```{r debug-config, echo=FALSE, eval=FALSE}
+
+## create temporary file
+outfile <- tempfile(pattern = "chartconfig_", fileext = ".json")
+
+## export configuration to disk
+post_config(x = chartconfig, show = TRUE, path = outfile)
+
+## read back into R
+chartconfig_reimported <- jsonlite::read_json(path = outfile)
+str(chartconfig_reimported)
+
+```
+

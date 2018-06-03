@@ -11,7 +11,7 @@ D3.js was created by Michael Bostock, see \url{http://d3js.org/}.
 }
 \usage{
 rcwChart(data, type = stop("'type' must be provided"), height = "400",
-  width = "800", ...)
+  width = "800", config = FALSE, ...)
 
 rcwChartOutput(outputId, width = "100\%", height = "500px")
 
@@ -34,6 +34,8 @@ highlighting, odd numbers include zero.}
 
 \item{width}{numeric width for the graph's frame area in pixels (if
 \code{NULL} then width is automatically determined based on context)}
+
+\item{config}{boolean return the JSON configuration object for API}
 }
 \description{
 \code{rcwChart} creates simple D3 JavaScript graphs.

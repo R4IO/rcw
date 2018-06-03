@@ -7,7 +7,11 @@ Depends: R (>= 3.3.3)
 License: What license is it under?
 Encoding: UTF-8
 LazyData: true
-Suggests: knitr,
+Imports:
+    httr,
+    jsonlite
+Suggests:
+    knitr,
     rmarkdown
 VignetteBuilder: knitr
 RoxygenNote: 6.0.1

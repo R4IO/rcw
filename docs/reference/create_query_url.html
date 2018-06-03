@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function for creating rcw D3 graphs. — rcwChart • rcw</title>
+<title>Function for creating SDMX queries. — create_query_url • rcw</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -93,65 +93,57 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Function for creating rcw D3 graphs.</h1>
+    <h1>Function for creating SDMX queries.</h1>
     </div>
 
     
-    <p><code>rcwChart</code> creates simple D3 JavaScript graphs.</p>
+    <p><code>create_query</code> creates SDMX query URLs</p>
     
 
-    <pre class="usage"><span class='fu'>rcwChart</span>(<span class='no'>data</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='fu'>stop</span>(<span class='st'>"'type' must be provided"</span>), <span class='kw'>height</span> <span class='kw'>=</span> <span class='st'>"400"</span>,
-  <span class='kw'>width</span> <span class='kw'>=</span> <span class='st'>"800"</span>, <span class='kw'>config</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='no'>...</span>)
-
-<span class='fu'>rcwChartOutput</span>(<span class='no'>outputId</span>, <span class='kw'>width</span> <span class='kw'>=</span> <span class='st'>"100%"</span>, <span class='kw'>height</span> <span class='kw'>=</span> <span class='st'>"500px"</span>)
-
-<span class='fu'>renderrcwChart</span>(<span class='no'>expr</span>, <span class='kw'>env</span> <span class='kw'>=</span> <span class='fu'>parent.frame</span>(), <span class='kw'>quoted</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
-
-<span class='fu'>rcwData</span>(<span class='no'>data</span>, <span class='no'>type</span>, <span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>fill</span> <span class='kw'>=</span> <span class='st'>"layer"</span>)</pre>
+    <pre class="usage"><span class='fu'>create_query_url</span>(<span class='kw'>url</span> <span class='kw'>=</span> <span class='st'>"http://stats.oecd.org:80/SDMX-JSON/data"</span>,
+  <span class='kw'>flow</span> <span class='kw'>=</span> <span class='fu'>stop</span>(<span class='st'>"'flow' must be provided"</span>),
+  <span class='kw'>query</span> <span class='kw'>=</span> <span class='fu'>stop</span>(<span class='st'>"'query' must be provided"</span>), <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"all"</span>,
+  <span class='kw'>opts</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"startTime=2015"</span>, <span class='st'>"endTime=2015"</span>,
+  <span class='st'>"dimensionAtObservation=AllDimensions"</span>))</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>data</th>
-      <td><p>a data frame object with three columns. The first column
-corresponds to the x-axis, the second to the y-axis and the third indicates
-the highlighting pattern: negative integers indicate non-highlighted
-values, odd and even numbers are distinguished with permanent color
-highlighting, odd numbers include zero.</p></td>
+      <th>url</th>
+      <td><p>SDMX API URL, e.g. <a href='http://stats.oecd.org:80/SDMX-JSON/data'>http://stats.oecd.org:80/SDMX-JSON/data</a></p></td>
     </tr>
     <tr>
-      <th>type</th>
-      <td><p>a valid chart type e.g. <code>"bar"</code>, <code>"scatter"</code>,
-<code>"row"</code> etc.</p></td>
+      <th>flow</th>
+      <td><p>SDMX data flow, e.g. <code>KEI</code></p></td>
     </tr>
     <tr>
-      <th>height</th>
-      <td><p>height for the graph's frame area in pixels (if
-<code>NULL</code> then height is automatically determined based on context)</p></td>
+      <th>query</th>
+      <td><p>SDMX query, e.g.
+<code>"PRINTO01+PRMNTO01.AUS+AUT+BEL+CAN+CHL+CZE+DNK+EST+FIN+FRA.GP.A"</code></p></td>
     </tr>
     <tr>
-      <th>width</th>
-      <td><p>numeric width for the graph's frame area in pixels (if
-<code>NULL</code> then width is automatically determined based on context)</p></td>
+      <th>method</th>
+      <td><p>character string, e.g. <code>all</code></p></td>
     </tr>
     <tr>
-      <th>config</th>
-      <td><p>boolean return the JSON configuration object for API</p></td>
+      <th>options</th>
+      <td><p>character vector, e.g. <code>c("startTime=2015",
+"endTime=2015", "dimensionAtObservation=AllDimensions")</code></p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
 
-    <p>D3.js was created by Michael Bostock, see <a href='http://d3js.org/'>http://d3js.org/</a>.</p>
+    <p><code>jsonlite</code> was created by Jeroen Ooms et al., see
+  <a href='https://cran.r-project.org/web/packages/jsonlite/index.html'>https://cran.r-project.org/web/packages/jsonlite/index.html</a>.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>rcwData</span> <span class='kw'>&lt;-</span> <span class='fu'>data.frame</span>(
-  <span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>1000</span>, <span class='fl'>1001</span>, <span class='fl'>1010</span>, <span class='fl'>1011</span>, <span class='fl'>1100</span>, <span class='fl'>1101</span>, <span class='fl'>1110</span>, <span class='fl'>1111</span>),
-  <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>15</span>, -<span class='fl'>20</span>, <span class='fl'>10</span>, <span class='fl'>40</span>, <span class='fl'>30</span>, <span class='fl'>25</span>, <span class='fl'>65</span>, <span class='fl'>27</span>),
-  <span class='kw'>highlightIndex</span> <span class='kw'>=</span> <span class='fu'>c</span>(-<span class='fl'>1</span>, -<span class='fl'>1</span>, <span class='fl'>0</span>, -<span class='fl'>1</span>, -<span class='fl'>1</span>, -<span class='fl'>1</span>, <span class='fl'>1</span>, -<span class='fl'>1</span>))
-<span class='fu'>rcwChart</span>(<span class='no'>rcwData</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"bar"</span>)</div><div class='output co'>#&gt; <span class='error'>Error in yaml.load(readLines(con), error.label = error.label, ...): argument "error.label" is missing, with no default</span></div><div class='input'>
+    <pre class="examples"><div class='input'><span class='no'>flow</span> <span class='kw'>&lt;-</span> <span class='st'>"KEI"</span>
+<span class='no'>query</span> <span class='kw'>&lt;-</span> <span class='st'>"PRINTO01+PRMNTO01.AUS+AUT+BEL+CAN+CHL+CZE+DNK+EST+FIN+FRA.GP.A"</span>
+<span class='no'>opts</span> <span class='kw'>&lt;-</span> <span class='fu'>c</span>(<span class='st'>"startTime=2015"</span>, <span class='st'>"endTime=2015"</span>, <span class='st'>"dimensionAtObservation=AllDimensions"</span>)
+<span class='fu'>create_query_url</span>(<span class='kw'>flow</span> <span class='kw'>=</span> <span class='no'>flow</span>, <span class='kw'>query</span> <span class='kw'>=</span> <span class='no'>query</span>, <span class='kw'>opts</span> <span class='kw'>=</span> <span class='no'>opts</span>)</div><div class='output co'>#&gt; [1] "http://stats.oecd.org:80/SDMX-JSON/data/KEI/PRINTO01+PRMNTO01.AUS+AUT+BEL+CAN+CHL+CZE+DNK+EST+FIN+FRA.GP.A/all?startTime=2015&amp;endTime=2015&amp;dimensionAtObservation=AllDimensions"</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

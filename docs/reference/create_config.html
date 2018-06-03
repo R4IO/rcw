@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function for creating rcw D3 graphs. — rcwChart • rcw</title>
+<title>Function for creating chart configurations. — create_config • rcw</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -93,65 +93,56 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Function for creating rcw D3 graphs.</h1>
+    <h1>Function for creating chart configurations.</h1>
     </div>
 
     
-    <p><code>rcwChart</code> creates simple D3 JavaScript graphs.</p>
+    <p><code>create_config</code> creates configuration lists for use with</p>
     
 
-    <pre class="usage"><span class='fu'>rcwChart</span>(<span class='no'>data</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='fu'>stop</span>(<span class='st'>"'type' must be provided"</span>), <span class='kw'>height</span> <span class='kw'>=</span> <span class='st'>"400"</span>,
-  <span class='kw'>width</span> <span class='kw'>=</span> <span class='st'>"800"</span>, <span class='kw'>config</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='no'>...</span>)
-
-<span class='fu'>rcwChartOutput</span>(<span class='no'>outputId</span>, <span class='kw'>width</span> <span class='kw'>=</span> <span class='st'>"100%"</span>, <span class='kw'>height</span> <span class='kw'>=</span> <span class='st'>"500px"</span>)
-
-<span class='fu'>renderrcwChart</span>(<span class='no'>expr</span>, <span class='kw'>env</span> <span class='kw'>=</span> <span class='fu'>parent.frame</span>(), <span class='kw'>quoted</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
-
-<span class='fu'>rcwData</span>(<span class='no'>data</span>, <span class='no'>type</span>, <span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>fill</span> <span class='kw'>=</span> <span class='st'>"layer"</span>)</pre>
+    <pre class="usage"><span class='fu'>create_config</span>(<span class='kw'>source</span> <span class='kw'>=</span> <span class='fu'>stop</span>(<span class='st'>"'source' must be specified"</span>), <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>subtitle</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='fu'>stop</span>(<span class='st'>"'type' must be specified"</span>), <span class='kw'>path</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>data</th>
-      <td><p>a data frame object with three columns. The first column
-corresponds to the x-axis, the second to the y-axis and the third indicates
-the highlighting pattern: negative integers indicate non-highlighted
-values, odd and even numbers are distinguished with permanent color
-highlighting, odd numbers include zero.</p></td>
+      <th>source</th>
+      <td><p>SDMX URL</p></td>
+    </tr>
+    <tr>
+      <th>title</th>
+      <td><p>character string main title of chart</p></td>
+    </tr>
+    <tr>
+      <th>subtitle</th>
+      <td><p>character vector chart subtitle</p></td>
     </tr>
     <tr>
       <th>type</th>
-      <td><p>a valid chart type e.g. <code>"bar"</code>, <code>"scatter"</code>,
-<code>"row"</code> etc.</p></td>
+      <td><p>one of <code>BarChart</code>, <code>RowChart</code>, <code>ScatterChart</code>,
+<code>HSymbolChart</code>, <code>VSymbolChart</code>, <code>TimelineChart</code>,
+<code>StackedBarChart</code></p></td>
     </tr>
     <tr>
-      <th>height</th>
-      <td><p>height for the graph's frame area in pixels (if
-<code>NULL</code> then height is automatically determined based on context)</p></td>
-    </tr>
-    <tr>
-      <th>width</th>
-      <td><p>numeric width for the graph's frame area in pixels (if
-<code>NULL</code> then width is automatically determined based on context)</p></td>
-    </tr>
-    <tr>
-      <th>config</th>
-      <td><p>boolean return the JSON configuration object for API</p></td>
+      <th>path</th>
+      <td><p>path to a JSON template that can be read using
+<code><a href='http://www.rdocumentation.org/packages/jsonlite/topics/fromJSON'>jsonlite::fromJSON</a></code></p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
 
-    <p>D3.js was created by Michael Bostock, see <a href='http://d3js.org/'>http://d3js.org/</a>.</p>
+    <p><code>jsonlite</code> was created by Jeroen Ooms et al., see
+  <a href='https://cran.r-project.org/web/packages/jsonlite/index.html'>https://cran.r-project.org/web/packages/jsonlite/index.html</a>.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>rcwData</span> <span class='kw'>&lt;-</span> <span class='fu'>data.frame</span>(
-  <span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>1000</span>, <span class='fl'>1001</span>, <span class='fl'>1010</span>, <span class='fl'>1011</span>, <span class='fl'>1100</span>, <span class='fl'>1101</span>, <span class='fl'>1110</span>, <span class='fl'>1111</span>),
-  <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>15</span>, -<span class='fl'>20</span>, <span class='fl'>10</span>, <span class='fl'>40</span>, <span class='fl'>30</span>, <span class='fl'>25</span>, <span class='fl'>65</span>, <span class='fl'>27</span>),
-  <span class='kw'>highlightIndex</span> <span class='kw'>=</span> <span class='fu'>c</span>(-<span class='fl'>1</span>, -<span class='fl'>1</span>, <span class='fl'>0</span>, -<span class='fl'>1</span>, -<span class='fl'>1</span>, -<span class='fl'>1</span>, <span class='fl'>1</span>, -<span class='fl'>1</span>))
-<span class='fu'>rcwChart</span>(<span class='no'>rcwData</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"bar"</span>)</div><div class='output co'>#&gt; <span class='error'>Error in yaml.load(readLines(con), error.label = error.label, ...): argument "error.label" is missing, with no default</span></div><div class='input'>
+    <pre class="examples"><div class='input'><span class='co'>## using system template</span>
+<span class='no'>chartconfig</span> <span class='kw'>&lt;-</span> <span class='fu'>create_config</span>()</div><div class='output co'>#&gt; <span class='error'>Error in create_config(): 'source' must be specified</span></div><div class='input'><span class='fu'>str</span>(<span class='no'>chartconfig</span>)</div><div class='output co'>#&gt; <span class='error'>Error in str(chartconfig): object 'chartconfig' not found</span></div><div class='input'>
+<span class='co'>## using custom template</span>
+<span class='no'>jsonfile</span> <span class='kw'>&lt;-</span> <span class='st'>"../inst/templates/default.json"</span>
+<span class='no'>chartconfig2</span> <span class='kw'>&lt;-</span> <span class='fu'>create_config</span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='no'>jsonfile</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: cannot open file '../inst/templates/default.json': No such file or directory</span></div><div class='output co'>#&gt; <span class='error'>Error in open.connection(con, "rb"): cannot open the connection</span></div><div class='input'><span class='fu'>str</span>(<span class='no'>chartconfig2</span>)</div><div class='output co'>#&gt; <span class='error'>Error in str(chartconfig2): object 'chartconfig2' not found</span></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

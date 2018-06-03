@@ -36,6 +36,9 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
+      <a href="../articles/chartConfig.html">chartConfig</a>
+    </li>
+    <li>
       <a href="../articles/rcwChart.html">rcwChart</a>
     </li>
     <li>
@@ -62,13 +65,13 @@
 <!--/.navbar -->
 
       
-      </header><script src="scatterChart_files/htmlwidgets-0.9/htmlwidgets.js"></script><link href="scatterChart_files/signika-0/signika.css" rel="stylesheet">
+      </header><script src="scatterChart_files/htmlwidgets-1.0/htmlwidgets.js"></script><link href="scatterChart_files/signika-0/signika.css" rel="stylesheet">
 <script src="scatterChart_files/d3-3.5.17/d3.min.js"></script><script src="scatterChart_files/lodash.js-4.16.1/lodash.min.js"></script><script src="scatterChart_files/rcw-charts-4.0.3/rcw-charts.lib.js"></script><script src="scatterChart_files/rcwChart-binding-0.0.0.9000/rcwChart.js"></script><div class="row">
   <div class="col-md-9">
     <div class="page-header toc-ignore">
       <h1>Scatter Chart</h1>
             
-            <h4 class="date">2018-01-07</h4>
+            <h4 class="date">2018-06-03</h4>
           </div>
 
     
@@ -80,8 +83,8 @@
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">scatterData &lt;-<span class="st"> </span>rcw_rand
 scatterData$x &lt;-<span class="st"> </span>scatterData$y *<span class="st"> </span><span class="kw">sample</span>(<span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.01</span>), <span class="kw">nrow</span>(scatterData))
 <span class="kw"><a href="../reference/rcwChart.html">rcwChart</a></span>(scatterData, <span class="dt">type =</span> <span class="st">"scatter"</span>)</code></pre></div>
-<div id="htmlwidget-c54301213c8fa5d493b7" style="width:800px;height:400px;" class="rcwChart html-widget"></div>
-<script type="application/json" data-for="htmlwidget-c54301213c8fa5d493b7">{"x":{"type":"scatter","data":[{"datapoints":[{"x":29.58,"y":51,"highlightIndex":-1,"baselineIndex":-1},{"x":0.21,"y":1,"highlightIndex":-1,"baselineIndex":-1},{"x":2.28,"y":19,"highlightIndex":-1,"baselineIndex":-1},{"x":9.88,"y":76,"highlightIndex":-1,"baselineIndex":0},{"x":20.52,"y":76,"highlightIndex":-1,"baselineIndex":-1},{"x":4.8,"y":16,"highlightIndex":-1,"baselineIndex":-1},{"x":6.65,"y":35,"highlightIndex":-1,"baselineIndex":-1},{"x":1.5,"y":15,"highlightIndex":0,"baselineIndex":-1},{"x":-9.69,"y":-17,"highlightIndex":-1,"baselineIndex":-1},{"x":63.75,"y":85,"highlightIndex":-1,"baselineIndex":-1},{"x":-2.7,"y":-5,"highlightIndex":1,"baselineIndex":-1},{"x":-17.487,"y":-20.1,"highlightIndex":-1,"baselineIndex":-1},{"x":17.16,"y":66,"highlightIndex":-1,"baselineIndex":-1},{"x":4.08,"y":6,"highlightIndex":-1,"baselineIndex":-1},{"x":-4.55,"y":-7,"highlightIndex":-1,"baselineIndex":-1},{"x":59.63,"y":67,"highlightIndex":-1,"baselineIndex":-1},{"x":16.8,"y":20,"highlightIndex":-1,"baselineIndex":-1},{"x":68.4,"y":76,"highlightIndex":-1,"baselineIndex":-1},{"x":0,"y":26,"highlightIndex":-1,"baselineIndex":-1},{"x":16.8,"y":24,"highlightIndex":-1,"baselineIndex":-1},{"x":0.56,"y":28,"highlightIndex":-1,"baselineIndex":-1},{"x":11.28,"y":12,"highlightIndex":-1,"baselineIndex":-1},{"x":-4.8,"y":-10,"highlightIndex":-1,"baselineIndex":-1},{"x":16.83,"y":51,"highlightIndex":-1,"baselineIndex":-1},{"x":0.25,"y":5,"highlightIndex":-1,"baselineIndex":-1},{"x":-1.92,"y":-6,"highlightIndex":-1,"baselineIndex":-1},{"x":19.98,"y":54,"highlightIndex":-1,"baselineIndex":-1},{"x":8.19,"y":91,"highlightIndex":-1,"baselineIndex":-1},{"x":23.25,"y":75,"highlightIndex":-1,"baselineIndex":-1},{"x":10.88,"y":68,"highlightIndex":-1,"baselineIndex":-1}]}],"options":{"base":{"width":"800","height":"400"}}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-a2e376e361a3cfb4f92c" style="width:800px;height:400px;" class="rcwChart html-widget"></div>
+<script type="application/json" data-for="htmlwidget-a2e376e361a3cfb4f92c">{"x":{"type":"scatter","data":[{"datapoints":[{"x":16.32,"y":51,"highlightIndex":-1,"baselineIndex":-1},{"x":0.3,"y":1,"highlightIndex":-1,"baselineIndex":-1},{"x":12.16,"y":19,"highlightIndex":-1,"baselineIndex":-1},{"x":53.2,"y":76,"highlightIndex":-1,"baselineIndex":0},{"x":0,"y":76,"highlightIndex":-1,"baselineIndex":-1},{"x":11.52,"y":16,"highlightIndex":-1,"baselineIndex":-1},{"x":30.1,"y":35,"highlightIndex":-1,"baselineIndex":-1},{"x":3.45,"y":15,"highlightIndex":0,"baselineIndex":-1},{"x":-11.22,"y":-17,"highlightIndex":-1,"baselineIndex":-1},{"x":45.05,"y":85,"highlightIndex":-1,"baselineIndex":-1},{"x":-4.85,"y":-5,"highlightIndex":1,"baselineIndex":-1},{"x":-11.055,"y":-20.1,"highlightIndex":-1,"baselineIndex":-1},{"x":15.84,"y":66,"highlightIndex":-1,"baselineIndex":-1},{"x":3.06,"y":6,"highlightIndex":-1,"baselineIndex":-1},{"x":-6.65,"y":-7,"highlightIndex":-1,"baselineIndex":-1},{"x":29.48,"y":67,"highlightIndex":-1,"baselineIndex":-1},{"x":4.2,"y":20,"highlightIndex":-1,"baselineIndex":-1},{"x":50.92,"y":76,"highlightIndex":-1,"baselineIndex":-1},{"x":1.56,"y":26,"highlightIndex":-1,"baselineIndex":-1},{"x":23.04,"y":24,"highlightIndex":-1,"baselineIndex":-1},{"x":14.56,"y":28,"highlightIndex":-1,"baselineIndex":-1},{"x":4.8,"y":12,"highlightIndex":-1,"baselineIndex":-1},{"x":-8.8,"y":-10,"highlightIndex":-1,"baselineIndex":-1},{"x":31.62,"y":51,"highlightIndex":-1,"baselineIndex":-1},{"x":4.15,"y":5,"highlightIndex":-1,"baselineIndex":-1},{"x":-2.7,"y":-6,"highlightIndex":-1,"baselineIndex":-1},{"x":10.26,"y":54,"highlightIndex":-1,"baselineIndex":-1},{"x":85.54,"y":91,"highlightIndex":-1,"baselineIndex":-1},{"x":3,"y":75,"highlightIndex":-1,"baselineIndex":-1},{"x":66.64,"y":68,"highlightIndex":-1,"baselineIndex":-1}]}],"options":{"base":{"width":"800","height":"400"}}},"evals":[],"jsHooks":[]}</script>
 </div>
 <div id="data-scatterdata" class="section level2">
 <h2 class="hasAnchor">
@@ -92,18 +95,18 @@ scatterData$x &lt;-<span class="st"> </span>scatterData$y *<span class="st"> </s
 </li>
 </ul>
 <pre><code>## # A tibble: 30 x 4
-##        x     y highlightIndex baselineIndex
-##    &lt;dbl&gt; &lt;dbl&gt;          &lt;int&gt;         &lt;int&gt;
-##  1 29.58    51             -1            -1
-##  2  0.21     1             -1            -1
-##  3  2.28    19             -1            -1
-##  4  9.88    76             -1             0
-##  5 20.52    76             -1            -1
-##  6  4.80    16             -1            -1
-##  7  6.65    35             -1            -1
-##  8  1.50    15              0            -1
-##  9 -9.69   -17             -1            -1
-## 10 63.75    85             -1            -1
+##          x     y highlightIndex baselineIndex
+##      &lt;dbl&gt; &lt;dbl&gt;          &lt;int&gt;         &lt;int&gt;
+##  1  16.3     51.             -1            -1
+##  2   0.300    1.             -1            -1
+##  3  12.2     19.             -1            -1
+##  4  53.2     76.             -1             0
+##  5   0.      76.             -1            -1
+##  6  11.5     16.             -1            -1
+##  7  30.1     35.             -1            -1
+##  8   3.45    15.              0            -1
+##  9 -11.2    -17.             -1            -1
+## 10  45.1     85.             -1            -1
 ## # ... with 20 more rows</code></pre>
 </div>
 </div>
