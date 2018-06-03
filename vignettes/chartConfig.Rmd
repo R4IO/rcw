@@ -72,7 +72,13 @@ browseURL(url = chart_url)              # open URL in browser
 
 ```
 
+
 See result at `r chart_url`
+
+
+```{r screenshot-single-config, out.width='100%', echo=FALSE, eval=TRUE}
+knitr::include_graphics("https://raw.githubusercontent.com/r4io/rcw/master/assets/img/screenshot_post_single_config.png")
+```
 
 
 ## Multi Config
