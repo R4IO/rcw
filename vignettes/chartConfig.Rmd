@@ -21,6 +21,7 @@ opts <- c("startTime=2015", "endTime=2015", "dimensionAtObservation=AllDimension
 
 ## specify JSON template
 jsonfile <- system.file("templates/default.json", package = "rcw")
+## jsonfile <- "../inst/templates/default.json"
 
 ```
 
@@ -41,7 +42,14 @@ chartconfig <- create_config(
   subtitle = c("Measure: Growth previous period",
                "Frequency: Annual",
                "Time: 2015"),
+  unit = "Percentage",
+  footurl = "http://stats.oecd.org:80/Index.aspx?DataSetCode=KEI",
+  footlabel = "Key Short-Term Economic Indicators",
+  logo = TRUE,
+  owner = TRUE,
   type = "BarChart", # "RowChart"
+  width = 800,
+  height = 500,
   path = jsonfile
 )
 
@@ -56,10 +64,11 @@ chart_url <-
   post_config(
     config = chartconfig,
     url = "http://stats.oecd.org",      # this is the default value
-    response = TRUE
+    response = TRUE #,
+    ## httr::verbose()                     # do not use if logo=TRUE in chart config
   )
 
-## browseURL(url = chart_url)              # open URL in browser
+browseURL(url = chart_url)              # open URL in browser
 
 ```
 
@@ -102,18 +111,16 @@ str(query_url_ls)
 ```
 
 
-```{r multi-config-post, echo=TRUE, eval=TRUE}
+```{r multi-config-post, echo=TRUE, eval=FALSE}
 
 chart_url_c <-
   sapply(query_url_ls,
          function(x) post_config(config = x$config,
                                  url = "http://stats.oecd.org"))
 
-## sapply(chart_url_c, browseURL)
+print(chart_url_c)
 
 ```
-
-See result at `r chart_url_c[1]` and `r chart_url_c[2]`
 
 
 <!-- ## Create debug information -->

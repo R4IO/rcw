@@ -101,14 +101,16 @@
     
 
     <pre class="usage"><span class='fu'>create_config</span>(<span class='kw'>source</span> <span class='kw'>=</span> <span class='fu'>stop</span>(<span class='st'>"'source' must be specified"</span>), <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>subtitle</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='fu'>stop</span>(<span class='st'>"'type' must be specified"</span>), <span class='kw'>path</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+  <span class='kw'>subtitle</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>unit</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>footurl</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>footlabel</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>logo</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>owner</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='fu'>stop</span>(<span class='st'>"'type' must be specified"</span>),
+  <span class='kw'>width</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>height</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>path</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>source</th>
-      <td><p>SDMX URL</p></td>
+      <td><p>complete SDMX URL created using <code>create_query_url</code></p></td>
     </tr>
     <tr>
       <th>title</th>
@@ -119,10 +121,38 @@
       <td><p>character vector chart subtitle</p></td>
     </tr>
     <tr>
+      <th>unit</th>
+      <td><p>character string to specify unit of measure (should be automatic)</p></td>
+    </tr>
+    <tr>
+      <th>footurl</th>
+      <td><p>character string to add URL below chart</p></td>
+    </tr>
+    <tr>
+      <th>footlabel</th>
+      <td><p>character string to show instead of URL below chart</p></td>
+    </tr>
+    <tr>
+      <th>logo</th>
+      <td><p>logical include logo</p></td>
+    </tr>
+    <tr>
+      <th>owner</th>
+      <td><p>logical include copyright information</p></td>
+    </tr>
+    <tr>
       <th>type</th>
       <td><p>one of <code>BarChart</code>, <code>RowChart</code>, <code>ScatterChart</code>,
 <code>HSymbolChart</code>, <code>VSymbolChart</code>, <code>TimelineChart</code>,
 <code>StackedBarChart</code></p></td>
+    </tr>
+    <tr>
+      <th>width</th>
+      <td><p>integer chart width in pixel</p></td>
+    </tr>
+    <tr>
+      <th>height</th>
+      <td><p>integer chart height in pixel</p></td>
     </tr>
     <tr>
       <th>path</th>
@@ -138,11 +168,94 @@
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'>## using system template</span>
-<span class='no'>chartconfig</span> <span class='kw'>&lt;-</span> <span class='fu'>create_config</span>()</div><div class='output co'>#&gt; <span class='error'>Error in create_config(): 'source' must be specified</span></div><div class='input'><span class='fu'>str</span>(<span class='no'>chartconfig</span>)</div><div class='output co'>#&gt; <span class='error'>Error in str(chartconfig): object 'chartconfig' not found</span></div><div class='input'>
+    <pre class="examples"><div class='input'><span class='no'>flow</span> <span class='kw'>&lt;-</span> <span class='st'>"KEI"</span>
+<span class='no'>query</span> <span class='kw'>&lt;-</span> <span class='st'>"PRINTO01+PRMNTO01.AUS+AUT+BEL+CAN+CHL+CZE+DNK+EST+FIN+FRA.GP.A"</span>
+<span class='no'>opts</span> <span class='kw'>&lt;-</span> <span class='fu'>c</span>(<span class='st'>"startTime=2015"</span>, <span class='st'>"endTime=2015"</span>, <span class='st'>"dimensionAtObservation=AllDimensions"</span>)
+<span class='no'>query_url</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='create_query_url.html'>create_query_url</a></span>(<span class='kw'>flow</span> <span class='kw'>=</span> <span class='no'>flow</span>, <span class='kw'>query</span> <span class='kw'>=</span> <span class='no'>query</span>, <span class='kw'>opts</span> <span class='kw'>=</span> <span class='no'>opts</span>)
+<span class='no'>chartconfig</span> <span class='kw'>&lt;-</span> <span class='fu'>create_config</span>(<span class='kw'>source</span> <span class='kw'>=</span> <span class='no'>query_url</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"BarChart"</span>)
+<span class='fu'>str</span>(<span class='no'>chartconfig</span>)</div><div class='output co'>#&gt; List of 3
+#&gt;  $ data :List of 3
+#&gt;   ..$ data   :List of 7
+#&gt;   .. ..$ title    : NULL
+#&gt;   .. ..$ subtitle : NULL
+#&gt;   .. ..$ uprs     : NULL
+#&gt;   .. ..$ footnotes: Named list()
+#&gt;   .. ..$ frequency: NULL
+#&gt;   .. ..$ series   : list()
+#&gt;   .. ..$ share    :List of 5
+#&gt;   .. .. ..$ focused       : Named list()
+#&gt;   .. .. ..$ chartDimension: NULL
+#&gt;   .. .. ..$ source        : chr "http://stats.oecd.org:80/SDMX-JSON/data/KEI/PRINTO01+PRMNTO01.AUS+AUT+BEL+CAN+CHL+CZE+DNK+EST+FIN+FRA.GP.A/all?"| __truncated__
+#&gt;   .. .. ..$ sharedate     : num 1.53e+12
+#&gt;   .. .. ..$ dependencies  :List of 1
+#&gt;   .. .. .. ..$ oecd-configurable-charts: chr "4.1.1"
+#&gt;   ..$ options:List of 4
+#&gt;   .. ..$ base :List of 2
+#&gt;   .. .. ..$ width : NULL
+#&gt;   .. .. ..$ height: NULL
+#&gt;   .. ..$ axis :List of 2
+#&gt;   .. .. ..$ x:List of 1
+#&gt;   .. .. .. ..$ linear:List of 1
+#&gt;   .. .. .. .. ..$ pivot: Named list()
+#&gt;   .. .. ..$ y:List of 1
+#&gt;   .. .. .. ..$ linear:List of 1
+#&gt;   .. .. .. .. ..$ pivot: Named list()
+#&gt;   .. ..$ map  :List of 2
+#&gt;   .. .. ..$ projection: NULL
+#&gt;   .. .. ..$ scale     : NULL
+#&gt;   .. ..$ serie:List of 1
+#&gt;   .. .. ..$ choropleth: Named list()
+#&gt;   ..$ config :List of 3
+#&gt;   .. ..$ logo : chr "data:image/svg+xml;base64,PHN2ZyBpZD0iQ2FscXVlXzEiIGRhdGEtbmFtZT0iQ2FscXVlIDEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZ"| __truncated__
+#&gt;   .. ..$ owner: chr "©OECD"
+#&gt;   .. ..$ terms:List of 2
+#&gt;   .. .. ..$ label: chr "Terms &amp; Conditions"
+#&gt;   .. .. ..$ link : chr "https://www.oecd.org/termsandconditions/"
+#&gt;  $ share: chr "latest"
+#&gt;  $ type : chr "BarChart"</div><div class='input'>
 <span class='co'>## using custom template</span>
-<span class='no'>jsonfile</span> <span class='kw'>&lt;-</span> <span class='st'>"../inst/templates/default.json"</span>
-<span class='no'>chartconfig2</span> <span class='kw'>&lt;-</span> <span class='fu'>create_config</span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='no'>jsonfile</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: cannot open file '../inst/templates/default.json': No such file or directory</span></div><div class='output co'>#&gt; <span class='error'>Error in open.connection(con, "rb"): cannot open the connection</span></div><div class='input'><span class='fu'>str</span>(<span class='no'>chartconfig2</span>)</div><div class='output co'>#&gt; <span class='error'>Error in str(chartconfig2): object 'chartconfig2' not found</span></div><div class='input'>
+<span class='no'>jsonfile</span> <span class='kw'>&lt;-</span> <span class='fu'>system.file</span>(<span class='st'>"templates/default.json"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"rcw"</span>)
+<span class='no'>chartconfig2</span> <span class='kw'>&lt;-</span> <span class='fu'>create_config</span>(<span class='kw'>source</span> <span class='kw'>=</span> <span class='no'>query_url</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"BarChart"</span>, <span class='kw'>path</span> <span class='kw'>=</span> <span class='no'>jsonfile</span>)
+<span class='fu'>str</span>(<span class='no'>chartconfig2</span>)</div><div class='output co'>#&gt; List of 3
+#&gt;  $ data :List of 3
+#&gt;   ..$ data   :List of 7
+#&gt;   .. ..$ title    : NULL
+#&gt;   .. ..$ subtitle : NULL
+#&gt;   .. ..$ uprs     : NULL
+#&gt;   .. ..$ footnotes: Named list()
+#&gt;   .. ..$ frequency: NULL
+#&gt;   .. ..$ series   : list()
+#&gt;   .. ..$ share    :List of 5
+#&gt;   .. .. ..$ focused       : Named list()
+#&gt;   .. .. ..$ chartDimension: NULL
+#&gt;   .. .. ..$ source        : chr "http://stats.oecd.org:80/SDMX-JSON/data/KEI/PRINTO01+PRMNTO01.AUS+AUT+BEL+CAN+CHL+CZE+DNK+EST+FIN+FRA.GP.A/all?"| __truncated__
+#&gt;   .. .. ..$ sharedate     : num 1.53e+12
+#&gt;   .. .. ..$ dependencies  :List of 1
+#&gt;   .. .. .. ..$ oecd-configurable-charts: chr "4.1.1"
+#&gt;   ..$ options:List of 4
+#&gt;   .. ..$ base :List of 2
+#&gt;   .. .. ..$ width : NULL
+#&gt;   .. .. ..$ height: NULL
+#&gt;   .. ..$ axis :List of 2
+#&gt;   .. .. ..$ x:List of 1
+#&gt;   .. .. .. ..$ linear:List of 1
+#&gt;   .. .. .. .. ..$ pivot: Named list()
+#&gt;   .. .. ..$ y:List of 1
+#&gt;   .. .. .. ..$ linear:List of 1
+#&gt;   .. .. .. .. ..$ pivot: Named list()
+#&gt;   .. ..$ map  :List of 2
+#&gt;   .. .. ..$ projection: NULL
+#&gt;   .. .. ..$ scale     : NULL
+#&gt;   .. ..$ serie:List of 1
+#&gt;   .. .. ..$ choropleth: Named list()
+#&gt;   ..$ config :List of 3
+#&gt;   .. ..$ logo : chr "data:image/svg+xml;base64,PHN2ZyBpZD0iQ2FscXVlXzEiIGRhdGEtbmFtZT0iQ2FscXVlIDEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZ"| __truncated__
+#&gt;   .. ..$ owner: chr "©OECD"
+#&gt;   .. ..$ terms:List of 2
+#&gt;   .. .. ..$ label: chr "Terms &amp; Conditions"
+#&gt;   .. .. ..$ link : chr "https://www.oecd.org/termsandconditions/"
+#&gt;  $ share: chr "latest"
+#&gt;  $ type : chr "BarChart"</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

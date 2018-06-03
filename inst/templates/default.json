@@ -1,8 +1,7 @@
 {"data":{"data":{"title":null,
                  "subtitle":null,
-                 "uprs":"Percentage",
-                 "footnotes":{"source":"http://stats.oecd.org:80/Index.aspx?DataSetCode=KEI",
-                              "sourceLabel":"Key Short-Term Economic Indicators"},
+                 "uprs":null,
+                 "footnotes":{},
                  "frequency":null,
                  "series":[],
                  "share":{"focused":{},
@@ -15,7 +14,7 @@
                     "axis":{"x":{"linear":{"pivot":{}}},"y":{"linear":{"pivot":{}}}},
                     "map":{"projection":null,"scale":null},
                     "serie":{"choropleth":{}}},
-         "config":{"logo":"","owner":"©OECD","terms":{"label":"Terms & Conditions","link":"https://www.oecd.org/termsandconditions/"}}},
+         "config":{"logo":null,"owner":"©OECD","terms":{"label":"Terms & Conditions","link":"https://www.oecd.org/termsandconditions/"}}},
  "share":"latest",
  "type":null
 }

@@ -83,7 +83,8 @@ flow &lt;-<span class="st"> "KEI"</span>
 opts &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">"startTime=2015"</span>, <span class="st">"endTime=2015"</span>, <span class="st">"dimensionAtObservation=AllDimensions"</span>)
 
 ## specify JSON template
-jsonfile &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="st">"templates/default.json"</span>, <span class="dt">package =</span> <span class="st">"rcw"</span>)</code></pre></div>
+jsonfile &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="st">"templates/default.json"</span>, <span class="dt">package =</span> <span class="st">"rcw"</span>)
+## jsonfile &lt;- "../inst/templates/default.json"</code></pre></div>
 <div id="single-config" class="section level2">
 <h2 class="hasAnchor">
 <a href="#single-config" class="anchor"></a>Single Config</h2>
@@ -98,7 +99,14 @@ chartconfig &lt;-<span class="st"> </span><span class="kw"><a href="../reference
   <span class="dt">subtitle =</span> <span class="kw">c</span>(<span class="st">"Measure: Growth previous period"</span>,
                <span class="st">"Frequency: Annual"</span>,
                <span class="st">"Time: 2015"</span>),
+  <span class="dt">unit =</span> <span class="st">"Percentage"</span>,
+  <span class="dt">footurl =</span> <span class="st">"http://stats.oecd.org:80/Index.aspx?DataSetCode=KEI"</span>,
+  <span class="dt">footlabel =</span> <span class="st">"Key Short-Term Economic Indicators"</span>,
+  <span class="dt">logo =</span> <span class="ot">TRUE</span>,
+  <span class="dt">owner =</span> <span class="ot">TRUE</span>,
   <span class="dt">type =</span> <span class="st">"BarChart"</span>, <span class="co"># "RowChart"</span>
+  <span class="dt">width =</span> <span class="dv">800</span>,
+  <span class="dt">height =</span> <span class="dv">500</span>,
   <span class="dt">path =</span> jsonfile
 )
 
@@ -123,8 +131,8 @@ chartconfig &lt;-<span class="st"> </span><span class="kw"><a href="../reference
 ##   .. .. .. ..$ oecd-configurable-charts: chr "4.1.1"
 ##   ..$ options:List of 4
 ##   .. ..$ base :List of 2
-##   .. .. ..$ width : NULL
-##   .. .. ..$ height: NULL
+##   .. .. ..$ width : num 800
+##   .. .. ..$ height: num 500
 ##   .. ..$ axis :List of 2
 ##   .. .. ..$ x:List of 1
 ##   .. .. .. ..$ linear:List of 1
@@ -138,7 +146,7 @@ chartconfig &lt;-<span class="st"> </span><span class="kw"><a href="../reference
 ##   .. ..$ serie:List of 1
 ##   .. .. ..$ choropleth: Named list()
 ##   ..$ config :List of 3
-##   .. ..$ logo : chr ""
+##   .. ..$ logo : chr "data:image/svg+xml;base64,PHN2ZyBpZD0iQ2FscXVlXzEiIGRhdGEtbmFtZT0iQ2FscXVlIDEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZ"| __truncated__
 ##   .. ..$ owner: chr "©OECD"
 ##   .. ..$ terms:List of 2
 ##   .. .. ..$ label: chr "Terms &amp; Conditions"
@@ -149,16 +157,16 @@ chartconfig &lt;-<span class="st"> </span><span class="kw"><a href="../reference
 <span class="st">  </span><span class="kw"><a href="../reference/post_config.html">post_config</a></span>(
     <span class="dt">config =</span> chartconfig,
     <span class="dt">url =</span> <span class="st">"http://stats.oecd.org"</span>,      <span class="co"># this is the default value</span>
-    <span class="dt">response =</span> <span class="ot">TRUE</span>
+    <span class="dt">response =</span> <span class="ot">TRUE</span> <span class="co">#,</span>
+    ## httr::verbose()                     # do not use if logo=TRUE in chart config
   )</code></pre></div>
-<pre><code>## 
-## Response [http://stats.oecd.org/share]
-##   Date: 2018-06-03 09:12
+<pre><code>## Response [http://stats.oecd.org/share]
+##   Date: 2018-06-03 12:24
 ##   Status: 201
 ##   Content-Type: application/json; charset=utf-8
 ##   Size: 14 B</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## browseURL(url = chart_url)              # open URL in browser</code></pre></div>
-<p>See result at <a href="http://stats.oecd.org/chart?id=4chC" class="uri">http://stats.oecd.org/chart?id=4chC</a></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">browseURL</span>(<span class="dt">url =</span> chart_url)              <span class="co"># open URL in browser</span></code></pre></div>
+<p>See result at <a href="http://stats.oecd.org/chart?id=4ci0" class="uri">http://stats.oecd.org/chart?id=4ci0</a></p>
 </div>
 <div id="multi-config" class="section level2">
 <h2 class="hasAnchor">
@@ -199,10 +207,8 @@ query_url_ls &lt;-<span class="st"> </span><span class="kw">lapply</span>(var_ls
 ##   .. .. ..$ data   :List of 7
 ##   .. .. .. ..$ title    : chr "Key Short-Term Economic Indicators"
 ##   .. .. .. ..$ subtitle : chr [1:4] "Industrial Production" "Measure: Growth previous period" "Frequency: Annual" "Time: 2015"
-##   .. .. .. ..$ uprs     : chr "Percentage"
-##   .. .. .. ..$ footnotes:List of 2
-##   .. .. .. .. ..$ source     : chr "http://stats.oecd.org:80/Index.aspx?DataSetCode=KEI"
-##   .. .. .. .. ..$ sourceLabel: chr "Key Short-Term Economic Indicators"
+##   .. .. .. ..$ uprs     : NULL
+##   .. .. .. ..$ footnotes: Named list()
 ##   .. .. .. ..$ frequency: NULL
 ##   .. .. .. ..$ series   : list()
 ##   .. .. .. ..$ share    :List of 5
@@ -229,7 +235,7 @@ query_url_ls &lt;-<span class="st"> </span><span class="kw">lapply</span>(var_ls
 ##   .. .. .. ..$ serie:List of 1
 ##   .. .. .. .. ..$ choropleth: Named list()
 ##   .. .. ..$ config :List of 3
-##   .. .. .. ..$ logo : chr ""
+##   .. .. .. ..$ logo : chr "data:image/svg+xml;base64,PHN2ZyBpZD0iQ2FscXVlXzEiIGRhdGEtbmFtZT0iQ2FscXVlIDEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZ"| __truncated__
 ##   .. .. .. ..$ owner: chr "©OECD"
 ##   .. .. .. ..$ terms:List of 2
 ##   .. .. .. .. ..$ label: chr "Terms &amp; Conditions"
@@ -244,10 +250,8 @@ query_url_ls &lt;-<span class="st"> </span><span class="kw">lapply</span>(var_ls
 ##   .. .. ..$ data   :List of 7
 ##   .. .. .. ..$ title    : chr "Key Short-Term Economic Indicators"
 ##   .. .. .. ..$ subtitle : chr [1:4] "Total Manufacturing" "Measure: Growth previous period" "Frequency: Annual" "Time: 2015"
-##   .. .. .. ..$ uprs     : chr "Percentage"
-##   .. .. .. ..$ footnotes:List of 2
-##   .. .. .. .. ..$ source     : chr "http://stats.oecd.org:80/Index.aspx?DataSetCode=KEI"
-##   .. .. .. .. ..$ sourceLabel: chr "Key Short-Term Economic Indicators"
+##   .. .. .. ..$ uprs     : NULL
+##   .. .. .. ..$ footnotes: Named list()
 ##   .. .. .. ..$ frequency: NULL
 ##   .. .. .. ..$ series   : list()
 ##   .. .. .. ..$ share    :List of 5
@@ -274,7 +278,7 @@ query_url_ls &lt;-<span class="st"> </span><span class="kw">lapply</span>(var_ls
 ##   .. .. .. ..$ serie:List of 1
 ##   .. .. .. .. ..$ choropleth: Named list()
 ##   .. .. ..$ config :List of 3
-##   .. .. .. ..$ logo : chr ""
+##   .. .. .. ..$ logo : chr "data:image/svg+xml;base64,PHN2ZyBpZD0iQ2FscXVlXzEiIGRhdGEtbmFtZT0iQ2FscXVlIDEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZ"| __truncated__
 ##   .. .. .. ..$ owner: chr "©OECD"
 ##   .. .. .. ..$ terms:List of 2
 ##   .. .. .. .. ..$ label: chr "Terms &amp; Conditions"
@@ -284,9 +288,9 @@ query_url_ls &lt;-<span class="st"> </span><span class="kw">lapply</span>(var_ls
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">chart_url_c &lt;-
 <span class="st">  </span><span class="kw">sapply</span>(query_url_ls,
          function(x) <span class="kw"><a href="../reference/post_config.html">post_config</a></span>(<span class="dt">config =</span> x$config,
-                                 <span class="dt">url =</span> <span class="st">"http://stats.oecd.org"</span>))</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## sapply(chart_url_c, browseURL)</code></pre></div>
-<p>See result at <a href="http://stats.oecd.org/chart?id=4chD" class="uri">http://stats.oecd.org/chart?id=4chD</a> and <a href="http://stats.oecd.org/chart?id=4chE" class="uri">http://stats.oecd.org/chart?id=4chE</a></p>
+                                 <span class="dt">url =</span> <span class="st">"http://stats.oecd.org"</span>))
+
+<span class="kw">print</span>(chart_url_c)</code></pre></div>
 <!-- ## Create debug information -->
 </div>
 </div>

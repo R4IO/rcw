@@ -100,8 +100,9 @@
     <p><code>post_config</code> submits JSON configuration lists.</p>
     
 
-    <pre class="usage"><span class='fu'>post_config</span>(<span class='no'>config</span>, <span class='kw'>url</span> <span class='kw'>=</span> <span class='st'>"http://stats.oecd.org"</span>, <span class='kw'>show</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>path</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>response</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>auto_unbox</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>null</span> <span class='kw'>=</span> <span class='st'>"null"</span>)</pre>
+    <pre class="usage"><span class='fu'>post_config</span>(<span class='kw'>config</span> <span class='kw'>=</span> <span class='fu'>stop</span>(<span class='st'>"'config' must be specified"</span>), <span class='no'>...</span>,
+  <span class='kw'>url</span> <span class='kw'>=</span> <span class='st'>"http://stats.oecd.org"</span>, <span class='kw'>show</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>path</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>response</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>auto_unbox</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>null</span> <span class='kw'>=</span> <span class='st'>"null"</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
@@ -111,8 +112,14 @@
       <td><p>a configuration list according to the API definition</p></td>
     </tr>
     <tr>
+      <th>...</th>
+      <td><p>additional parameters supplied to <code>httr:POST</code>, e.g.
+<code><a href='http://www.rdocumentation.org/packages/httr/topics/verbose'>httr::verbose()</a></code></p></td>
+    </tr>
+    <tr>
       <th>url</th>
-      <td><p>the POST API endpoint</p></td>
+      <td><p>the POST API endpoint offering <code>/share</code> and <code>/chart</code>
+services, e.g. http://vs-webdev-1:89 or http://stats.oecd.org</p></td>
     </tr>
     <tr>
       <th>show</th>
@@ -143,10 +150,78 @@
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>chartconfig</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>jsonlite</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/jsonlite/topics/read_json'>read_json</a></span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='st'>"../examples/chartconfig.json"</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: cannot open file '../examples/chartconfig.json': No such file or directory</span></div><div class='output co'>#&gt; <span class='error'>Error in open.connection(con, "rb"): cannot open the connection</span></div><div class='input'><span class='no'>chartUrl</span> <span class='kw'>&lt;-</span> <span class='fu'>post_config</span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>chartconfig</span>)</div><div class='output co'>#&gt; <span class='error'>Error in post_config(x = chartconfig): unused argument (x = chartconfig)</span></div><div class='input'><span class='fu'>browseURL</span>(<span class='kw'>url</span> <span class='kw'>=</span> <span class='no'>chartUrl</span>)</div><div class='output co'>#&gt; <span class='error'>Error in browseURL(url = chartUrl): object 'chartUrl' not found</span></div><div class='input'>
+    <pre class="examples"><div class='input'><span class='no'>flow</span> <span class='kw'>&lt;-</span> <span class='st'>"KEI"</span>
+<span class='no'>query</span> <span class='kw'>&lt;-</span> <span class='st'>"PRINTO01+PRMNTO01.AUS+AUT+BEL+CAN+CHL+CZE+DNK+EST+FIN+FRA.GP.A"</span>
+<span class='no'>opts</span> <span class='kw'>&lt;-</span> <span class='fu'>c</span>(<span class='st'>"startTime=2015"</span>, <span class='st'>"endTime=2015"</span>, <span class='st'>"dimensionAtObservation=AllDimensions"</span>)
+<span class='no'>query_url</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='create_query_url.html'>create_query_url</a></span>(<span class='kw'>flow</span> <span class='kw'>=</span> <span class='no'>flow</span>, <span class='kw'>query</span> <span class='kw'>=</span> <span class='no'>query</span>, <span class='kw'>opts</span> <span class='kw'>=</span> <span class='no'>opts</span>)
+<span class='no'>chartconfig</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='create_config.html'>create_config</a></span>(<span class='kw'>source</span> <span class='kw'>=</span> <span class='no'>query_url</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"BarChart"</span>, <span class='kw'>logo</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+<span class='fu'>post_config</span>(<span class='kw'>config</span> <span class='kw'>=</span> <span class='no'>chartconfig</span>, <span class='kw'>url</span> <span class='kw'>=</span> <span class='st'>"http://stats.oecd.org"</span>, <span class='kw'>response</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; Response [http://stats.oecd.org/share]
+#&gt;   Date: 2018-06-03 12:43
+#&gt;   Status: 201
+#&gt;   Content-Type: application/json; charset=utf-8
+#&gt;   Size: 14 B
+#&gt; </div><div class='output co'>#&gt; [1] "http://stats.oecd.org/chart?id=4cia"</div><div class='input'>
+<span class='co'>## write to disk for debugging</span>
+<span class='co'>#' flow &lt;- "KEI"</span>
 <span class='no'>outfile</span> <span class='kw'>&lt;-</span> <span class='fu'>tempfile</span>(<span class='kw'>pattern</span> <span class='kw'>=</span> <span class='st'>"chartconfig_"</span>, <span class='kw'>fileext</span> <span class='kw'>=</span> <span class='st'>".json"</span>)
-<span class='fu'>post_config</span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>chartconfig</span>, <span class='kw'>show</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>path</span> <span class='kw'>=</span> <span class='no'>outfile</span>)</div><div class='output co'>#&gt; <span class='error'>Error in post_config(x = chartconfig, show = TRUE, path = outfile): unused argument (x = chartconfig)</span></div><div class='input'><span class='kw pkg'>jsonlite</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/jsonlite/topics/read_json'>read_json</a></span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='no'>outfile</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: cannot open file '/tmp/RtmpwKpqYd/chartconfig_56756e1e5a25.json': No such file or directory</span></div><div class='output co'>#&gt; <span class='error'>Error in open.connection(con, "rb"): cannot open the connection</span></div><div class='input'>
-<span class='fu'>post_config</span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>chartconfig</span>, <span class='kw'>response</span><span class='kw'>=</span><span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='error'>Error in post_config(x = chartconfig, response = TRUE): unused argument (x = chartconfig)</span></div></pre>
+<span class='fu'>post_config</span>(<span class='kw'>config</span> <span class='kw'>=</span> <span class='no'>chartconfig</span>, <span class='kw'>path</span> <span class='kw'>=</span> <span class='no'>outfile</span>)</div><div class='output co'>#&gt; 
+#&gt; Created file /tmp/Rtmp9jzMC1/chartconfig_6c3415224be1.json </div><div class='input'><span class='no'>filecon</span> <span class='kw'>&lt;-</span> <span class='fu'>file</span>(<span class='no'>outfile</span>)
+<span class='fu'>readLines</span>(<span class='kw'>con</span> <span class='kw'>=</span> <span class='no'>filecon</span>)</div><div class='output co'>#&gt;  [1] "{"                                                                                                                                                                                                       
+#&gt;  [2] "  \"data\": {"                                                                                                                                                                                           
+#&gt;  [3] "    \"data\": {"                                                                                                                                                                                         
+#&gt;  [4] "      \"title\": null,"                                                                                                                                                                                  
+#&gt;  [5] "      \"subtitle\": null,"                                                                                                                                                                               
+#&gt;  [6] "      \"uprs\": null,"                                                                                                                                                                                   
+#&gt;  [7] "      \"footnotes\": {},"                                                                                                                                                                                
+#&gt;  [8] "      \"frequency\": null,"                                                                                                                                                                              
+#&gt;  [9] "      \"series\": [],"                                                                                                                                                                                   
+#&gt; [10] "      \"share\": {"                                                                                                                                                                                      
+#&gt; [11] "        \"focused\": {},"                                                                                                                                                                                
+#&gt; [12] "        \"chartDimension\": null,"                                                                                                                                                                       
+#&gt; [13] "        \"source\": \"http://stats.oecd.org:80/SDMX-JSON/data/KEI/PRINTO01+PRMNTO01.AUS+AUT+BEL+CAN+CHL+CZE+DNK+EST+FIN+FRA.GP.A/all?startTime=2015&amp;endTime=2015&amp;dimensionAtObservation=AllDimensions\","
+#&gt; [14] "        \"sharedate\": 1525513191754,"                                                                                                                                                                   
+#&gt; [15] "        \"dependencies\": {"                                                                                                                                                                             
+#&gt; [16] "          \"oecd-configurable-charts\": \"4.1.1\""                                                                                                                                                       
+#&gt; [17] "        }"                                                                                                                                                                                               
+#&gt; [18] "      }"                                                                                                                                                                                                 
+#&gt; [19] "    },"                                                                                                                                                                                                  
+#&gt; [20] "    \"options\": {"                                                                                                                                                                                      
+#&gt; [21] "      \"base\": {"                                                                                                                                                                                       
+#&gt; [22] "        \"width\": null,"                                                                                                                                                                                
+#&gt; [23] "        \"height\": null"                                                                                                                                                                                
+#&gt; [24] "      },"                                                                                                                                                                                                
+#&gt; [25] "      \"axis\": {"                                                                                                                                                                                       
+#&gt; [26] "        \"x\": {"                                                                                                                                                                                        
+#&gt; [27] "          \"linear\": {"                                                                                                                                                                                 
+#&gt; [28] "            \"pivot\": {}"                                                                                                                                                                               
+#&gt; [29] "          }"                                                                                                                                                                                             
+#&gt; [30] "        },"                                                                                                                                                                                              
+#&gt; [31] "        \"y\": {"                                                                                                                                                                                        
+#&gt; [32] "          \"linear\": {"                                                                                                                                                                                 
+#&gt; [33] "            \"pivot\": {}"                                                                                                                                                                               
+#&gt; [34] "          }"                                                                                                                                                                                             
+#&gt; [35] "        }"                                                                                                                                                                                               
+#&gt; [36] "      },"                                                                                                                                                                                                
+#&gt; [37] "      \"map\": {"                                                                                                                                                                                        
+#&gt; [38] "        \"projection\": null,"                                                                                                                                                                           
+#&gt; [39] "        \"scale\": null"                                                                                                                                                                                 
+#&gt; [40] "      },"                                                                                                                                                                                                
+#&gt; [41] "      \"serie\": {"                                                                                                                                                                                      
+#&gt; [42] "        \"choropleth\": {}"                                                                                                                                                                              
+#&gt; [43] "      }"                                                                                                                                                                                                 
+#&gt; [44] "    },"                                                                                                                                                                                                  
+#&gt; [45] "    \"config\": {"                                                                                                                                                                                       
+#&gt; [46] "      \"logo\": null,"                                                                                                                                                                                   
+#&gt; [47] "      \"owner\": \"©OECD\","                                                                                                                                                                             
+#&gt; [48] "      \"terms\": {"                                                                                                                                                                                      
+#&gt; [49] "        \"label\": \"Terms &amp; Conditions\","                                                                                                                                                              
+#&gt; [50] "        \"link\": \"https://www.oecd.org/termsandconditions/\""                                                                                                                                          
+#&gt; [51] "      }"                                                                                                                                                                                                 
+#&gt; [52] "    }"                                                                                                                                                                                                   
+#&gt; [53] "  },"                                                                                                                                                                                                    
+#&gt; [54] "  \"share\": \"latest\","                                                                                                                                                                                
+#&gt; [55] "  \"type\": \"BarChart\""                                                                                                                                                                                
+#&gt; [56] "}"                                                                                                                                                                                                       </div><div class='input'><span class='fu'>close</span>(<span class='no'>filecon</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

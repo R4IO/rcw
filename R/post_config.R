@@ -3,24 +3,32 @@
 #' \code{post_config} submits JSON configuration lists.
 #'
 #' @param config a configuration list according to the API definition
-#' @param url the POST API endpoint
+#' @param url the POST API endpoint offering \code{/share} and \code{/chart}
+#'   services, e.g. http://vs-webdev-1:89 or http://stats.oecd.org
 #' @param show boolean print the created JSON object
 #' @param path write the JSON object to a file on disk
 #' @param auto_unbox automatically ‘unbox’ all atomic vectors of length 1 (see
 #'   \code{jsonlite::toJSON})
 #' @param null how to encode NULL values within a list: must be one of 'null' or
 #'   'list' (see \code{jsonlite::toJSON})
+#' @param ... additional parameters supplied to \code{httr:POST}, e.g.
+#'   \code{httr::verbose()}
 #'
 #' @examples
-#' chartconfig <- jsonlite::read_json(path = "../examples/chartconfig.json")
-#' chartUrl <- post_config(x = chartconfig)
-#' browseURL(url = chartUrl)
+#' flow <- "KEI"
+#' query <- "PRINTO01+PRMNTO01.AUS+AUT+BEL+CAN+CHL+CZE+DNK+EST+FIN+FRA.GP.A"
+#' opts <- c("startTime=2015", "endTime=2015", "dimensionAtObservation=AllDimensions")
+#' query_url <- create_query_url(flow = flow, query = query, opts = opts)
+#' chartconfig <- create_config(source = query_url, type = "BarChart", logo = FALSE)
+#' post_config(config = chartconfig, url = "http://stats.oecd.org", response = TRUE)
 #'
+#' ## write to disk for debugging
+#' #' flow <- "KEI"
 #' outfile <- tempfile(pattern = "chartconfig_", fileext = ".json")
-#' post_config(x = chartconfig, show = TRUE, path = outfile)
-#' jsonlite::read_json(path = outfile)
-#'
-#' post_config(x = chartconfig, response=TRUE)
+#' post_config(config = chartconfig, path = outfile)
+#' filecon <- file(outfile)
+#' readLines(con = filecon)
+#' close(filecon)
 #`
 #' @source \code{httr} was created by Hadley Wickham, see
 #'   \url{https://cran.r-project.org/web/packages/httr/index.html};
@@ -28,19 +36,26 @@
 #'   \url{https://cran.r-project.org/web/packages/jsonlite/index.html}.
 #'
 #' @export
-post_config <- function(config, url="http://stats.oecd.org", show=FALSE, path=NULL, response=FALSE, auto_unbox=TRUE, null='null') {
+post_config <- function(config=stop("'config' must be specified"), ...,
+                        url="http://stats.oecd.org", show=FALSE,
+                        path=NULL, response=FALSE, auto_unbox=TRUE, null='null'
+                        ) {
 
   json_string <- jsonlite::toJSON(config, auto_unbox = auto_unbox, null = null)
   if(show) cat("\n", json_string, "\n")
   if(length(path) > 0) {
-    jsonlite::write_json(x = chartconfig, path = path, auto_unbox = auto_unbox, null = null)
+    jsonlite::write_json(x = config, path = path, auto_unbox = auto_unbox, null = null)
+    config_pretty <- jsonlite::toJSON(config, auto_unbox = auto_unbox, null = null, pretty = TRUE)
+    filecon <- file(path)
+    writeLines(text = config_pretty, con = filecon)
+    close(filecon)
     return(cat("\nCreated file", path, "\n"))
   } else {
     res <- httr::POST(url = file.path(url, "share"),
-                           body = json_string,
-                           httr::add_headers("Content-Type" = "text/plain;charset=UTF-8"),
-                           encode = "json" , httr::verbose()
-                           )
+                      body = json_string,
+                      httr::add_headers("Content-Type" = "text/plain;charset=UTF-8"),
+                      encode = "json",
+                      ...) # httr::verbose()
     if(response) print(res)
 
     chart_id <- httr::content(res)
