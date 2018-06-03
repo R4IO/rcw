@@ -111,7 +111,7 @@ str(query_url_ls)
 ```
 
 
-```{r multi-config-post, echo=TRUE, eval=FALSE}
+```{r multi-config-post, echo=TRUE, eval=TRUE}
 
 chart_url_c <-
   sapply(query_url_ls,

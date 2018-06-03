@@ -161,12 +161,12 @@ chartconfig &lt;-<span class="st"> </span><span class="kw"><a href="../reference
     ## httr::verbose()                     # do not use if logo=TRUE in chart config
   )</code></pre></div>
 <pre><code>## Response [http://stats.oecd.org/share]
-##   Date: 2018-06-03 12:24
+##   Date: 2018-06-03 12:50
 ##   Status: 201
 ##   Content-Type: application/json; charset=utf-8
 ##   Size: 14 B</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">browseURL</span>(<span class="dt">url =</span> chart_url)              <span class="co"># open URL in browser</span></code></pre></div>
-<p>See result at <a href="http://stats.oecd.org/chart?id=4ci0" class="uri">http://stats.oecd.org/chart?id=4ci0</a></p>
+<p>See result at <a href="http://stats.oecd.org/chart?id=4cib" class="uri">http://stats.oecd.org/chart?id=4cib</a></p>
 </div>
 <div id="multi-config" class="section level2">
 <h2 class="hasAnchor">
@@ -291,6 +291,8 @@ query_url_ls &lt;-<span class="st"> </span><span class="kw">lapply</span>(var_ls
                                  <span class="dt">url =</span> <span class="st">"http://stats.oecd.org"</span>))
 
 <span class="kw">print</span>(chart_url_c)</code></pre></div>
+<pre><code>## [1] "http://stats.oecd.org/chart?id=4cic"
+## [2] "http://stats.oecd.org/chart?id=4cid"</code></pre>
 <!-- ## Create debug information -->
 </div>
 </div>
