@@ -2,8 +2,8 @@
 #'
 #' \code{create_config} creates configuration lists using
 #'
-#' @param sdmx_data_query complete SDMX URL created using
-#'   \code{create_query_url}
+#' @param sdmx_data_query complete SDMX URL, e.g.
+#'   ""KEI/PRINTO01+PRMNTO01.AUS+AUT+BEL+CAN+CHL+CZE+DNK+EST+FIN+FRA.GP.A/all?startTime=2015&endTime=2015"
 #' @param data_api_endpoint SDMX API URL, e.g. \url{http://stats.oecd.org:80/SDMX-JSON/data}
 #' @param title character string main title of chart
 #' @param subtitle character vector chart subtitle
@@ -12,13 +12,10 @@
 #' @param source_label character string to show instead of URL below chart
 #' @param logo logical include logo
 #' @param owner logical include copyright information
-#' @param type one of \code{BarChart}, \code{RowChart}, \code{ScatterChart},
-#'   \code{HSymbolChart}, \code{VSymbolChart}, \code{TimelineChart},
-#'   \code{StackedBarChart}
+#' @param type one of \code{BarChart}, \code{RowChart}, \code{ScatterChart}, \code{HSymbolChart}, \code{VSymbolChart}, \code{TimelineChart}, \code{StackedBarChart}
 #' @param width integer chart width in pixel
 #' @param height integer chart height in pixel
-#' @param path path to a JSON template that can be read using
-#'   \code{jsonlite::fromJSON}
+#' @param path path to a JSON template that can be read using \code{jsonlite::fromJSON}
 #'
 #' @examples
 #' query <- "KEI/PRINTO01+PRMNTO01.AUS+AUT+BEL+CAN+CHL+CZE+DNK+EST+FIN+FRA.GP.A/all?startTime=2015&endTime=2015"

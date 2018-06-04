@@ -21,8 +21,8 @@ create_config(sdmx_data_query = stop("'sdmx_data_query' must be specified"),
   data_api_endpoint = stop("'data_api_endpoint' must be provided"))
 }
 \arguments{
-\item{sdmx_data_query}{complete SDMX URL created using
-\code{create_query_url}}
+\item{sdmx_data_query}{complete SDMX URL, e.g.
+""KEI/PRINTO01+PRMNTO01.AUS+AUT+BEL+CAN+CHL+CZE+DNK+EST+FIN+FRA.GP.A/all?startTime=2015&endTime=2015"}
 
 \item{data_api_endpoint}{SDMX API URL, e.g. \url{http://stats.oecd.org:80/SDMX-JSON/data}}
 
@@ -40,16 +40,13 @@ create_config(sdmx_data_query = stop("'sdmx_data_query' must be specified"),
 
 \item{owner}{logical include copyright information}
 
-\item{type}{one of \code{BarChart}, \code{RowChart}, \code{ScatterChart},
-\code{HSymbolChart}, \code{VSymbolChart}, \code{TimelineChart},
-\code{StackedBarChart}}
+\item{type}{one of \code{BarChart}, \code{RowChart}, \code{ScatterChart}, \code{HSymbolChart}, \code{VSymbolChart}, \code{TimelineChart}, \code{StackedBarChart}}
 
 \item{width}{integer chart width in pixel}
 
 \item{height}{integer chart height in pixel}
 
-\item{path}{path to a JSON template that can be read using
-\code{jsonlite::fromJSON}}
+\item{path}{path to a JSON template that can be read using \code{jsonlite::fromJSON}}
 }
 \description{
 \code{create_config} creates configuration lists using
