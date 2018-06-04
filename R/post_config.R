@@ -15,21 +15,18 @@
 #'   \code{httr::verbose()}
 #'
 #' @examples
-#' flow <- "KEI"
-#' query <- "PRINTO01+PRMNTO01.AUS+AUT+BEL+CAN+CHL+CZE+DNK+EST+FIN+FRA.GP.A"
-#' opts <- c("startTime=2015", "endTime=2015", "dimensionAtObservation=AllDimensions")
-#' query_url <- create_query_url(flow = flow, query = query, opts = opts)
-#' chartconfig <- create_config(source = query_url, type = "BarChart", logo = FALSE)
+#' query <- "KEI/PRINTO01+PRMNTO01.AUS+AUT+BEL+CAN+CHL+CZE+DNK+EST+FIN+FRA.GP.A/all?startTime=2015&endTime=2015"
+#' chartconfig <- create_config(sdmx_data_query = query, type = "BarChart", logo = FALSE)
 #' post_config(config = chartconfig, url = "http://stats.oecd.org", response = TRUE)
 #'
 #' ## write to disk for debugging
-#' #' flow <- "KEI"
 #' outfile <- tempfile(pattern = "chartconfig_", fileext = ".json")
 #' post_config(config = chartconfig, path = outfile)
 #' filecon <- file(outfile)
 #' readLines(con = filecon)
 #' close(filecon)
-#`
+#'
+#' 
 #' @source \code{httr} was created by Hadley Wickham, see
 #'   \url{https://cran.r-project.org/web/packages/httr/index.html};
 #'   \code{jsonlite} was created by Jeroen Ooms et al., see
@@ -38,8 +35,7 @@
 #' @export
 post_config <- function(config=stop("'config' must be specified"), ...,
                         url="http://stats.oecd.org", show=FALSE,
-                        path=NULL, response=FALSE, auto_unbox=TRUE, null='null'
-                        ) {
+                        path=NULL, response=FALSE, auto_unbox=TRUE, null='null') {
 
   json_string <- jsonlite::toJSON(config, auto_unbox = auto_unbox, null = null)
   if(show) cat("\n", json_string, "\n")

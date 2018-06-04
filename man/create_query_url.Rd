@@ -3,37 +3,23 @@
 \name{create_query_url}
 \alias{create_query_url}
 \title{Function for creating SDMX queries.}
-\source{
-\code{jsonlite} was created by Jeroen Ooms et al., see
-  \url{https://cran.r-project.org/web/packages/jsonlite/index.html}.
-}
 \usage{
-create_query_url(url = "http://stats.oecd.org:80/SDMX-JSON/data",
-  flow = stop("'flow' must be provided"),
-  query = stop("'query' must be provided"), method = "all",
-  opts = c("startTime=2015", "endTime=2015",
-  "dimensionAtObservation=AllDimensions"))
+
+  create_query_url(sdmx_data_query = stop("'sdmx_data_query' must be provided"),
+  data_api_endpoint = stop("'data_api_endpoint' must be provided"))
 }
 \arguments{
-\item{url}{SDMX API URL, e.g. \url{http://stats.oecd.org:80/SDMX-JSON/data}}
-
-\item{flow}{SDMX data flow, e.g. \code{KEI}}
+\item{data_api_endpoint}{SDMX API URL, e.g. \url{http://stats.oecd.org:80/SDMX-JSON/data}}
 
 \item{query}{SDMX query, e.g.
-\code{"PRINTO01+PRMNTO01.AUS+AUT+BEL+CAN+CHL+CZE+DNK+EST+FIN+FRA.GP.A"}}
-
-\item{method}{character string, e.g. \code{all}}
-
-\item{options}{character vector, e.g. \code{c("startTime=2015",
-"endTime=2015", "dimensionAtObservation=AllDimensions")}}
+\code{"KEI/PRINTO01+PRMNTO01.AUS+AUT+BEL+CAN+CHL+CZE+DNK+EST+FIN+FRA.GP.A/all?startTime=2015&endTime=2015"}}
 }
 \description{
 \code{create_query} creates SDMX query URLs
 }
 \examples{
-flow <- "KEI"
-query <- "PRINTO01+PRMNTO01.AUS+AUT+BEL+CAN+CHL+CZE+DNK+EST+FIN+FRA.GP.A"
-opts <- c("startTime=2015", "endTime=2015", "dimensionAtObservation=AllDimensions")
-create_query_url(flow = flow, query = query, opts = opts)
+query <- "KEI/PRINTO01+PRMNTO01.AUS+AUT+BEL+CAN+CHL+CZE+DNK+EST+FIN+FRA.GP.A/all?startTime=2015&endTime=2015"
+create_query_url(sdmx_data_query = query,
+                 data_api_endpoint = "http://stats.oecd.org:80/SDMX-JSON/data")
 
 }

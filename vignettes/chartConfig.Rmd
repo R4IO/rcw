@@ -16,9 +16,6 @@ vignette: >
 library(rcw)
 library(jsonlite)
 
-flow <- "KEI"
-opts <- c("startTime=2015", "endTime=2015", "dimensionAtObservation=AllDimensions")
-
 ## specify JSON template
 jsonfile <- system.file("templates/default.json", package = "rcw")
 ## jsonfile <- "../inst/templates/default.json"
@@ -32,19 +29,17 @@ Create single chart from SDMX query
 
 ```{r single-config, echo=TRUE, eval=TRUE}
 
-query <- "PRINTO01+PRMNTO01.AUS+AUT+BEL+CAN+CHL+CZE+DNK+EST+FIN+FRA.GP.A"
-
-query_url <- create_query_url(flow = flow, query = query, opts = opts)
+query <- "KEI/PRINTO01+PRMNTO01.AUS+AUT+BEL+CAN+CHL+CZE+DNK+EST+FIN+FRA.GP.A/all?startTime=2015&endTime=2015"
 
 chartconfig <- create_config(
-  source = query_url,
+  sdmx_data_query = query,
   title = "Key Short-Term Economic Indicators",
   subtitle = c("Measure: Growth previous period",
                "Frequency: Annual",
                "Time: 2015"),
   unit = "Percentage",
-  footurl = "http://stats.oecd.org:80/Index.aspx?DataSetCode=KEI",
-  footlabel = "Key Short-Term Economic Indicators",
+  source_url = "http://stats.oecd.org:80/Index.aspx?DataSetCode=KEI",
+  source_label = "Key Short-Term Economic Indicators",
   logo = TRUE,
   owner = TRUE,
   type = "BarChart", # "RowChart"
@@ -68,7 +63,7 @@ chart_url <-
     ## httr::verbose()                     # do not use if logo=TRUE in chart config
   )
 
-browseURL(url = chart_url)              # open URL in browser
+# browseURL(url = chart_url)              # open URL in browser
 
 ```
 
@@ -98,9 +93,9 @@ cou_str <- paste(cou_c, collapse = "+")
 subtitle <- c("Measure: Growth previous period", "Frequency: Annual", "Time: 2015")
 
 query_url_ls <- lapply(var_ls, function(x) {
-  query <- paste(x$code, cou_str, "GP", "A", sep = ".")
-  url <- create_query_url(flow = flow, query = query, opts = opts)
-  config <- create_config(source = url,
+  query1 <- paste(x$code, cou_str, "GP", "A", sep = ".")
+  query2 <- file.path("KEI", query1, "all?startTime=2015&endTime=2015")
+  config <- create_config(sdmx_data_query = query2,
                           title = "Key Short-Term Economic Indicators",
                           subtitle = c(x$label, subtitle),
                           type = "BarChart",

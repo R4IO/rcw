@@ -70,7 +70,7 @@
     <div class="page-header toc-ignore">
       <h1>Chart Config</h1>
             
-            <h4 class="date">2018-06-03</h4>
+            <h4 class="date">2018-06-04</h4>
           </div>
 
     
@@ -79,9 +79,6 @@
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(rcw)
 <span class="kw">library</span>(jsonlite)
 
-flow &lt;-<span class="st"> "KEI"</span>
-opts &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">"startTime=2015"</span>, <span class="st">"endTime=2015"</span>, <span class="st">"dimensionAtObservation=AllDimensions"</span>)
-
 ## specify JSON template
 jsonfile &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="st">"templates/default.json"</span>, <span class="dt">package =</span> <span class="st">"rcw"</span>)
 ## jsonfile &lt;- "../inst/templates/default.json"</code></pre></div>
@@ -89,19 +86,17 @@ jsonfile &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span
 <h2 class="hasAnchor">
 <a href="#single-config" class="anchor"></a>Single Config</h2>
 <p>Create single chart from SDMX query</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">query &lt;-<span class="st"> "PRINTO01+PRMNTO01.AUS+AUT+BEL+CAN+CHL+CZE+DNK+EST+FIN+FRA.GP.A"</span>
-
-query_url &lt;-<span class="st"> </span><span class="kw"><a href="../reference/create_query_url.html">create_query_url</a></span>(<span class="dt">flow =</span> flow, <span class="dt">query =</span> query, <span class="dt">opts =</span> opts)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">query &lt;-<span class="st"> "KEI/PRINTO01+PRMNTO01.AUS+AUT+BEL+CAN+CHL+CZE+DNK+EST+FIN+FRA.GP.A/all?startTime=2015&amp;endTime=2015"</span>
 
 chartconfig &lt;-<span class="st"> </span><span class="kw"><a href="../reference/create_config.html">create_config</a></span>(
-  <span class="dt">source =</span> query_url,
+  <span class="dt">sdmx_data_query =</span> query,
   <span class="dt">title =</span> <span class="st">"Key Short-Term Economic Indicators"</span>,
   <span class="dt">subtitle =</span> <span class="kw">c</span>(<span class="st">"Measure: Growth previous period"</span>,
                <span class="st">"Frequency: Annual"</span>,
                <span class="st">"Time: 2015"</span>),
   <span class="dt">unit =</span> <span class="st">"Percentage"</span>,
-  <span class="dt">footurl =</span> <span class="st">"http://stats.oecd.org:80/Index.aspx?DataSetCode=KEI"</span>,
-  <span class="dt">footlabel =</span> <span class="st">"Key Short-Term Economic Indicators"</span>,
+  <span class="dt">source_url =</span> <span class="st">"http://stats.oecd.org:80/Index.aspx?DataSetCode=KEI"</span>,
+  <span class="dt">source_label =</span> <span class="st">"Key Short-Term Economic Indicators"</span>,
   <span class="dt">logo =</span> <span class="ot">TRUE</span>,
   <span class="dt">owner =</span> <span class="ot">TRUE</span>,
   <span class="dt">type =</span> <span class="st">"BarChart"</span>, <span class="co"># "RowChart"</span>
@@ -161,12 +156,12 @@ chartconfig &lt;-<span class="st"> </span><span class="kw"><a href="../reference
     ## httr::verbose()                     # do not use if logo=TRUE in chart config
   )</code></pre></div>
 <pre><code>## Response [http://stats.oecd.org/share]
-##   Date: 2018-06-03 12:58
+##   Date: 2018-06-04 20:52
 ##   Status: 201
 ##   Content-Type: application/json; charset=utf-8
 ##   Size: 14 B</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">browseURL</span>(<span class="dt">url =</span> chart_url)              <span class="co"># open URL in browser</span></code></pre></div>
-<p>See result at <a href="http://stats.oecd.org/chart?id=4cie" class="uri">http://stats.oecd.org/chart?id=4cie</a></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># browseURL(url = chart_url)              # open URL in browser</span></code></pre></div>
+<p>See result at <a href="http://stats.oecd.org/chart?id=4cis" class="uri">http://stats.oecd.org/chart?id=4cis</a></p>
 <p><img src="https://raw.githubusercontent.com/r4io/rcw/master/assets/img/screenshot_post_single_config.png" width="100%"></p>
 </div>
 <div id="multi-config" class="section level2">
@@ -184,9 +179,9 @@ cou_str &lt;-<span class="st"> </span><span class="kw">paste</span>(cou_c, <span
 subtitle &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">"Measure: Growth previous period"</span>, <span class="st">"Frequency: Annual"</span>, <span class="st">"Time: 2015"</span>)
 
 query_url_ls &lt;-<span class="st"> </span><span class="kw">lapply</span>(var_ls, function(x) {
-  query &lt;-<span class="st"> </span><span class="kw">paste</span>(x$code, cou_str, <span class="st">"GP"</span>, <span class="st">"A"</span>, <span class="dt">sep =</span> <span class="st">"."</span>)
-  url &lt;-<span class="st"> </span><span class="kw"><a href="../reference/create_query_url.html">create_query_url</a></span>(<span class="dt">flow =</span> flow, <span class="dt">query =</span> query, <span class="dt">opts =</span> opts)
-  config &lt;-<span class="st"> </span><span class="kw"><a href="../reference/create_config.html">create_config</a></span>(<span class="dt">source =</span> url,
+  query1 &lt;-<span class="st"> </span><span class="kw">paste</span>(x$code, cou_str, <span class="st">"GP"</span>, <span class="st">"A"</span>, <span class="dt">sep =</span> <span class="st">"."</span>)
+  query2 &lt;-<span class="st"> </span><span class="kw">file.path</span>(<span class="st">"KEI"</span>, query1, <span class="st">"all?startTime=2015&amp;endTime=2015"</span>)
+  config &lt;-<span class="st"> </span><span class="kw"><a href="../reference/create_config.html">create_config</a></span>(<span class="dt">sdmx_data_query =</span> query2,
                           <span class="dt">title =</span> <span class="st">"Key Short-Term Economic Indicators"</span>,
                           <span class="dt">subtitle =</span> <span class="kw">c</span>(x$label, subtitle),
                           <span class="dt">type =</span> <span class="st">"BarChart"</span>,
@@ -292,8 +287,8 @@ query_url_ls &lt;-<span class="st"> </span><span class="kw">lapply</span>(var_ls
                                  <span class="dt">url =</span> <span class="st">"http://stats.oecd.org"</span>))
 
 <span class="kw">print</span>(chart_url_c)</code></pre></div>
-<pre><code>## [1] "http://stats.oecd.org/chart?id=4cif"
-## [2] "http://stats.oecd.org/chart?id=4cig"</code></pre>
+<pre><code>## [1] "http://stats.oecd.org/chart?id=4cit"
+## [2] "http://stats.oecd.org/chart?id=4ciu"</code></pre>
 <!-- ## Create debug information -->
 </div>
 </div>

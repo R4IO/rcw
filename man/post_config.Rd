@@ -37,18 +37,16 @@ services, e.g. http://vs-webdev-1:89 or http://stats.oecd.org}
 \code{post_config} submits JSON configuration lists.
 }
 \examples{
-flow <- "KEI"
-query <- "PRINTO01+PRMNTO01.AUS+AUT+BEL+CAN+CHL+CZE+DNK+EST+FIN+FRA.GP.A"
-opts <- c("startTime=2015", "endTime=2015", "dimensionAtObservation=AllDimensions")
-query_url <- create_query_url(flow = flow, query = query, opts = opts)
-chartconfig <- create_config(source = query_url, type = "BarChart", logo = FALSE)
+query <- "KEI/PRINTO01+PRMNTO01.AUS+AUT+BEL+CAN+CHL+CZE+DNK+EST+FIN+FRA.GP.A/all?startTime=2015&endTime=2015"
+chartconfig <- create_config(sdmx_data_query = query, type = "BarChart", logo = FALSE)
 post_config(config = chartconfig, url = "http://stats.oecd.org", response = TRUE)
 
 ## write to disk for debugging
-#' flow <- "KEI"
 outfile <- tempfile(pattern = "chartconfig_", fileext = ".json")
 post_config(config = chartconfig, path = outfile)
 filecon <- file(outfile)
 readLines(con = filecon)
 close(filecon)
+
+
 }

@@ -2,12 +2,13 @@
 #'
 #' \code{create_config} creates configuration lists for use with
 #'
-#' @param source complete SDMX URL created using \code{create_query_url}
+#' @param sdmx_data_query complete SDMX URL created using
+#'   \code{create_query_url}
 #' @param title character string main title of chart
 #' @param subtitle character vector chart subtitle
 #' @param unit character string to specify unit of measure (should be automatic)
-#' @param footurl character string to add URL below chart
-#' @param footlabel character string to show instead of URL below chart
+#' @param source_url character string to add URL below chart
+#' @param source_label character string to show instead of URL below chart
 #' @param logo logical include logo
 #' @param owner logical include copyright information
 #' @param type one of \code{BarChart}, \code{RowChart}, \code{ScatterChart},
@@ -19,29 +20,26 @@
 #'   \code{jsonlite::fromJSON}
 #'
 #' @examples
-#' flow <- "KEI"
-#' query <- "PRINTO01+PRMNTO01.AUS+AUT+BEL+CAN+CHL+CZE+DNK+EST+FIN+FRA.GP.A"
-#' opts <- c("startTime=2015", "endTime=2015", "dimensionAtObservation=AllDimensions")
-#' query_url <- create_query_url(flow = flow, query = query, opts = opts)
-#' chartconfig <- create_config(source = query_url, type = "BarChart")
+#' query <- "KEI/PRINTO01+PRMNTO01.AUS+AUT+BEL+CAN+CHL+CZE+DNK+EST+FIN+FRA.GP.A/all?startTime=2015&endTime=2015"
+#' chartconfig <- create_config(sdmx_data_query = query, type = "BarChart")
 #' str(chartconfig)
 #'
 #' ## using custom template
 #' jsonfile <- system.file("templates/default.json", package = "rcw")
-#' chartconfig2 <- create_config(source = query_url, type = "BarChart", path = jsonfile)
+#' chartconfig2 <- create_config(sdmx_data_query = query, type = "BarChart", path = jsonfile)
 #' str(chartconfig2)
 #'
 #' @source \code{jsonlite} was created by Jeroen Ooms et al., see
 #'   \url{https://cran.r-project.org/web/packages/jsonlite/index.html}.
 #'
 #' @export
-create_config <- function(source=stop("'source' must be specified"),
-
+create_config <- function(sdmx_data_query=stop("'sdmx_data_query' must be specified"),
+                          data_api_endpoint="http://stats.oecd.org:80/SDMX-JSON/data",
                           title=NULL,
                           subtitle=NULL,
                           unit=NULL,
-                          footurl=NULL,
-                          footlabel=NULL,
+                          source_url=NULL,
+                          source_label=NULL,
                           logo=TRUE,
                           owner=TRUE,
                           type=stop("'type' must be specified"),
@@ -54,7 +52,10 @@ create_config <- function(source=stop("'source' must be specified"),
   chartconfig <- jsonlite::read_json(path = path)
 
   ## mandatory
-  chartconfig$data$data$share$source <- source
+  chartconfig$data$data$share$source <-
+    create_query_url(sdmx_data_query=sdmx_data_query,
+                     data_api_endpoint=data_api_endpoint)
+
   chartconfig$type <- type
 
   if(!is.null(title)) {
@@ -66,9 +67,9 @@ create_config <- function(source=stop("'source' must be specified"),
   if(!is.null(unit)) {
     chartconfig$data$data$uprs <- unit
   }
-  if(!is.null(footurl) | !is.null(footlabel)) {
-    chartconfig$data$data$footnotes <- list(source = ifelse(is.null(footurl), "", footurl),
-                                            sourceLabel = ifelse(is.null(footlabel), "", footlabel))
+  if(!is.null(source_url) | !is.null(source_label)) {
+    chartconfig$data$data$footnotes <- list(source = ifelse(is.null(source_url), "", source_url),
+                                            sourceLabel = ifelse(is.null(source_label), "", source_label))
   }
 
   if(logo) {

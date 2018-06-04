@@ -100,17 +100,20 @@
     <p><code>create_config</code> creates configuration lists for use with</p>
     
 
-    <pre class="usage"><span class='fu'>create_config</span>(<span class='kw'>source</span> <span class='kw'>=</span> <span class='fu'>stop</span>(<span class='st'>"'source' must be specified"</span>), <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>subtitle</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>unit</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>footurl</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>footlabel</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>logo</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>owner</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='fu'>stop</span>(<span class='st'>"'type' must be specified"</span>),
-  <span class='kw'>width</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>height</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>path</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>create_config</span>(<span class='kw'>sdmx_data_query</span> <span class='kw'>=</span> <span class='fu'>stop</span>(<span class='st'>"'sdmx_data_query' must be specified"</span>),
+  <span class='kw'>data_api_endpoint</span> <span class='kw'>=</span> <span class='st'>"http://stats.oecd.org:80/SDMX-JSON/data"</span>,
+  <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>subtitle</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>unit</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>source_url</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>source_label</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>logo</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>owner</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>type</span> <span class='kw'>=</span> <span class='fu'>stop</span>(<span class='st'>"'type' must be specified"</span>), <span class='kw'>width</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>height</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>path</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>source</th>
-      <td><p>complete SDMX URL created using <code>create_query_url</code></p></td>
+      <th>sdmx_data_query</th>
+      <td><p>complete SDMX URL created using
+<code>create_query_url</code></p></td>
     </tr>
     <tr>
       <th>title</th>
@@ -125,11 +128,11 @@
       <td><p>character string to specify unit of measure (should be automatic)</p></td>
     </tr>
     <tr>
-      <th>footurl</th>
+      <th>source_url</th>
       <td><p>character string to add URL below chart</p></td>
     </tr>
     <tr>
-      <th>footlabel</th>
+      <th>source_label</th>
       <td><p>character string to show instead of URL below chart</p></td>
     </tr>
     <tr>
@@ -168,11 +171,8 @@
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>flow</span> <span class='kw'>&lt;-</span> <span class='st'>"KEI"</span>
-<span class='no'>query</span> <span class='kw'>&lt;-</span> <span class='st'>"PRINTO01+PRMNTO01.AUS+AUT+BEL+CAN+CHL+CZE+DNK+EST+FIN+FRA.GP.A"</span>
-<span class='no'>opts</span> <span class='kw'>&lt;-</span> <span class='fu'>c</span>(<span class='st'>"startTime=2015"</span>, <span class='st'>"endTime=2015"</span>, <span class='st'>"dimensionAtObservation=AllDimensions"</span>)
-<span class='no'>query_url</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='create_query_url.html'>create_query_url</a></span>(<span class='kw'>flow</span> <span class='kw'>=</span> <span class='no'>flow</span>, <span class='kw'>query</span> <span class='kw'>=</span> <span class='no'>query</span>, <span class='kw'>opts</span> <span class='kw'>=</span> <span class='no'>opts</span>)
-<span class='no'>chartconfig</span> <span class='kw'>&lt;-</span> <span class='fu'>create_config</span>(<span class='kw'>source</span> <span class='kw'>=</span> <span class='no'>query_url</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"BarChart"</span>)
+    <pre class="examples"><div class='input'><span class='no'>query</span> <span class='kw'>&lt;-</span> <span class='st'>"KEI/PRINTO01+PRMNTO01.AUS+AUT+BEL+CAN+CHL+CZE+DNK+EST+FIN+FRA.GP.A/all?startTime=2015&amp;endTime=2015"</span>
+<span class='no'>chartconfig</span> <span class='kw'>&lt;-</span> <span class='fu'>create_config</span>(<span class='kw'>sdmx_data_query</span> <span class='kw'>=</span> <span class='no'>query</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"BarChart"</span>)
 <span class='fu'>str</span>(<span class='no'>chartconfig</span>)</div><div class='output co'>#&gt; List of 3
 #&gt;  $ data :List of 3
 #&gt;   ..$ data   :List of 7
@@ -182,13 +182,14 @@
 #&gt;   .. ..$ footnotes: Named list()
 #&gt;   .. ..$ frequency: NULL
 #&gt;   .. ..$ series   : list()
-#&gt;   .. ..$ share    :List of 5
-#&gt;   .. .. ..$ focused       : Named list()
-#&gt;   .. .. ..$ chartDimension: NULL
-#&gt;   .. .. ..$ source        : chr "http://stats.oecd.org:80/SDMX-JSON/data/KEI/PRINTO01+PRMNTO01.AUS+AUT+BEL+CAN+CHL+CZE+DNK+EST+FIN+FRA.GP.A/all?"| __truncated__
-#&gt;   .. .. ..$ sharedate     : num 1.53e+12
-#&gt;   .. .. ..$ dependencies  :List of 1
+#&gt;   .. ..$ share    :List of 6
+#&gt;   .. .. ..$ focused        : Named list()
+#&gt;   .. .. ..$ chartDimension : NULL
+#&gt;   .. .. ..$ source         : chr "http://stats.oecd.org:80/SDMX-JSON/data/KEI/PRINTO01+PRMNTO01.AUS+AUT+BEL+CAN+CHL+CZE+DNK+EST+FIN+FRA.GP.A/all?"| __truncated__
+#&gt;   .. .. ..$ sharedate      : num 1.53e+12
+#&gt;   .. .. ..$ dependencies   :List of 1
 #&gt;   .. .. .. ..$ oecd-configurable-charts: chr "4.1.1"
+#&gt;   .. .. ..$ sdmx_data_query: chr "http://stats.oecd.org:80/SDMX-JSON/data/KEI/PRINTO01+PRMNTO01.AUS+AUT+BEL+CAN+CHL+CZE+DNK+EST+FIN+FRA.GP.A/all?"| __truncated__
 #&gt;   ..$ options:List of 4
 #&gt;   .. ..$ base :List of 2
 #&gt;   .. .. ..$ width : NULL
@@ -215,7 +216,7 @@
 #&gt;  $ type : chr "BarChart"</div><div class='input'>
 <span class='co'>## using custom template</span>
 <span class='no'>jsonfile</span> <span class='kw'>&lt;-</span> <span class='fu'>system.file</span>(<span class='st'>"templates/default.json"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"rcw"</span>)
-<span class='no'>chartconfig2</span> <span class='kw'>&lt;-</span> <span class='fu'>create_config</span>(<span class='kw'>source</span> <span class='kw'>=</span> <span class='no'>query_url</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"BarChart"</span>, <span class='kw'>path</span> <span class='kw'>=</span> <span class='no'>jsonfile</span>)
+<span class='no'>chartconfig2</span> <span class='kw'>&lt;-</span> <span class='fu'>create_config</span>(<span class='kw'>sdmx_data_query</span> <span class='kw'>=</span> <span class='no'>query</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"BarChart"</span>, <span class='kw'>path</span> <span class='kw'>=</span> <span class='no'>jsonfile</span>)
 <span class='fu'>str</span>(<span class='no'>chartconfig2</span>)</div><div class='output co'>#&gt; List of 3
 #&gt;  $ data :List of 3
 #&gt;   ..$ data   :List of 7
@@ -225,13 +226,14 @@
 #&gt;   .. ..$ footnotes: Named list()
 #&gt;   .. ..$ frequency: NULL
 #&gt;   .. ..$ series   : list()
-#&gt;   .. ..$ share    :List of 5
-#&gt;   .. .. ..$ focused       : Named list()
-#&gt;   .. .. ..$ chartDimension: NULL
-#&gt;   .. .. ..$ source        : chr "http://stats.oecd.org:80/SDMX-JSON/data/KEI/PRINTO01+PRMNTO01.AUS+AUT+BEL+CAN+CHL+CZE+DNK+EST+FIN+FRA.GP.A/all?"| __truncated__
-#&gt;   .. .. ..$ sharedate     : num 1.53e+12
-#&gt;   .. .. ..$ dependencies  :List of 1
+#&gt;   .. ..$ share    :List of 6
+#&gt;   .. .. ..$ focused        : Named list()
+#&gt;   .. .. ..$ chartDimension : NULL
+#&gt;   .. .. ..$ source         : chr "http://stats.oecd.org:80/SDMX-JSON/data/KEI/PRINTO01+PRMNTO01.AUS+AUT+BEL+CAN+CHL+CZE+DNK+EST+FIN+FRA.GP.A/all?"| __truncated__
+#&gt;   .. .. ..$ sharedate      : num 1.53e+12
+#&gt;   .. .. ..$ dependencies   :List of 1
 #&gt;   .. .. .. ..$ oecd-configurable-charts: chr "4.1.1"
+#&gt;   .. .. ..$ sdmx_data_query: chr "http://stats.oecd.org:80/SDMX-JSON/data/KEI/PRINTO01+PRMNTO01.AUS+AUT+BEL+CAN+CHL+CZE+DNK+EST+FIN+FRA.GP.A/all?"| __truncated__
 #&gt;   ..$ options:List of 4
 #&gt;   .. ..$ base :List of 2
 #&gt;   .. .. ..$ width : NULL

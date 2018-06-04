@@ -8,13 +8,16 @@
   \url{https://cran.r-project.org/web/packages/jsonlite/index.html}.
 }
 \usage{
-create_config(source = stop("'source' must be specified"), title = NULL,
-  subtitle = NULL, unit = NULL, footurl = NULL, footlabel = NULL,
-  logo = TRUE, owner = TRUE, type = stop("'type' must be specified"),
-  width = NULL, height = NULL, path = NULL)
+create_config(sdmx_data_query = stop("'sdmx_data_query' must be specified"),
+  data_api_endpoint = "http://stats.oecd.org:80/SDMX-JSON/data",
+  title = NULL, subtitle = NULL, unit = NULL, source_url = NULL,
+  source_label = NULL, logo = TRUE, owner = TRUE,
+  type = stop("'type' must be specified"), width = NULL, height = NULL,
+  path = NULL)
 }
 \arguments{
-\item{source}{complete SDMX URL created using \code{create_query_url}}
+\item{sdmx_data_query}{complete SDMX URL created using
+\code{create_query_url}}
 
 \item{title}{character string main title of chart}
 
@@ -22,9 +25,9 @@ create_config(source = stop("'source' must be specified"), title = NULL,
 
 \item{unit}{character string to specify unit of measure (should be automatic)}
 
-\item{footurl}{character string to add URL below chart}
+\item{source_url}{character string to add URL below chart}
 
-\item{footlabel}{character string to show instead of URL below chart}
+\item{source_label}{character string to show instead of URL below chart}
 
 \item{logo}{logical include logo}
 
@@ -45,16 +48,13 @@ create_config(source = stop("'source' must be specified"), title = NULL,
 \code{create_config} creates configuration lists for use with
 }
 \examples{
-flow <- "KEI"
-query <- "PRINTO01+PRMNTO01.AUS+AUT+BEL+CAN+CHL+CZE+DNK+EST+FIN+FRA.GP.A"
-opts <- c("startTime=2015", "endTime=2015", "dimensionAtObservation=AllDimensions")
-query_url <- create_query_url(flow = flow, query = query, opts = opts)
-chartconfig <- create_config(source = query_url, type = "BarChart")
+query <- "KEI/PRINTO01+PRMNTO01.AUS+AUT+BEL+CAN+CHL+CZE+DNK+EST+FIN+FRA.GP.A/all?startTime=2015&endTime=2015"
+chartconfig <- create_config(sdmx_data_query = query, type = "BarChart")
 str(chartconfig)
 
 ## using custom template
 jsonfile <- system.file("templates/default.json", package = "rcw")
-chartconfig2 <- create_config(source = query_url, type = "BarChart", path = jsonfile)
+chartconfig2 <- create_config(sdmx_data_query = query, type = "BarChart", path = jsonfile)
 str(chartconfig2)
 
 }
