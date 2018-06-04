@@ -1,9 +1,10 @@
 #' Function for creating chart configurations.
 #'
-#' \code{create_config} creates configuration lists for use with
+#' \code{create_config} creates configuration lists using
 #'
 #' @param sdmx_data_query complete SDMX URL created using
 #'   \code{create_query_url}
+#' @param data_api_endpoint SDMX API URL, e.g. \url{http://stats.oecd.org:80/SDMX-JSON/data}
 #' @param title character string main title of chart
 #' @param subtitle character vector chart subtitle
 #' @param unit character string to specify unit of measure (should be automatic)
@@ -35,6 +36,7 @@
 #' @export
 create_config <- function(sdmx_data_query=stop("'sdmx_data_query' must be specified"),
                           data_api_endpoint="http://stats.oecd.org:80/SDMX-JSON/data",
+                          ## highlight_value=NULL,
                           title=NULL,
                           subtitle=NULL,
                           unit=NULL,
@@ -57,6 +59,14 @@ create_config <- function(sdmx_data_query=stop("'sdmx_data_query' must be specif
                      data_api_endpoint=data_api_endpoint)
 
   chartconfig$type <- type
+
+  ## if(!is.null(highlight_value)) {
+  ##   chartconfig$data$data$share$focused <-
+  ##     list(highlight = c(list(
+  ##            value = highlight_vale,
+  ##            label = highlight_value
+  ##          )))
+  ## }
 
   if(!is.null(title)) {
     chartconfig$data$data$title <- title
@@ -91,4 +101,22 @@ create_config <- function(sdmx_data_query=stop("'sdmx_data_query' must be specif
   }
 
   return(chartconfig)
+}
+
+
+#' Function for creating SDMX queries.
+#'
+#' \code{create_query_url} to build the SDMX query URLs
+#'
+#' @rdname create_config
+#' @examples
+#' query <- "KEI/PRINTO01+PRMNTO01.AUS+AUT+BEL+CAN+CHL+CZE+DNK+EST+FIN+FRA.GP.A/all?startTime=2015&endTime=2015"
+#' create_query_url(sdmx_data_query = query,
+#'                  data_api_endpoint = "http://stats.oecd.org:80/SDMX-JSON/data")
+#'
+#' @export
+create_query_url <- function(sdmx_data_query=stop("'sdmx_data_query' must be provided"),
+                             data_api_endpoint=stop("'data_api_endpoint' must be provided")) {
+  url <- file.path(data_api_endpoint, paste0(sdmx_data_query, "&dimensionAtObservation=AllDimensions"))
+  return(url)
 }

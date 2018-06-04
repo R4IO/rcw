@@ -2,6 +2,7 @@
 % Please edit documentation in R/create_config.R
 \name{create_config}
 \alias{create_config}
+\alias{create_query_url}
 \title{Function for creating chart configurations.}
 \source{
 \code{jsonlite} was created by Jeroen Ooms et al., see
@@ -14,10 +15,16 @@ create_config(sdmx_data_query = stop("'sdmx_data_query' must be specified"),
   source_label = NULL, logo = TRUE, owner = TRUE,
   type = stop("'type' must be specified"), width = NULL, height = NULL,
   path = NULL)
+
+
+  create_query_url(sdmx_data_query = stop("'sdmx_data_query' must be provided"),
+  data_api_endpoint = stop("'data_api_endpoint' must be provided"))
 }
 \arguments{
 \item{sdmx_data_query}{complete SDMX URL created using
 \code{create_query_url}}
+
+\item{data_api_endpoint}{SDMX API URL, e.g. \url{http://stats.oecd.org:80/SDMX-JSON/data}}
 
 \item{title}{character string main title of chart}
 
@@ -45,7 +52,9 @@ create_config(sdmx_data_query = stop("'sdmx_data_query' must be specified"),
 \code{jsonlite::fromJSON}}
 }
 \description{
-\code{create_config} creates configuration lists for use with
+\code{create_config} creates configuration lists using
+
+\code{create_query_url} to build the SDMX query URLs
 }
 \examples{
 query <- "KEI/PRINTO01+PRMNTO01.AUS+AUT+BEL+CAN+CHL+CZE+DNK+EST+FIN+FRA.GP.A/all?startTime=2015&endTime=2015"
@@ -56,5 +65,9 @@ str(chartconfig)
 jsonfile <- system.file("templates/default.json", package = "rcw")
 chartconfig2 <- create_config(sdmx_data_query = query, type = "BarChart", path = jsonfile)
 str(chartconfig2)
+
+query <- "KEI/PRINTO01+PRMNTO01.AUS+AUT+BEL+CAN+CHL+CZE+DNK+EST+FIN+FRA.GP.A/all?startTime=2015&endTime=2015"
+create_query_url(sdmx_data_query = query,
+                 data_api_endpoint = "http://stats.oecd.org:80/SDMX-JSON/data")
 
 }
