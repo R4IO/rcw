@@ -3,8 +3,4 @@
 export(create_config)
 export(create_query_url)
 export(post_config)
-export(rcwChart)
-export(rcwChartOutput)
-export(rcwData)
 export(read_logo)
-export(renderrcwChart)

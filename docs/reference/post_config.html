@@ -61,18 +61,6 @@
     <li>
       <a href="../articles/chartConfig.html">chartConfig</a>
     </li>
-    <li>
-      <a href="../articles/rcwChart.html">rcwChart</a>
-    </li>
-    <li>
-      <a href="../articles/barChart.html">Bar Chart</a>
-    </li>
-    <li>
-      <a href="../articles/rowChart.html">Row Chart</a>
-    </li>
-    <li>
-      <a href="../articles/scatterChart.html">Scatter Chart</a>
-    </li>
   </ul>
 </li>
 <li>
@@ -153,15 +141,15 @@ services, e.g. http://vs-webdev-1:89 or http://stats.oecd.org</p></td>
     <pre class="examples"><div class='input'><span class='no'>query</span> <span class='kw'>&lt;-</span> <span class='st'>"KEI/PRINTO01+PRMNTO01.AUS+AUT+BEL+CAN+CHL+CZE+DNK+EST+FIN+FRA.GP.A/all?startTime=2015&amp;endTime=2015"</span>
 <span class='no'>chartconfig</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='create_config.html'>create_config</a></span>(<span class='kw'>sdmx_data_query</span> <span class='kw'>=</span> <span class='no'>query</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"BarChart"</span>, <span class='kw'>logo</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
 <span class='fu'>post_config</span>(<span class='kw'>config</span> <span class='kw'>=</span> <span class='no'>chartconfig</span>, <span class='kw'>url</span> <span class='kw'>=</span> <span class='st'>"http://stats.oecd.org"</span>, <span class='kw'>response</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; Response [http://stats.oecd.org/share]
-#&gt;   Date: 2018-06-04 20:54
+#&gt;   Date: 2018-06-08 09:59
 #&gt;   Status: 201
 #&gt;   Content-Type: application/json; charset=utf-8
 #&gt;   Size: 14 B
-#&gt; </div><div class='output co'>#&gt; [1] "http://stats.oecd.org/chart?id=4civ"</div><div class='input'>
+#&gt; </div><div class='output co'>#&gt; [1] "http://stats.oecd.org/chart?id=4ciJ"</div><div class='input'>
 <span class='co'>## write to disk for debugging</span>
 <span class='no'>outfile</span> <span class='kw'>&lt;-</span> <span class='fu'>tempfile</span>(<span class='kw'>pattern</span> <span class='kw'>=</span> <span class='st'>"chartconfig_"</span>, <span class='kw'>fileext</span> <span class='kw'>=</span> <span class='st'>".json"</span>)
 <span class='fu'>post_config</span>(<span class='kw'>config</span> <span class='kw'>=</span> <span class='no'>chartconfig</span>, <span class='kw'>path</span> <span class='kw'>=</span> <span class='no'>outfile</span>)</div><div class='output co'>#&gt; 
-#&gt; Created file /tmp/RtmpGavlom/chartconfig_180b766550c9.json </div><div class='input'><span class='no'>filecon</span> <span class='kw'>&lt;-</span> <span class='fu'>file</span>(<span class='no'>outfile</span>)
+#&gt; Created file /tmp/RtmpcPoPeT/chartconfig_28936020d88f.json </div><div class='input'><span class='no'>filecon</span> <span class='kw'>&lt;-</span> <span class='fu'>file</span>(<span class='no'>outfile</span>)
 <span class='fu'>readLines</span>(<span class='kw'>con</span> <span class='kw'>=</span> <span class='no'>filecon</span>)</div><div class='output co'>#&gt;  [1] "{"                                                                                                                                                                                                       
 #&gt;  [2] "  \"data\": {"                                                                                                                                                                                           
 #&gt;  [3] "    \"data\": {"                                                                                                                                                                                         

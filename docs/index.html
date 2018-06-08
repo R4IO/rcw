@@ -38,18 +38,6 @@
 <li>
       <a href="articles/chartConfig.html">chartConfig</a>
     </li>
-    <li>
-      <a href="articles/rcwChart.html">rcwChart</a>
-    </li>
-    <li>
-      <a href="articles/barChart.html">Bar Chart</a>
-    </li>
-    <li>
-      <a href="articles/rowChart.html">Row Chart</a>
-    </li>
-    <li>
-      <a href="articles/scatterChart.html">Scatter Chart</a>
-    </li>
   </ul>
 </li>
 <li>
@@ -82,18 +70,8 @@
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">git clone git@github.com:R4IO/rcw.git
 cd rcw
 devtools::<span class="kw">install</span>()</code></pre></div>
-</div>
-<div id="example-usage" class="section level2">
-<h2 class="hasAnchor">
-<a href="#example-usage" class="anchor"></a>Example Usage</h2>
-<p>Creating a bar chart</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(rcw)
-rcwData &lt;-<span class="st"> </span><span class="kw">data.frame</span>(
-  <span class="dt">x =</span> <span class="kw">c</span>(<span class="dv">1000</span>, <span class="dv">1001</span>, <span class="dv">1010</span>, <span class="dv">1011</span>, <span class="dv">1100</span>, <span class="dv">1101</span>, <span class="dv">1110</span>, <span class="dv">1111</span>),
-  <span class="dt">y =</span> <span class="kw">c</span>(<span class="dv">15</span>, -<span class="dv">20</span>, <span class="dv">10</span>, <span class="dv">40</span>, <span class="dv">30</span>, <span class="dv">25</span>, <span class="dv">65</span>, <span class="dv">27</span>),
-  <span class="dt">highlightIndex =</span> <span class="kw">c</span>(-<span class="dv">1</span>, -<span class="dv">1</span>, <span class="dv">0</span>, -<span class="dv">1</span>, -<span class="dv">1</span>, -<span class="dv">1</span>, <span class="dv">1</span>, -<span class="dv">1</span>)
-)
-<span class="kw"><a href="reference/rcwChart.html">rcwChart</a></span>(rcwData, <span class="dt">type =</span> <span class="st">"bar"</span>, <span class="dt">height=</span><span class="dv">300</span>)</code></pre></div>
+<!-- ## Example Usage -->
+<!-- Creating a bar chart -->
 <p><img src="https://raw.githubusercontent.com/r4io/rcw/master/assets/img/screenshot_bar_chart.png" width="100%"></p>
 <!-- get JS library and map -->
 <!-- : execute `./node_modules/.bin/wce bundle --lib` in `web-components/lib/rcw-charts` (upon error, set permissions using `chmod -R u+x .`) -->
