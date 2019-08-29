@@ -1,20 +1,55 @@
-{"data":{"data":{"title":null,
-                 "subtitle":null,
-                 "uprs":null,
-                 "footnotes":{},
-                 "frequency":null,
-                 "series":[],
-                 "share":{"focused":{},
-                          "chartDimension":null,
-                          "source":"http://stats.oecd.org:80/SDMX-JSON/data/KEI/PRINTO01+PRMNTO01.AUS+AUT+BEL+CAN+CHL+CZE+DNK+EST+FIN+FRA.GP.A/all?startTime=2015&endTime=2015&dimensionAtObservation=AllDimensions",
-                          "sharedate":1525513191754,
-                          "dependencies":{"oecd-configurable-charts":"4.1.1"}}},
-         "options":{"base":{"width":null,
-                            "height":null},
-                    "axis":{"x":{"linear":{"pivot":{}}},"y":{"linear":{"pivot":{}}}},
-                    "map":{"projection":null,"scale":null},
-                    "serie":{"choropleth":{}}},
-         "config":{"logo":null,"owner":"©OECD","terms":{"label":"Terms & Conditions","link":"https://www.oecd.org/termsandconditions/"}}},
- "share":"latest",
- "type":null
+{
+    "data": {
+        "data": {
+            "title":null,
+            "subtitle":null,
+            "uprs":null,
+            "footnotes":{
+                "source":null,
+                "sourceLabel":null
+            },
+            "frequency":null,
+            "series":[],
+            "share":{
+                "focused":{
+                    "highlight": [],
+                    "baseline": []
+                },
+                "chartDimension":null,
+                "display": null,
+                "source": "https://stats.oecd.org:443/SDMX-JSON/data/KEI/PRINTO01+PRMNTO01.AUS+AUT+BEL+CAN+CHL+CZE+DNK+EST+FIN+FRA.GP.A/all?startTime=2015&endTime=2015&dimensionAtObservation=AllDimensions"
+            }},
+        "options":{
+            "base":{
+                "width":null,
+                "height":null},
+            "axis":{
+                "x":{
+                    "linear":{
+                        "pivot":{}
+                }},
+                "y":{
+                    "linear":{
+                        "pivot":{}
+                }}
+            },
+            "map":{
+                "projection":null,
+                "scale":null
+            },
+            "serie":{
+                  "choropleth":{}
+            }
+        },
+        "config":{
+            "logo":null,
+            "owner":"©OECD",
+            "terms":{
+                "label":"Terms & Conditions",
+                "link":"https://www.oecd.org/termsandconditions/"
+            }
+        }
+    },
+    "share":"latest",
+    "type":null
 }
