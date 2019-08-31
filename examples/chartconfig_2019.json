@@ -1,0 +1,87 @@
+    "data": {
+        "data": {
+            "title": null, # optional
+            "title": "Key Short-Term Economic Indicators",
+            "subtitle": null, # optional
+            "subtitle": ["Measure: Growth previous period","Frequency: Annual","Time: 2015"],
+            "footnotes": {
+                "source": null, # optional
+                "sourceLabel": null # optional
+           },
+            "footnotes": {
+                "source": "https://stats.oecd.org/Index.aspx?DataSetCode=KEI",
+                "sourceLabel": "Key Short-Term Economic Indicators"
+            },
+            "share": {
+                "focused": {
+                    "highlight": [],
+                    "highlight": [
+                        {"value": "PRINTO01 - BEL"},
+                        {"value": "PRINTO01 - FIN"}
+                    ],
+                    "highlight": [
+                        {"value": {"dimensionId": "LOCATION", "dimensionValueId": "AUT"}},
+                        {"value": {"dimensionId": "TIME_PERIOD", "dimensionValueId": "2011"}}
+                    ],
+                    "baseline": []
+                    "baseline": [{"value": "PRMNTO01 - AUS"}]
+                    "baseline": [{"value": {"dimensionId": "TIME_PERIOD", "dimensionValueId": "2012"}}]
+                },
+                "chartDimension": null,
+                "chartDimension": {"id": "LOCATION", "xId": "BEL", "yId": "CAN"}, # nur scatter
+                "chartDimension": {"id": "SUBJECT"}, # symbol
+                "chartDimension": {"id": "LOCATION", "mode": "percent"}, # stacked bar: mode : [percent, values -> default]
+                "display": null,
+                "display": "code",
+                "display": "both",
+                "source": "https://stats.oecd.org:443/SDMX-JSON/data/KEI/PRINTO01+PRMNTO01.AUS+AUT+BEL+CAN+CHL+CZE+DNK+EST+FIN+FRA.GP.A/all?startTime=2015&endTime=2015&dimensionAtObservation=AllDimensions"
+
+                "sharedate":"1525513191754",
+                -- "dependencies":{"oecd-configurable-charts":"4.1.1"}}},
+           }
+        },
+        "options": {
+            "base": {
+                "width": null,
+                "width": 600,
+                "height": null
+                "height": 400
+            },
+            "axis": {
+                "x": {"linear": {}},
+                "x": {"linear": {
+                    "min": -2,
+                    "max": 6,
+                    "step": 2,
+                    "pivot": {"value": -2}
+                }},
+                "y": {"linear": {}}
+                "y": {"linear": {
+                    "min": -2,
+                    "max": 6,
+                    "step": 2,
+                    "pivot": {"value": -2}
+                }}
+            }
+        },
+        "config": {
+            "logo": null,
+            "logo": "https://upload.wikimedia.org/wikipedia/sco/0/0d/OECD_logo_new.svg",
+            "owner": null,
+            "owner": "©OECD",
+           "terms": {
+               "label": null,
+                "label": "Terms & Conditions",
+                "link": null
+                "link": "https://www.oecd.org/termsandconditions/"
+            },
+            "sourceHeaders": {
+                "Accept": "application/vnd.sdmx.data+json",  # always required
+                "Accept-Language": "en" # always required
+                "Accept-Language": "fr"
+            }
+        }
+    },
+    "share": "latest",  # always  <> "snapshot"
+    "type": "BarChart"  # always required
+}
