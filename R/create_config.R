@@ -44,7 +44,8 @@ create_config <- function(sdmx_data_query=stop("'sdmx_data_query' must be specif
                           type=stop("'type' must be specified"),
                           width=NULL,
                           height=NULL,
-                          path=NULL) {
+                          path=NULL,
+                          language="en") {
 
   if(is.null(path)) path <- system.file("templates/default.json",
                                         package = "rcw")
