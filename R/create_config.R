@@ -36,7 +36,7 @@ create_config <- function(sdmx_data_query=stop("'sdmx_data_query' must be specif
                           ## highlight_value=NULL,
                           title=NULL,
                           subtitle=NULL,
-                          unit=NULL,
+                          ## unit=NULL,
                           source_url=NULL,
                           source_label=NULL,
                           logo=TRUE,
@@ -72,9 +72,9 @@ create_config <- function(sdmx_data_query=stop("'sdmx_data_query' must be specif
   if(!is.null(subtitle)) {
     chartconfig$data$data$subtitle <- subtitle
   }
-  if(!is.null(unit)) {
-    chartconfig$data$data$uprs <- unit
-  }
+  ## if(!is.null(unit)) {
+  ##   chartconfig$data$data$uprs <- unit
+  ## }
   if(!is.null(source_url) | !is.null(source_label)) {
     chartconfig$data$data$footnotes <- list(source = ifelse(is.null(source_url), "", source_url),
                                             sourceLabel = ifelse(is.null(source_label), "", source_label))
