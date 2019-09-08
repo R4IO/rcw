@@ -4,3 +4,4 @@
 ^_pkgdown\.yml$
 
 R/rcwChart.R
+^data-raw$

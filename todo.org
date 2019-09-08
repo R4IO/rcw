@@ -1,0 +1,90 @@
+
+* changes 2019
+
+** chart_config.R
+
+*** DONE focused (highlight, baseline)
+
+**** BarChart, RowChart, HorizontalSymbolChart, VerticalSymbolChart, TimelineChart
+
+     list of concatenated SDMX IDs (separated by " - ") of values of all
+     involved dimensions, e.g. "SUBJECT_X - COUNTRY_Y"
+
+     {"value": "PRINTO01 - BEL"},
+     {"value": "PRINTO01 - FIN"}
+
+**** StackedBarChart
+
+     always involves only 1 dimension, e.g. "SUBJECT_X"
+
+     {"value": "PRINTO01"},
+     {"value": "PRMNTO01"}
+
+**** ScatterChart
+
+     list of pairs of SDMX IDs for dimension ("dimensionId") and its value
+     ("dimensionValueId")
+
+     {"value": {"dimensionId": "LOCATION", "dimensionValueId": "AUT"}},
+     {"value": {"dimensionId": "TIME_PERIOD", "dimensionValueId": "2011"}}
+
+*** DONE chartDimension
+
+    optional array of character strings
+
+**** ScatterChart
+
+     list of SDMX IDs for one dimension ("id") and two of its values ("xId" and
+     "yId")
+
+     "chartDimension": {"id": "LOCATION", "xId": "BEL", "yId": "CAN"}
+
+**** HorizontalSymbolChart, VerticalSymbolChart
+
+     SDMX ID for one dimension ("id")
+     "chartDimension": {"id": "SUBJECT"}
+
+**** StackedBarChart
+
+     SDMX ID for one dimension ("id") and mode ("value" or "percent") -> default: "value"
+     "chartDimension": {"id": "LOCATION", "mode": "percent"}
+     
+*** options
+
+**** DONE check format empty elements
+
+     - can ~"pivot": {}"~ exist in emptly ~"linear": {}~?
+     - why do empty ~"width"~ and ~"height"~ appear as  ~{}~
+
+**** TODO x_axis
+
+     optional array of float numbers
+
+***** RowChart, ScatterChart, HorizontalSymbolChart
+
+      min, max, step, pivot
+
+
+***** TimelineChart
+
+      step
+
+**** TODO y_axis
+
+     optional array of float numbers
+
+***** BarChart, ScatterChart, VerticalSymbolChart, TimelineChart
+
+      min, max, step, pivot
+
+***** StackedBarChart
+
+      min, max, step
+
+** tests
+
+** vignette
+
+*** TODO add highlight example(s)
+
+*** TODO add baseline example(s)

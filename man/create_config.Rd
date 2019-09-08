@@ -9,12 +9,15 @@
   \url{https://cran.r-project.org/web/packages/jsonlite/index.html}.
 }
 \usage{
-create_config(sdmx_data_query = stop("'sdmx_data_query' must be specified"),
-  data_api_endpoint = "http://stats.oecd.org:80/SDMX-JSON/data",
-  title = NULL, subtitle = NULL, unit = NULL, source_url = NULL,
-  source_label = NULL, logo = TRUE, owner = TRUE,
-  type = stop("'type' must be specified"), width = NULL, height = NULL,
-  path = NULL)
+
+  create_config(sdmx_data_query = stop("'sdmx_data_query' must be specified"),
+  data_api_endpoint = "https://stats.oecd.org/SDMX-JSON/data",
+  path = NULL, title = NULL, subtitle = NULL, source_url = NULL,
+  source_label = NULL, highlight = NULL, baseline = NULL,
+  chart_dimension = NULL, display = "label", width = NULL,
+  height = NULL, x_axis = NULL, y_axis = NULL, logo = TRUE,
+  owner = TRUE, language = "en",
+  type = stop("'type' must be specified"))
 
 
   create_query_url(sdmx_data_query = stop("'sdmx_data_query' must be provided"),
@@ -24,29 +27,35 @@ create_config(sdmx_data_query = stop("'sdmx_data_query' must be specified"),
 \item{sdmx_data_query}{complete SDMX URL, e.g.
 ""KEI/PRINTO01+PRMNTO01.AUS+AUT+BEL+CAN+CHL+CZE+DNK+EST+FIN+FRA.GP.A/all?startTime=2015&endTime=2015"}
 
-\item{data_api_endpoint}{SDMX API URL, e.g. \url{http://stats.oecd.org:80/SDMX-JSON/data}}
+\item{data_api_endpoint}{SDMX API URL, e.g. \url{http://stats.oecd.org/SDMX-JSON/data}}
+
+\item{path}{path to a JSON template that can be read using \code{jsonlite::fromJSON}}
 
 \item{title}{character string main title of chart}
 
 \item{subtitle}{character vector chart subtitle}
 
-\item{unit}{character string to specify unit of measure (should be automatic)}
-
 \item{source_url}{character string to add URL below chart}
 
 \item{source_label}{character string to show instead of URL below chart}
 
-\item{logo}{logical include logo}
+\item{highlight}{a list of character vectors respecting the order of dimensions of the SDMX data flow}
 
-\item{owner}{logical include copyright information}
+\item{baseline}{a list of character vectors respecting the order of dimensions of the SDMX data flow}
 
-\item{type}{one of \code{BarChart}, \code{RowChart}, \code{ScatterChart}, \code{HSymbolChart}, \code{VSymbolChart}, \code{TimelineChart}, \code{StackedBarChart}}
+\item{chart_dimension}{list of id, x, y and mode}
 
 \item{width}{integer chart width in pixel}
 
 \item{height}{integer chart height in pixel}
 
-\item{path}{path to a JSON template that can be read using \code{jsonlite::fromJSON}}
+\item{logo}{logical include logo}
+
+\item{owner}{logical include copyright information}
+
+\item{language}{character string, one of \code{en} or \code{fr}}
+
+\item{type}{one of \code{BarChart}, \code{RowChart}, \code{ScatterChart}, \code{HSymbolChart}, \code{VSymbolChart}, \code{TimelineChart}, \code{StackedBarChart}}
 }
 \description{
 \code{create_config} creates configuration lists using

@@ -14,12 +14,6 @@ vignette: >
 
 ```{r setup, echo=TRUE, message=FALSE, eval=TRUE}
 library(rcw)
-library(jsonlite)
-
-## specify JSON template
-jsonfile <- system.file("templates/default.json", package = "rcw")
-## jsonfile <- "../inst/templates/default.json"
-
 ```
 
 
@@ -28,59 +22,103 @@ jsonfile <- system.file("templates/default.json", package = "rcw")
 Create single chart from SDMX query
 
 ```{r single-config, echo=TRUE, eval=TRUE}
-
 query <- "KEI/PRINTO01+PRMNTO01.AUS+AUT+BEL+CAN+CHL+CZE+DNK+EST+FIN+FRA.GP.A/all?startTime=2015&endTime=2015"
-
 chartconfig <- create_config(
   sdmx_data_query = query,
-  title = "Key Short-Term Economic Indicators",
-  subtitle = c("Measure: Growth previous period",
-               "Frequency: Annual",
-               "Time: 2015"),
-  unit = "Percentage",
-  source_url = "http://stats.oecd.org:80/Index.aspx?DataSetCode=KEI",
-  source_label = "Key Short-Term Economic Indicators",
-  logo = TRUE,
-  owner = TRUE,
-  type = "BarChart", # "RowChart"
-  width = 800,
-  height = 500,
-  path = jsonfile
+  type = "BarChart",
+  highlight = list("PRINTO01", c("BEL", "FIN", "FRA")),
+  baseline = list("PRMNTO01", "AUS")
 )
-
-str(chartconfig)
-
 ```
 
 
-```{r single-config-post, echo=TRUE, eval=TRUE}
-
-chart_url <-
-  post_config(
+```{r single-config-post, message=FALSE, echo=FALSE, eval=TRUE}
+res_ls <- post_config(
     config = chartconfig,
-    url = "http://stats.oecd.org",      # this is the default value
-    response = TRUE #,
-    ## httr::verbose()                     # do not use if logo=TRUE in chart config
-  )
-
-# browseURL(url = chart_url)              # open URL in browser
+    url = "http://dotstatcor-dev2.main.oecd.org/PMShareIntranetService", # "https://stats.oecd.org/share"
+    path = "../examples/bar.json"
+)
+## browseURL(res_ls$viewer_url)
+knitr::include_url(res_ls$viewer_url, height = "500px")
 
 ```
 
 
-See result at `r chart_url`
-
-
-```{r screenshot-single-config, out.width='100%', echo=FALSE, eval=TRUE}
+```{r screenshot-single-config, out.width='100%', echo=FALSE, eval=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/r4io/rcw/master/assets/img/screenshot_post_single_config.png")
 ```
+
+
+## Scatter Chart
+
+```{r scatter-chart, echo=TRUE, eval=TRUE}
+query <- "KEI/PRINTO01+PRMNTO01.AUS+AUT+BEL+CAN+CHL+CZE+DNK+EST+FIN+FRA.GP.A/all?startTime=2015&endTime=2015"
+scatter_config <- create_config(
+  sdmx_data_query = query,
+  type = "ScatterChart",
+  highlight = list(LOCATION = "AUT",
+                   LOCATION = "FRA",
+                   LOCATION = "CZE"
+                   ),
+  chart_dimension = list(id = "SUBJECT",
+                         x = "PRINTO01", y = "PRMNTO01",
+                         mode = "percent"),
+  baseline = list(LOCATION = "FIN")
+  ,x_axis = list(min = -2, max = 4, step = 1, pivot = 1),
+  y_axis = list(min = -2)
+)
+```
+
+
+```{r, echo=FALSE, message=FALSE, eval=TRUE}
+scatter_res <- post_config(
+    config = scatter_config,
+    url = "http://dotstatcor-dev2.main.oecd.org/PMShareIntranetService", # "https://stats.oecd.org/share"
+    post = TRUE,
+    path = "../examples/scatter.json"
+  )
+## str(scatter_config)
+## scatter_res$viewer_url
+## paste0("http://dotstatcor-dev2.main.oecd.org/PMShareIntranetService/share?id=", scatter_res$id)
+knitr::include_url(scatter_res$viewer_url, height = "500px")
+
+```
+
+## Stacked Bar Chart
+
+```{r stacked-bar-chart, echo=TRUE, eval=TRUE}
+query <- "KEI/PRINTO01+PRMNTO01.AUS+AUT+BEL+CAN+CHL+CZE+DNK+EST+FIN+FRA.GP.A/all?startTime=2015&endTime=2015"
+stacked_bar_config <- create_config(
+  sdmx_data_query = query,
+  type = "StackedBarChart",
+  highlight = list(c("AUT", "BEL", "FIN")),
+  baseline = list("FRA"),
+  chart_dimension = list(id = "LOCATION", mode = "value")
+)
+```
+
+
+```{r, echo=FALSE, message=FALSE, eval=TRUE}
+stacked_bar_res <- post_config(
+    config = stacked_bar_config,
+    url = "http://dotstatcor-dev2.main.oecd.org/PMShareIntranetService", # "https://stats.oecd.org/share"
+    post = TRUE,
+    path = "../examples/stacked_bar.json"
+  )
+## str(stacked_bar_config)
+## stacked_bar_res$viewer_url
+## paste0("http://dotstatcor-dev2.main.oecd.org/PMShareIntranetService/share?id=", stacked_bar_res$id)
+knitr::include_url(stacked_bar_res$viewer_url, height = "500px")
+
+```
+
 
 
 ## Multi Config
 
 Create one chart per variable
 
-```{r multi-config, echo=TRUE, eval=TRUE}
+```{r multi-config, echo=TRUE, eval=FALSE}
 
 var_ls <- list(
   list(code = "PRINTO01", label = "Industrial Production"),
@@ -112,7 +150,7 @@ str(query_url_ls)
 ```
 
 
-```{r multi-config-post, echo=TRUE, eval=TRUE}
+```{r multi-config-post, echo=TRUE, eval=FALSE}
 
 chart_url_c <-
   sapply(query_url_ls,
@@ -140,3 +178,22 @@ str(chartconfig_reimported)
 
 ```
 
+```{r eval=FALSE}
+chartconfig <- create_config(
+  sdmx_data_query = query,
+  # title = "Key Short-Term Economic Indicators",
+  # subtitle = c("Measure: Growth previous period",
+  #              "Frequency: Annual",
+  #              "Time: 2015"),
+  # source_url = "http://stats.oecd.org:80/Index.aspx?DataSetCode=KEI",
+  # source_label = "Key Short-Term Economic Indicators",
+  logo = TRUE,
+  owner = TRUE,
+  type = "BarChart", # "RowChart"
+  highlight = list("PRINTO01", c("BEL", "FIN", "FRA")),
+  baseline = list("PRMNTO01", "AUS"),
+  # width = 800,
+  # height = 500,
+  path = jsonfile
+)
+```

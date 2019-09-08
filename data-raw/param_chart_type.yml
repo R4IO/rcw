@@ -1,0 +1,24 @@
+focused: # {"value": "PRINTO01 - BEL"}
+  - BarChart
+  - RowChart
+  - HorizontalSymbolChart
+  - VerticalSymbolChart
+  - TimelineChart
+  - StackedBarChart # {"value": "PRINTO01"}
+  - ScatterChart # {"value": {"dimensionId": "LOCATION", "dimensionValueId": "AUT"}}
+chart_dimension:
+  - ScatterChart # {"id": "LOCATION", "xId": "BEL", "yId": "CAN"}
+  - HorizontalSymbolChart # {"id": "SUBJECT"}
+  - VerticalSymbolChart # {"id": "SUBJECT"}
+  - StackedBarChart # {"id": "LOCATION", "mode": "percent"}
+x_axis: # min, max, step, pivot
+  - RowChart
+  - ScatterChart
+  - HorizontalSymbolChart
+  - TimelineChart # only step
+y_axis: # min, max, step, pivot
+  - BarChart
+  - ScatterChart
+  - VerticalSymbolChart
+  - TimelineChart
+  - StackedBarChart # no pivot

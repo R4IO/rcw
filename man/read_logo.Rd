@@ -4,7 +4,8 @@
 \alias{read_logo}
 \title{Function to load base64 logo.}
 \usage{
-read_logo(path = system.file("assets/oecd_globe_base64", package = "rcw"))
+read_logo(path = system.file("assets/oecd_globe_base64", package =
+  "rcw"))
 }
 \arguments{
 \item{path}{the file path}

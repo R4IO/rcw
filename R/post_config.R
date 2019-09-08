@@ -14,6 +14,9 @@
 #' @param ... additional parameters supplied to \code{httr:POST}, e.g.
 #'   \code{httr::verbose()}
 #'
+#' @importFrom jsonlite write_json
+#' @importFrom httr add_headers content POST
+#'
 #' @examples
 #' query <- "KEI/PRINTO01+PRMNTO01.AUS+AUT+BEL+CAN+CHL+CZE+DNK+EST+FIN+FRA.GP.A/all?startTime=2015&endTime=2015"
 #' chartconfig <- create_config(sdmx_data_query = query, type = "BarChart", logo = FALSE)
@@ -26,7 +29,6 @@
 #' readLines(con = filecon)
 #' close(filecon)
 #'
-#' 
 #' @source \code{httr} was created by Hadley Wickham, see
 #'   \url{https://cran.r-project.org/web/packages/httr/index.html};
 #'   \code{jsonlite} was created by Jeroen Ooms et al., see
@@ -34,29 +36,44 @@
 #'
 #' @export
 post_config <- function(config=stop("'config' must be specified"), ...,
-                        url="http://stats.oecd.org", show=FALSE,
-                        path=NULL, response=FALSE, auto_unbox=TRUE, null='null') {
+                        url="https://stats.oecd.org/share",
+                        data_viewer="http://vs-dotstattest.main.oecd.org/FrontEndDemo/sandbox/data-viewer",
+                        show=FALSE,
+                        post=TRUE,
+                        path=NA, response=FALSE, auto_unbox=TRUE, null="null") {
+
+  res_ls <- list(
+    status = NA,
+    id = NA,
+    config_url = NA,
+    viewer_url = NA,
+    path = NA
+  )
 
   json_string <- jsonlite::toJSON(config, auto_unbox = auto_unbox, null = null)
   if(show) cat("\n", json_string, "\n")
-  if(length(path) > 0) {
-    jsonlite::write_json(x = config, path = path, auto_unbox = auto_unbox, null = null)
-    config_pretty <- jsonlite::toJSON(config, auto_unbox = auto_unbox, null = null, pretty = TRUE)
-    filecon <- file(path)
-    writeLines(text = config_pretty, con = filecon)
-    close(filecon)
-    return(cat("\nCreated file", path, "\n"))
-  } else {
-    res <- httr::POST(url = file.path(url, "share"),
+    if(!is.na(path)) {
+        if (!dir.exists(dirname(path))) stop("the directory ", dirname(path), "does not exist")
+        jsonlite::write_json(x = config, path = path, auto_unbox = auto_unbox, null = null, pretty = TRUE)
+      ## return(
+          cat("\nCreated file", path, "\n")
+        ## )
+        res_ls$path <- path
+  }
+  if (post) {
+      res <- httr::POST(## url = file.path(url, "share"),
+                       url = url,
                       body = json_string,
                       httr::add_headers("Content-Type" = "text/plain;charset=UTF-8"),
                       encode = "json",
                       ...) # httr::verbose()
     if(response) print(res)
 
-    chart_id <- httr::content(res)
-    chart_url <- file.path(url, paste0("chart?id=", chart_id))
-    return(chart_url)
-
+    res_ls$status <- httr::http_status(res)$category
+    res_ls$id <- httr::content(res)$id
+    res_ls$config_url <- file.path(url, paste0("chart?id=", httr::content(res)))
+    res_ls$viewer_url <- file.path(data_viewer, paste0("?id=", httr::content(res)))
+    ## return(chart_url)
   }
+  return(res_ls)
 }

@@ -16,19 +16,46 @@
                 "focused": {
                     "highlight": [],
                     "highlight": [
-                        {"value": "PRINTO01 - BEL"},
-                        {"value": "PRINTO01 - FIN"}
+                      {
+                        "value": "PRINTO01 - BEL"
+                      },
+                      {
+                        "value": "PRINTO01 - FIN"
+                      }
                     ],
                     "highlight": [
-                        {"value": {"dimensionId": "LOCATION", "dimensionValueId": "AUT"}},
-                        {"value": {"dimensionId": "TIME_PERIOD", "dimensionValueId": "2011"}}
+                      {
+                        "value": {
+                          "dimensionId": "LOCATION", 
+                          "dimensionValueId": "AUT"
+                        }
+                      },
+                      {
+                        "value": {
+                          "dimensionId": "TIME_PERIOD", 
+                          "dimensionValueId": "2011"
+                        }
+                      }
                     ],
                     "baseline": []
-                    "baseline": [{"value": "PRMNTO01 - AUS"}]
-                    "baseline": [{"value": {"dimensionId": "TIME_PERIOD", "dimensionValueId": "2012"}}]
+                    "baseline": [
+                        {"value": "PRMNTO01 - AUS"}
+                    ]
+                    "baseline": [
+                      {
+                        "value": {
+                          "dimensionId": "TIME_PERIOD", 
+                          "dimensionValueId": "2012"
+                        }
+                      }
+                    ]
                 },
                 "chartDimension": null,
-                "chartDimension": {"id": "LOCATION", "xId": "BEL", "yId": "CAN"}, # nur scatter
+                "chartDimension": {
+                  "id": "LOCATION", 
+                  "xId": "BEL", 
+                  "yId": "CAN"
+                }, # nur scatter
                 "chartDimension": {"id": "SUBJECT"}, # symbol
                 "chartDimension": {"id": "LOCATION", "mode": "percent"}, # stacked bar: mode : [percent, values -> default]
                 "display": null,
