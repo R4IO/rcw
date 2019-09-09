@@ -12,8 +12,15 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r setup, echo=TRUE, message=FALSE, eval=TRUE}
+
+```{r setup, message=FALSE, include=FALSE}
 library(rcw)
+knitr::opts_chunk$set(echo = FALSE,
+                      message = FALSE
+                     ## ,
+                     ##  eval = FALSE
+                      )
+
 ```
 
 
@@ -31,27 +38,26 @@ chartconfig <- create_config(
 )
 ```
 
-
-```{r single-config-post, message=FALSE, echo=FALSE, eval=TRUE}
+```{r single-config-post, eval=TRUE}
 res_ls <- post_config(
     config = chartconfig,
     url = "http://dotstatcor-dev2.main.oecd.org/PMShareIntranetService", # "https://stats.oecd.org/share"
     path = "../examples/bar.json"
 )
 ## browseURL(res_ls$viewer_url)
-knitr::include_url(res_ls$viewer_url, height = "500px")
+knitr::include_url(res_ls$viewer_url, height = "700px")
 
 ```
 
 
-```{r screenshot-single-config, out.width='100%', echo=FALSE, eval=FALSE}
+```{r, out.width='100%', eval=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/r4io/rcw/master/assets/img/screenshot_post_single_config.png")
 ```
 
 
 ## Scatter Chart
 
-```{r scatter-chart, echo=TRUE, eval=TRUE}
+```{r, eval=TRUE}
 query <- "KEI/PRINTO01+PRMNTO01.AUS+AUT+BEL+CAN+CHL+CZE+DNK+EST+FIN+FRA.GP.A/all?startTime=2015&endTime=2015"
 scatter_config <- create_config(
   sdmx_data_query = query,
@@ -69,8 +75,7 @@ scatter_config <- create_config(
 )
 ```
 
-
-```{r, echo=FALSE, message=FALSE, eval=TRUE}
+```{r, eval=TRUE}
 scatter_res <- post_config(
     config = scatter_config,
     url = "http://dotstatcor-dev2.main.oecd.org/PMShareIntranetService", # "https://stats.oecd.org/share"
@@ -86,7 +91,7 @@ knitr::include_url(scatter_res$viewer_url, height = "500px")
 
 ## Stacked Bar Chart
 
-```{r stacked-bar-chart, echo=TRUE, eval=TRUE}
+```{r, echo=TRUE, eval=TRUE}
 query <- "KEI/PRINTO01+PRMNTO01.AUS+AUT+BEL+CAN+CHL+CZE+DNK+EST+FIN+FRA.GP.A/all?startTime=2015&endTime=2015"
 stacked_bar_config <- create_config(
   sdmx_data_query = query,
@@ -97,8 +102,7 @@ stacked_bar_config <- create_config(
 )
 ```
 
-
-```{r, echo=FALSE, message=FALSE, eval=TRUE}
+```{r, eval=TRUE}
 stacked_bar_res <- post_config(
     config = stacked_bar_config,
     url = "http://dotstatcor-dev2.main.oecd.org/PMShareIntranetService", # "https://stats.oecd.org/share"
@@ -112,6 +116,116 @@ knitr::include_url(stacked_bar_res$viewer_url, height = "500px")
 
 ```
 
+
+## Timeline Chart
+
+```{r, echo=TRUE, eval=TRUE}
+query <- "KEI/PRINTO01+PRMNTO01.AUS+AUT+BEL+CAN+CHL+CZE+DNK+EST+FIN+FRA.GP.A/all?startTime=2010&endTime=2015"
+timeline_config <- create_config(
+  sdmx_data_query = query,
+  type = "TimelineChart",
+  highlight = list("PRINTO01", c("AUT", "BEL", "FIN")),
+  baseline = list("PRINTO01", "FRA"),
+  y_axis = list(min = -5, max = 10, step = 5) # max is ignored if larger values in data
+)
+```
+
+```{r, eval=TRUE}
+timeline_res <- post_config(
+    config = timeline_config,
+    url = "http://dotstatcor-dev2.main.oecd.org/PMShareIntranetService", # "https://stats.oecd.org/share"
+    post = TRUE,
+    path = "../examples/timeline.json"
+  )
+## str(timeline_config)
+## timeline_res$viewer_url
+## paste0("http://dotstatcor-dev2.main.oecd.org/PMShareIntranetService/share?id=", timeline_res$id)
+knitr::include_url(timeline_res$viewer_url, height = "500px")
+
+```
+
+
+## Row Chart
+
+```{r, echo=TRUE, eval=TRUE}
+query <- "KEI/PRINTO01+PRMNTO01.AUS+AUT+BEL+CAN+CHL+CZE+DNK+EST+FIN+FRA.GP.A/all?startTime=2015&endTime=2015"
+row_config <- create_config(
+  sdmx_data_query = query,
+  type = "RowChart",
+  highlight = list("PRINTO01", c("AUT", "BEL", "FIN")),
+  baseline = list("PRINTO01", "FRA")
+)
+```
+
+```{r, eval=TRUE}
+row_res <- post_config(
+    config = row_config,
+    url = "http://dotstatcor-dev2.main.oecd.org/PMShareIntranetService", # "https://stats.oecd.org/share"
+    post = TRUE,
+    path = "../examples/row.json"
+  )
+## str(row_config)
+## row_res$viewer_url
+## paste0("http://dotstatcor-dev2.main.oecd.org/PMShareIntranetService/share?id=", row_res$id)
+knitr::include_url(row_res$viewer_url, height = "700px")
+
+```
+
+
+## Vertical Symbol Chart
+
+```{r, echo=TRUE, eval=TRUE}
+query <- "KEI/PRINTO01+PRMNTO01.AUS+AUT+BEL+CAN+CHL+CZE+DNK+EST+FIN+FRA.GP.A/all?startTime=2015&endTime=2015"
+vertical_symbol_config <- create_config(
+  sdmx_data_query = query,
+  type = "VerticalSymbolChart",
+  chart_dimension = list(id = "SUBJECT"),
+  highlight = list(c("DNK", "AUS", "CZE")),
+  baseline = list("CAN")
+)
+```
+
+```{r, eval=TRUE}
+vertical_symbol_res <- post_config(
+    config = vertical_symbol_config,
+    url = "http://dotstatcor-dev2.main.oecd.org/PMShareIntranetService", # "https://stats.oecd.org/share"
+    post = TRUE,
+    path = "../examples/vertical_symbol.json"
+  )
+## str(vertical_symbol_config)
+## vertical_symbol_res$viewer_url
+## paste0("http://dotstatcor-dev2.main.oecd.org/PMShareIntranetService/share?id=", vertical_symbol_res$id)
+knitr::include_url(vertical_symbol_res$viewer_url, height = "700px")
+
+```
+
+
+## Horizontal Symbol Chart
+
+```{r, echo=TRUE, eval=TRUE}
+query <- "KEI/PRINTO01+PRMNTO01.AUS+AUT+BEL+CAN+CHL+CZE+DNK+EST+FIN+FRA.GP.A/all?startTime=2015&endTime=2015"
+horizontal_symbol_config <- create_config(
+  sdmx_data_query = query,
+  type = "HorizontalSymbolChart",
+  chart_dimension = list(id = "SUBJECT"),
+  highlight = list(c("DNK", "AUS", "CZE")),
+  baseline = list("CAN")
+)
+```
+
+```{r, eval=TRUE}
+horizontal_symbol_res <- post_config(
+    config = horizontal_symbol_config,
+    url = "http://dotstatcor-dev2.main.oecd.org/PMShareIntranetService", # "https://stats.oecd.org/share"
+    post = TRUE,
+    path = "../examples/horizontal_symbol.json"
+  )
+## str(horizontal_symbol_config)
+## horizontal_symbol_res$viewer_url
+## paste0("http://dotstatcor-dev2.main.oecd.org/PMShareIntranetService/share?id=", horizontal_symbol_res$id)
+knitr::include_url(horizontal_symbol_res$viewer_url, height = "700px")
+
+```
 
 
 ## Multi Config

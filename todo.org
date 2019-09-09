@@ -5,7 +5,7 @@
 
 *** DONE focused (highlight, baseline)
 
-**** BarChart, RowChart, HorizontalSymbolChart, VerticalSymbolChart, TimelineChart
+**** BarChart, RowChart, TimelineChart [?HorizontalSymbolChart, VerticalSymbolChart?]
 
      list of concatenated SDMX IDs (separated by " - ") of values of all
      involved dimensions, e.g. "SUBJECT_X - COUNTRY_Y"
@@ -13,12 +13,14 @@
      {"value": "PRINTO01 - BEL"},
      {"value": "PRINTO01 - FIN"}
 
-**** StackedBarChart
+**** StackedBarChart, !!(HorizontalSymbolChart, VerticalSymbolChart)!!
 
      always involves only 1 dimension, e.g. "SUBJECT_X"
 
      {"value": "PRINTO01"},
      {"value": "PRMNTO01"}
+
+     this seems to be the case also for HorizontalSymbolChart and VerticalSymbolChart
 
 **** ScatterChart
 
@@ -88,3 +90,4 @@
 *** TODO add highlight example(s)
 
 *** TODO add baseline example(s)
+
