@@ -36,13 +36,15 @@ chartconfig <- create_config(
   highlight = list("PRINTO01", c("BEL", "FIN", "FRA")),
   baseline = list("PRMNTO01", "AUS")
 )
+
 ```
 
 ```{r single-config-post, eval=TRUE}
 res_ls <- post_config(
     config = chartconfig,
-    url = "http://dotstatcor-dev2.main.oecd.org/PMShareIntranetService", # "https://stats.oecd.org/share"
-    path = "../examples/bar.json"
+    ## url = "http://dotstatcor-dev2.main.oecd.org/PMShareIntranetService",
+    url = "https://stats.oecd.org/share",
+    path = "../examples/bar.json" # write config to disk
 )
 ## browseURL(res_ls$viewer_url)
 knitr::include_url(res_ls$viewer_url, height = "700px")
@@ -73,12 +75,14 @@ scatter_config <- create_config(
   ,x_axis = list(min = -2, max = 4, step = 1, pivot = 1),
   y_axis = list(min = -2)
 )
+
 ```
 
 ```{r, eval=TRUE}
 scatter_res <- post_config(
     config = scatter_config,
-    url = "http://dotstatcor-dev2.main.oecd.org/PMShareIntranetService", # "https://stats.oecd.org/share"
+    ## url = "http://dotstatcor-dev2.main.oecd.org/PMShareIntranetService",
+    url = "https://stats.oecd.org/share",
     post = TRUE,
     path = "../examples/scatter.json"
   )
@@ -100,12 +104,14 @@ stacked_bar_config <- create_config(
   baseline = list("FRA"),
   chart_dimension = list(id = "LOCATION", mode = "value")
 )
+
 ```
 
 ```{r, eval=TRUE}
 stacked_bar_res <- post_config(
     config = stacked_bar_config,
-    url = "http://dotstatcor-dev2.main.oecd.org/PMShareIntranetService", # "https://stats.oecd.org/share"
+    ## url = "http://dotstatcor-dev2.main.oecd.org/PMShareIntranetService",
+    url = "https://stats.oecd.org/share",
     post = TRUE,
     path = "../examples/stacked_bar.json"
   )
@@ -128,12 +134,14 @@ timeline_config <- create_config(
   baseline = list("PRINTO01", "FRA"),
   y_axis = list(min = -5, max = 10, step = 5) # max is ignored if larger values in data
 )
+
 ```
 
 ```{r, eval=TRUE}
 timeline_res <- post_config(
     config = timeline_config,
-    url = "http://dotstatcor-dev2.main.oecd.org/PMShareIntranetService", # "https://stats.oecd.org/share"
+    ## url = "http://dotstatcor-dev2.main.oecd.org/PMShareIntranetService",
+    url = "https://stats.oecd.org/share",
     post = TRUE,
     path = "../examples/timeline.json"
   )
@@ -155,12 +163,14 @@ row_config <- create_config(
   highlight = list("PRINTO01", c("AUT", "BEL", "FIN")),
   baseline = list("PRINTO01", "FRA")
 )
+
 ```
 
 ```{r, eval=TRUE}
 row_res <- post_config(
     config = row_config,
-    url = "http://dotstatcor-dev2.main.oecd.org/PMShareIntranetService", # "https://stats.oecd.org/share"
+    ## url = "http://dotstatcor-dev2.main.oecd.org/PMShareIntranetService",
+    url = "https://stats.oecd.org/share",
     post = TRUE,
     path = "../examples/row.json"
   )
@@ -183,12 +193,14 @@ vertical_symbol_config <- create_config(
   highlight = list(c("DNK", "AUS", "CZE")),
   baseline = list("CAN")
 )
+
 ```
 
 ```{r, eval=TRUE}
 vertical_symbol_res <- post_config(
     config = vertical_symbol_config,
-    url = "http://dotstatcor-dev2.main.oecd.org/PMShareIntranetService", # "https://stats.oecd.org/share"
+    ## url = "http://dotstatcor-dev2.main.oecd.org/PMShareIntranetService",
+    url = "https://stats.oecd.org/share",
     post = TRUE,
     path = "../examples/vertical_symbol.json"
   )
@@ -211,12 +223,14 @@ horizontal_symbol_config <- create_config(
   highlight = list(c("DNK", "AUS", "CZE")),
   baseline = list("CAN")
 )
+
 ```
 
 ```{r, eval=TRUE}
 horizontal_symbol_res <- post_config(
     config = horizontal_symbol_config,
-    url = "http://dotstatcor-dev2.main.oecd.org/PMShareIntranetService", # "https://stats.oecd.org/share"
+    ## url = "http://dotstatcor-dev2.main.oecd.org/PMShareIntranetService",
+    url = "https://stats.oecd.org/share",
     post = TRUE,
     path = "../examples/horizontal_symbol.json"
   )
@@ -251,7 +265,9 @@ query_url_ls <- lapply(var_ls, function(x) {
                           title = "Key Short-Term Economic Indicators",
                           subtitle = c(x$label, subtitle),
                           type = "BarChart",
-                          path = jsonfile)
+                          ## path = jsonfile
+                          path = "../examples/bar.json" # template
+                          )
   list(
     code = x$code,
     label = x$label,
@@ -269,7 +285,9 @@ str(query_url_ls)
 chart_url_c <-
   sapply(query_url_ls,
          function(x) post_config(config = x$config,
-                                 url = "http://stats.oecd.org"))
+                                 url = "https://stats.oecd.org/share",
+                                 post = TRUE
+                                 ))
 
 print(chart_url_c)
 
@@ -284,7 +302,7 @@ print(chart_url_c)
 outfile <- tempfile(pattern = "chartconfig_", fileext = ".json")
 
 ## export configuration to disk
-post_config(x = chartconfig, show = TRUE, path = outfile)
+post_config(config = chartconfig, show = TRUE, path = outfile)
 
 ## read back into R
 chartconfig_reimported <- jsonlite::read_json(path = outfile)
@@ -305,9 +323,14 @@ chartconfig <- create_config(
   owner = TRUE,
   type = "BarChart", # "RowChart"
   highlight = list("PRINTO01", c("BEL", "FIN", "FRA")),
-  baseline = list("PRMNTO01", "AUS"),
-  # width = 800,
-  # height = 500,
-  path = jsonfile
+  baseline = list("PRMNTO01", "AUS")
+  ## ,
+  ## width = 800,
+  ## height = 500,
+  ## path = jsonfile
+  ## path = "../examples/bar.json"
 )
+
+str(chartconfig)
+
 ```

@@ -37,7 +37,8 @@
 #' @export
 post_config <- function(config=stop("'config' must be specified"), ...,
                         url="https://stats.oecd.org/share",
-                        data_viewer="http://vs-dotstattest.main.oecd.org/FrontEndDemo/sandbox/data-viewer",
+                        ## data_viewer="http://vs-dotstattest.main.oecd.org/FrontEndDemo/sandbox/data-viewer",
+                        data_viewer="https://stats.oecd.org",
                         show=FALSE,
                         post=TRUE,
                         path=NA, response=FALSE, auto_unbox=TRUE, null="null") {
@@ -72,7 +73,8 @@ post_config <- function(config=stop("'config' must be specified"), ...,
     res_ls$status <- httr::http_status(res)$category
     res_ls$id <- httr::content(res)$id
     res_ls$config_url <- file.path(url, paste0("chart?id=", httr::content(res)))
-    res_ls$viewer_url <- file.path(data_viewer, paste0("?id=", httr::content(res)))
+    ## res_ls$viewer_url <- file.path(data_viewer, paste0("?id=", httr::content(res))) # internal
+    res_ls$viewer_url <- file.path(data_viewer, paste0("chart?id=", httr::content(res)))
     ## return(chart_url)
   }
   return(res_ls)
