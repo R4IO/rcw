@@ -15,6 +15,7 @@ vignette: >
 
 ```{r setup, message=FALSE, include=FALSE}
 library(rcw)
+
 knitr::opts_chunk$set(echo = FALSE,
                       message = FALSE
                      ## ,
@@ -246,7 +247,7 @@ knitr::include_url(horizontal_symbol_res$viewer_url, height = "700px")
 
 Create one chart per variable
 
-```{r multi-config, echo=TRUE, eval=FALSE}
+```{r multi-config, echo=TRUE, eval=TRUE}
 
 var_ls <- list(
   list(code = "PRINTO01", label = "Industrial Production"),
@@ -275,21 +276,26 @@ query_url_ls <- lapply(var_ls, function(x) {
   )
 })
 
-str(query_url_ls)
+## str(query_url_ls)
 
 ```
 
 
-```{r multi-config-post, echo=TRUE, eval=FALSE}
+```{r multi-config-post, echo=TRUE, eval=TRUE}
 
 chart_url_c <-
-  sapply(query_url_ls,
+  ## sapply(query_url_ls,
+  lapply(query_url_ls,
          function(x) post_config(config = x$config,
                                  url = "https://stats.oecd.org/share",
                                  post = TRUE
                                  ))
 
-print(chart_url_c)
+## print(chart_url_c)
+str(chart_url_c)
+
+knitr::include_url(chart_url_c[[1]]$viewer_url, height = "700px")
+knitr::include_url(chart_url_c[[2]]$viewer_url, height = "700px")
 
 ```
 

@@ -12,9 +12,8 @@
 \usage{
 post_config(config = stop("'config' must be specified"), ...,
   url = "https://stats.oecd.org/share",
-  data_viewer = "http://vs-dotstattest.main.oecd.org/FrontEndDemo/sandbox/data-viewer",
-  show = FALSE, post = TRUE, path = NA, response = FALSE,
-  auto_unbox = TRUE, null = "null")
+  data_viewer = "https://stats.oecd.org", show = FALSE, post = TRUE,
+  path = NA, response = FALSE, auto_unbox = TRUE, null = "null")
 }
 \arguments{
 \item{config}{a configuration list according to the API definition}
