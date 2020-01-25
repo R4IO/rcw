@@ -6,6 +6,7 @@ output:
   rmarkdown::html_vignette:
     self_contained: false
     lib_dir: rcw_files
+    css: styles.css
 vignette: >
   %\VignetteIndexEntry{Chart Config}
   %\VignetteEngine{knitr::rmarkdown}
@@ -17,6 +18,7 @@ vignette: >
 library(rcw)
 
 knitr::opts_chunk$set(echo = FALSE,
+                      out.width="100%",
                       message = FALSE
                      ## ,
                      ##  eval = FALSE
