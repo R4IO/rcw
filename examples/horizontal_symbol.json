@@ -1,0 +1,67 @@
+{
+  "data": {
+    "data": {
+      "title": null,
+      "subtitle": null,
+      "footnotes": {
+        "source": null,
+        "sourceLabel": null
+      },
+      "frequency": null,
+      "series": [],
+      "share": {
+        "focused": {
+          "highlight": [
+            {
+              "value": "DNK"
+            },
+            {
+              "value": "AUS"
+            },
+            {
+              "value": "CZE"
+            }
+          ],
+          "baseline": [
+            {
+              "value": "CAN"
+            }
+          ]
+        },
+        "chartDimension": {
+          "id": "SUBJECT"
+        },
+        "display": "label",
+        "source": "https://stats.oecd.org/SDMX-JSON/data/KEI/PRINTO01+PRMNTO01.AUS+AUT+BEL+CAN+CHL+CZE+DNK+EST+FIN+FRA.GP.A/all?startTime=2015&endTime=2015&dimensionAtObservation=AllDimensions"
+      }
+    },
+    "options": {
+      "base": {
+        "width": null,
+        "height": null
+      },
+      "axis": {
+        "x": {
+          "linear": {}
+        },
+        "y": {
+          "linear": {}
+        }
+      }
+    },
+    "config": {
+      "logo": "https://upload.wikimedia.org/wikipedia/sco/0/0d/OECD_logo_new.svg",
+      "owner": "©OECD",
+      "terms": {
+        "label": "Terms & Conditions",
+        "link": "https://www.oecd.org/termsandconditions/"
+      },
+      "sourceHeaders": {
+        "Accept": "application/vnd.sdmx.data+json",
+        "Accept-Language": "en"
+      }
+    }
+  },
+  "share": "latest",
+  "type": "HorizontalSymbolChart"
+}

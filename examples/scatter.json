@@ -1,0 +1,95 @@
+{
+  "data": {
+    "data": {
+      "title": null,
+      "subtitle": null,
+      "footnotes": {
+        "source": null,
+        "sourceLabel": null
+      },
+      "frequency": null,
+      "series": [],
+      "share": {
+        "focused": {
+          "highlight": [
+            {
+              "value": {
+                "dimensionId": "LOCATION",
+                "dimensionValueId": "AUT"
+              }
+            },
+            {
+              "value": {
+                "dimensionId": "LOCATION",
+                "dimensionValueId": "FRA"
+              }
+            },
+            {
+              "value": {
+                "dimensionId": "LOCATION",
+                "dimensionValueId": "CZE"
+              }
+            }
+          ],
+          "baseline": [
+            {
+              "value": {
+                "dimensionId": "LOCATION",
+                "dimensionValueId": "FIN"
+              }
+            }
+          ]
+        },
+        "chartDimension": {
+          "id": "SUBJECT",
+          "xId": "PRINTO01",
+          "yId": "PRMNTO01"
+        },
+        "display": "label",
+        "source": "https://stats.oecd.org/SDMX-JSON/data/KEI/PRINTO01+PRMNTO01.AUS+AUT+BEL+CAN+CHL+CZE+DNK+EST+FIN+FRA.GP.A/all?startTime=2015&endTime=2015&dimensionAtObservation=AllDimensions"
+      }
+    },
+    "options": {
+      "base": {
+        "width": null,
+        "height": null
+      },
+      "axis": {
+        "x": {
+          "linear": {
+            "min": -2,
+            "max": 4,
+            "step": 1,
+            "pivot": {
+              "value": 1
+            }
+          }
+        },
+        "y": {
+          "linear": {
+            "min": -2,
+            "max": null,
+            "step": null,
+            "pivot": {
+              "value": null
+            }
+          }
+        }
+      }
+    },
+    "config": {
+      "logo": "https://upload.wikimedia.org/wikipedia/sco/0/0d/OECD_logo_new.svg",
+      "owner": "©OECD",
+      "terms": {
+        "label": "Terms & Conditions",
+        "link": "https://www.oecd.org/termsandconditions/"
+      },
+      "sourceHeaders": {
+        "Accept": "application/vnd.sdmx.data+json",
+        "Accept-Language": "en"
+      }
+    }
+  },
+  "share": "latest",
+  "type": "ScatterChart"
+}

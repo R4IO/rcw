@@ -1,0 +1,72 @@
+{
+  "data": {
+    "data": {
+      "title": null,
+      "subtitle": null,
+      "footnotes": {
+        "source": null,
+        "sourceLabel": null
+      },
+      "frequency": null,
+      "series": [],
+      "share": {
+        "focused": {
+          "highlight": [
+            {
+              "value": "PRINTO01 - AUT"
+            },
+            {
+              "value": "PRINTO01 - BEL"
+            },
+            {
+              "value": "PRINTO01 - FIN"
+            }
+          ],
+          "baseline": [
+            {
+              "value": "PRINTO01 - FRA"
+            }
+          ]
+        },
+        "chartDimension": null,
+        "display": "label",
+        "source": "https://stats.oecd.org/SDMX-JSON/data/KEI/PRINTO01+PRMNTO01.AUS+AUT+BEL+CAN+CHL+CZE+DNK+EST+FIN+FRA.GP.A/all?startTime=2010&endTime=2015&dimensionAtObservation=AllDimensions"
+      }
+    },
+    "options": {
+      "base": {
+        "width": null,
+        "height": null
+      },
+      "axis": {
+        "x": {
+          "linear": {}
+        },
+        "y": {
+          "linear": {
+            "min": -5,
+            "max": 10,
+            "step": 5,
+            "pivot": {
+              "value": null
+            }
+          }
+        }
+      }
+    },
+    "config": {
+      "logo": "https://upload.wikimedia.org/wikipedia/sco/0/0d/OECD_logo_new.svg",
+      "owner": "©OECD",
+      "terms": {
+        "label": "Terms & Conditions",
+        "link": "https://www.oecd.org/termsandconditions/"
+      },
+      "sourceHeaders": {
+        "Accept": "application/vnd.sdmx.data+json",
+        "Accept-Language": "en"
+      }
+    }
+  },
+  "share": "latest",
+  "type": "TimelineChart"
+}
