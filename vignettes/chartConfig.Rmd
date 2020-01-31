@@ -38,6 +38,7 @@ chartconfig <- create_config(
   type = "BarChart",
   highlight = list("PRINTO01", c("BEL", "FIN", "FRA")),
   baseline = list("PRMNTO01", "AUS")
+  ## language = "fr"
 )
 
 ```
@@ -62,7 +63,7 @@ knitr::include_graphics("https://raw.githubusercontent.com/r4io/rcw/master/asset
 
 ## Scatter Chart
 
-```{r, eval=TRUE}
+```{r, echo=TRUE, eval=TRUE}
 query <- "KEI/PRINTO01+PRMNTO01.AUS+AUT+BEL+CAN+CHL+CZE+DNK+EST+FIN+FRA.GP.A/all?startTime=2015&endTime=2015"
 scatter_config <- create_config(
   sdmx_data_query = query,
@@ -268,7 +269,10 @@ query_url_ls <- lapply(var_ls, function(x) {
                           title = "Key Short-Term Economic Indicators",
                           subtitle = c(x$label, subtitle),
                           type = "BarChart",
+                          highlight = list(x$code, c("BEL", "FIN", "FRA")),
+                          baseline = list(x$code, "AUS"),
                           ## path = jsonfile
+                          language = "fr",
                           path = "../examples/bar.json" # template
                           )
   list(

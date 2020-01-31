@@ -1,5 +1,9 @@
 * public URL 2020
 
+** TODO send example Karine
+
+** TODO test highlight / baseline; Accept-Language; title, subtitle
+
 ** TODO timeline chart not showing result
 
 * changes 2019

@@ -69,7 +69,7 @@
     <div class="page-header toc-ignore">
       <h1>Chart Config</h1>
             
-            <h4 class="date">2020-01-25</h4>
+            <h4 class="date">2020-01-31</h4>
       
       
       <div class="hidden name"><code>chartConfig.Rmd</code></div>
@@ -88,159 +88,178 @@
 <span id="cb1-4"><a href="#cb1-4"></a>  <span class="dt">type =</span> <span class="st">"BarChart"</span>,</span>
 <span id="cb1-5"><a href="#cb1-5"></a>  <span class="dt">highlight =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"PRINTO01"</span>, <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"BEL"</span>, <span class="st">"FIN"</span>, <span class="st">"FRA"</span>)),</span>
 <span id="cb1-6"><a href="#cb1-6"></a>  <span class="dt">baseline =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"PRMNTO01"</span>, <span class="st">"AUS"</span>)</span>
-<span id="cb1-7"><a href="#cb1-7"></a>)</span></code></pre></div>
+<span id="cb1-7"><a href="#cb1-7"></a>  <span class="co">## language = "fr"</span></span>
+<span id="cb1-8"><a href="#cb1-8"></a>)</span></code></pre></div>
 <pre><code>## 
 ## Created file ../examples/bar.json</code></pre>
-<iframe src="https://stats.oecd.org/chart?id=4cG4" width="100%" height="700px">
+<iframe src="https://stats.oecd.org/chart?id=4cGo" width="100%" height="700px">
 </iframe>
 </div>
 <div id="scatter-chart" class="section level2">
 <h2 class="hasAnchor">
 <a href="#scatter-chart" class="anchor"></a>Scatter Chart</h2>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>query &lt;-<span class="st"> "KEI/PRINTO01+PRMNTO01.AUS+AUT+BEL+CAN+CHL+CZE+DNK+EST+FIN+FRA.GP.A/all?startTime=2015&amp;endTime=2015"</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a>scatter_config &lt;-<span class="st"> </span><span class="kw"><a href="../reference/create_config.html">create_config</a></span>(</span>
+<span id="cb3-3"><a href="#cb3-3"></a>  <span class="dt">sdmx_data_query =</span> query,</span>
+<span id="cb3-4"><a href="#cb3-4"></a>  <span class="dt">type =</span> <span class="st">"ScatterChart"</span>,</span>
+<span id="cb3-5"><a href="#cb3-5"></a>  <span class="dt">highlight =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">LOCATION =</span> <span class="st">"AUT"</span>,</span>
+<span id="cb3-6"><a href="#cb3-6"></a>                   <span class="dt">LOCATION =</span> <span class="st">"FRA"</span>,</span>
+<span id="cb3-7"><a href="#cb3-7"></a>                   <span class="dt">LOCATION =</span> <span class="st">"CZE"</span></span>
+<span id="cb3-8"><a href="#cb3-8"></a>                   ),</span>
+<span id="cb3-9"><a href="#cb3-9"></a>  <span class="dt">chart_dimension =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">id =</span> <span class="st">"SUBJECT"</span>,</span>
+<span id="cb3-10"><a href="#cb3-10"></a>                         <span class="dt">x =</span> <span class="st">"PRINTO01"</span>, <span class="dt">y =</span> <span class="st">"PRMNTO01"</span>,</span>
+<span id="cb3-11"><a href="#cb3-11"></a>                         <span class="dt">mode =</span> <span class="st">"percent"</span>),</span>
+<span id="cb3-12"><a href="#cb3-12"></a>  <span class="dt">baseline =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">LOCATION =</span> <span class="st">"FIN"</span>)</span>
+<span id="cb3-13"><a href="#cb3-13"></a>  ,<span class="dt">x_axis =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">min =</span> <span class="dv">-2</span>, <span class="dt">max =</span> <span class="dv">4</span>, <span class="dt">step =</span> <span class="dv">1</span>, <span class="dt">pivot =</span> <span class="dv">1</span>),</span>
+<span id="cb3-14"><a href="#cb3-14"></a>  <span class="dt">y_axis =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">min =</span> <span class="dv">-2</span>)</span>
+<span id="cb3-15"><a href="#cb3-15"></a>)</span></code></pre></div>
 <pre><code>## 
 ## Created file ../examples/scatter.json</code></pre>
-<iframe src="https://stats.oecd.org/chart?id=4cG5" width="100%" height="500px">
+<iframe src="https://stats.oecd.org/chart?id=4cGp" width="100%" height="500px">
 </iframe>
 </div>
 <div id="stacked-bar-chart" class="section level2">
 <h2 class="hasAnchor">
 <a href="#stacked-bar-chart" class="anchor"></a>Stacked Bar Chart</h2>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>query &lt;-<span class="st"> "KEI/PRINTO01+PRMNTO01.AUS+AUT+BEL+CAN+CHL+CZE+DNK+EST+FIN+FRA.GP.A/all?startTime=2015&amp;endTime=2015"</span></span>
-<span id="cb4-2"><a href="#cb4-2"></a>stacked_bar_config &lt;-<span class="st"> </span><span class="kw"><a href="../reference/create_config.html">create_config</a></span>(</span>
-<span id="cb4-3"><a href="#cb4-3"></a>  <span class="dt">sdmx_data_query =</span> query,</span>
-<span id="cb4-4"><a href="#cb4-4"></a>  <span class="dt">type =</span> <span class="st">"StackedBarChart"</span>,</span>
-<span id="cb4-5"><a href="#cb4-5"></a>  <span class="dt">highlight =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"AUT"</span>, <span class="st">"BEL"</span>, <span class="st">"FIN"</span>)),</span>
-<span id="cb4-6"><a href="#cb4-6"></a>  <span class="dt">baseline =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"FRA"</span>),</span>
-<span id="cb4-7"><a href="#cb4-7"></a>  <span class="dt">chart_dimension =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">id =</span> <span class="st">"LOCATION"</span>, <span class="dt">mode =</span> <span class="st">"value"</span>)</span>
-<span id="cb4-8"><a href="#cb4-8"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>query &lt;-<span class="st"> "KEI/PRINTO01+PRMNTO01.AUS+AUT+BEL+CAN+CHL+CZE+DNK+EST+FIN+FRA.GP.A/all?startTime=2015&amp;endTime=2015"</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a>stacked_bar_config &lt;-<span class="st"> </span><span class="kw"><a href="../reference/create_config.html">create_config</a></span>(</span>
+<span id="cb5-3"><a href="#cb5-3"></a>  <span class="dt">sdmx_data_query =</span> query,</span>
+<span id="cb5-4"><a href="#cb5-4"></a>  <span class="dt">type =</span> <span class="st">"StackedBarChart"</span>,</span>
+<span id="cb5-5"><a href="#cb5-5"></a>  <span class="dt">highlight =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"AUT"</span>, <span class="st">"BEL"</span>, <span class="st">"FIN"</span>)),</span>
+<span id="cb5-6"><a href="#cb5-6"></a>  <span class="dt">baseline =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"FRA"</span>),</span>
+<span id="cb5-7"><a href="#cb5-7"></a>  <span class="dt">chart_dimension =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">id =</span> <span class="st">"LOCATION"</span>, <span class="dt">mode =</span> <span class="st">"value"</span>)</span>
+<span id="cb5-8"><a href="#cb5-8"></a>)</span></code></pre></div>
 <pre><code>## 
 ## Created file ../examples/stacked_bar.json</code></pre>
-<iframe src="https://stats.oecd.org/chart?id=4cG6" width="100%" height="500px">
+<iframe src="https://stats.oecd.org/chart?id=4cGq" width="100%" height="500px">
 </iframe>
 </div>
 <div id="timeline-chart" class="section level2">
 <h2 class="hasAnchor">
 <a href="#timeline-chart" class="anchor"></a>Timeline Chart</h2>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>query &lt;-<span class="st"> "KEI/PRINTO01+PRMNTO01.AUS+AUT+BEL+CAN+CHL+CZE+DNK+EST+FIN+FRA.GP.A/all?startTime=2010&amp;endTime=2015"</span></span>
-<span id="cb6-2"><a href="#cb6-2"></a>timeline_config &lt;-<span class="st"> </span><span class="kw"><a href="../reference/create_config.html">create_config</a></span>(</span>
-<span id="cb6-3"><a href="#cb6-3"></a>  <span class="dt">sdmx_data_query =</span> query,</span>
-<span id="cb6-4"><a href="#cb6-4"></a>  <span class="dt">type =</span> <span class="st">"TimelineChart"</span>,</span>
-<span id="cb6-5"><a href="#cb6-5"></a>  <span class="dt">highlight =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"PRINTO01"</span>, <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"AUT"</span>, <span class="st">"BEL"</span>, <span class="st">"FIN"</span>)),</span>
-<span id="cb6-6"><a href="#cb6-6"></a>  <span class="dt">baseline =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"PRINTO01"</span>, <span class="st">"FRA"</span>),</span>
-<span id="cb6-7"><a href="#cb6-7"></a>  <span class="dt">y_axis =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">min =</span> <span class="dv">-5</span>, <span class="dt">max =</span> <span class="dv">10</span>, <span class="dt">step =</span> <span class="dv">5</span>) <span class="co"># max is ignored if larger values in data</span></span>
-<span id="cb6-8"><a href="#cb6-8"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>query &lt;-<span class="st"> "KEI/PRINTO01+PRMNTO01.AUS+AUT+BEL+CAN+CHL+CZE+DNK+EST+FIN+FRA.GP.A/all?startTime=2010&amp;endTime=2015"</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a>timeline_config &lt;-<span class="st"> </span><span class="kw"><a href="../reference/create_config.html">create_config</a></span>(</span>
+<span id="cb7-3"><a href="#cb7-3"></a>  <span class="dt">sdmx_data_query =</span> query,</span>
+<span id="cb7-4"><a href="#cb7-4"></a>  <span class="dt">type =</span> <span class="st">"TimelineChart"</span>,</span>
+<span id="cb7-5"><a href="#cb7-5"></a>  <span class="dt">highlight =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"PRINTO01"</span>, <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"AUT"</span>, <span class="st">"BEL"</span>, <span class="st">"FIN"</span>)),</span>
+<span id="cb7-6"><a href="#cb7-6"></a>  <span class="dt">baseline =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"PRINTO01"</span>, <span class="st">"FRA"</span>),</span>
+<span id="cb7-7"><a href="#cb7-7"></a>  <span class="dt">y_axis =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">min =</span> <span class="dv">-5</span>, <span class="dt">max =</span> <span class="dv">10</span>, <span class="dt">step =</span> <span class="dv">5</span>) <span class="co"># max is ignored if larger values in data</span></span>
+<span id="cb7-8"><a href="#cb7-8"></a>)</span></code></pre></div>
 <pre><code>## 
 ## Created file ../examples/timeline.json</code></pre>
-<iframe src="https://stats.oecd.org/chart?id=4cG7" width="100%" height="500px">
+<iframe src="https://stats.oecd.org/chart?id=4cGr" width="100%" height="500px">
 </iframe>
 </div>
 <div id="row-chart" class="section level2">
 <h2 class="hasAnchor">
 <a href="#row-chart" class="anchor"></a>Row Chart</h2>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>query &lt;-<span class="st"> "KEI/PRINTO01+PRMNTO01.AUS+AUT+BEL+CAN+CHL+CZE+DNK+EST+FIN+FRA.GP.A/all?startTime=2015&amp;endTime=2015"</span></span>
-<span id="cb8-2"><a href="#cb8-2"></a>row_config &lt;-<span class="st"> </span><span class="kw"><a href="../reference/create_config.html">create_config</a></span>(</span>
-<span id="cb8-3"><a href="#cb8-3"></a>  <span class="dt">sdmx_data_query =</span> query,</span>
-<span id="cb8-4"><a href="#cb8-4"></a>  <span class="dt">type =</span> <span class="st">"RowChart"</span>,</span>
-<span id="cb8-5"><a href="#cb8-5"></a>  <span class="dt">highlight =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"PRINTO01"</span>, <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"AUT"</span>, <span class="st">"BEL"</span>, <span class="st">"FIN"</span>)),</span>
-<span id="cb8-6"><a href="#cb8-6"></a>  <span class="dt">baseline =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"PRINTO01"</span>, <span class="st">"FRA"</span>)</span>
-<span id="cb8-7"><a href="#cb8-7"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>query &lt;-<span class="st"> "KEI/PRINTO01+PRMNTO01.AUS+AUT+BEL+CAN+CHL+CZE+DNK+EST+FIN+FRA.GP.A/all?startTime=2015&amp;endTime=2015"</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a>row_config &lt;-<span class="st"> </span><span class="kw"><a href="../reference/create_config.html">create_config</a></span>(</span>
+<span id="cb9-3"><a href="#cb9-3"></a>  <span class="dt">sdmx_data_query =</span> query,</span>
+<span id="cb9-4"><a href="#cb9-4"></a>  <span class="dt">type =</span> <span class="st">"RowChart"</span>,</span>
+<span id="cb9-5"><a href="#cb9-5"></a>  <span class="dt">highlight =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"PRINTO01"</span>, <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"AUT"</span>, <span class="st">"BEL"</span>, <span class="st">"FIN"</span>)),</span>
+<span id="cb9-6"><a href="#cb9-6"></a>  <span class="dt">baseline =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"PRINTO01"</span>, <span class="st">"FRA"</span>)</span>
+<span id="cb9-7"><a href="#cb9-7"></a>)</span></code></pre></div>
 <pre><code>## 
 ## Created file ../examples/row.json</code></pre>
-<iframe src="https://stats.oecd.org/chart?id=4cG8" width="100%" height="700px">
+<iframe src="https://stats.oecd.org/chart?id=4cGs" width="100%" height="700px">
 </iframe>
 </div>
 <div id="vertical-symbol-chart" class="section level2">
 <h2 class="hasAnchor">
 <a href="#vertical-symbol-chart" class="anchor"></a>Vertical Symbol Chart</h2>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>query &lt;-<span class="st"> "KEI/PRINTO01+PRMNTO01.AUS+AUT+BEL+CAN+CHL+CZE+DNK+EST+FIN+FRA.GP.A/all?startTime=2015&amp;endTime=2015"</span></span>
-<span id="cb10-2"><a href="#cb10-2"></a>vertical_symbol_config &lt;-<span class="st"> </span><span class="kw"><a href="../reference/create_config.html">create_config</a></span>(</span>
-<span id="cb10-3"><a href="#cb10-3"></a>  <span class="dt">sdmx_data_query =</span> query,</span>
-<span id="cb10-4"><a href="#cb10-4"></a>  <span class="dt">type =</span> <span class="st">"VerticalSymbolChart"</span>,</span>
-<span id="cb10-5"><a href="#cb10-5"></a>  <span class="dt">chart_dimension =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">id =</span> <span class="st">"SUBJECT"</span>),</span>
-<span id="cb10-6"><a href="#cb10-6"></a>  <span class="dt">highlight =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"DNK"</span>, <span class="st">"AUS"</span>, <span class="st">"CZE"</span>)),</span>
-<span id="cb10-7"><a href="#cb10-7"></a>  <span class="dt">baseline =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"CAN"</span>)</span>
-<span id="cb10-8"><a href="#cb10-8"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>query &lt;-<span class="st"> "KEI/PRINTO01+PRMNTO01.AUS+AUT+BEL+CAN+CHL+CZE+DNK+EST+FIN+FRA.GP.A/all?startTime=2015&amp;endTime=2015"</span></span>
+<span id="cb11-2"><a href="#cb11-2"></a>vertical_symbol_config &lt;-<span class="st"> </span><span class="kw"><a href="../reference/create_config.html">create_config</a></span>(</span>
+<span id="cb11-3"><a href="#cb11-3"></a>  <span class="dt">sdmx_data_query =</span> query,</span>
+<span id="cb11-4"><a href="#cb11-4"></a>  <span class="dt">type =</span> <span class="st">"VerticalSymbolChart"</span>,</span>
+<span id="cb11-5"><a href="#cb11-5"></a>  <span class="dt">chart_dimension =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">id =</span> <span class="st">"SUBJECT"</span>),</span>
+<span id="cb11-6"><a href="#cb11-6"></a>  <span class="dt">highlight =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"DNK"</span>, <span class="st">"AUS"</span>, <span class="st">"CZE"</span>)),</span>
+<span id="cb11-7"><a href="#cb11-7"></a>  <span class="dt">baseline =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"CAN"</span>)</span>
+<span id="cb11-8"><a href="#cb11-8"></a>)</span></code></pre></div>
 <pre><code>## 
 ## Created file ../examples/vertical_symbol.json</code></pre>
-<iframe src="https://stats.oecd.org/chart?id=4cG9" width="100%" height="700px">
+<iframe src="https://stats.oecd.org/chart?id=4cGt" width="100%" height="700px">
 </iframe>
 </div>
 <div id="horizontal-symbol-chart" class="section level2">
 <h2 class="hasAnchor">
 <a href="#horizontal-symbol-chart" class="anchor"></a>Horizontal Symbol Chart</h2>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>query &lt;-<span class="st"> "KEI/PRINTO01+PRMNTO01.AUS+AUT+BEL+CAN+CHL+CZE+DNK+EST+FIN+FRA.GP.A/all?startTime=2015&amp;endTime=2015"</span></span>
-<span id="cb12-2"><a href="#cb12-2"></a>horizontal_symbol_config &lt;-<span class="st"> </span><span class="kw"><a href="../reference/create_config.html">create_config</a></span>(</span>
-<span id="cb12-3"><a href="#cb12-3"></a>  <span class="dt">sdmx_data_query =</span> query,</span>
-<span id="cb12-4"><a href="#cb12-4"></a>  <span class="dt">type =</span> <span class="st">"HorizontalSymbolChart"</span>,</span>
-<span id="cb12-5"><a href="#cb12-5"></a>  <span class="dt">chart_dimension =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">id =</span> <span class="st">"SUBJECT"</span>),</span>
-<span id="cb12-6"><a href="#cb12-6"></a>  <span class="dt">highlight =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"DNK"</span>, <span class="st">"AUS"</span>, <span class="st">"CZE"</span>)),</span>
-<span id="cb12-7"><a href="#cb12-7"></a>  <span class="dt">baseline =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"CAN"</span>)</span>
-<span id="cb12-8"><a href="#cb12-8"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>query &lt;-<span class="st"> "KEI/PRINTO01+PRMNTO01.AUS+AUT+BEL+CAN+CHL+CZE+DNK+EST+FIN+FRA.GP.A/all?startTime=2015&amp;endTime=2015"</span></span>
+<span id="cb13-2"><a href="#cb13-2"></a>horizontal_symbol_config &lt;-<span class="st"> </span><span class="kw"><a href="../reference/create_config.html">create_config</a></span>(</span>
+<span id="cb13-3"><a href="#cb13-3"></a>  <span class="dt">sdmx_data_query =</span> query,</span>
+<span id="cb13-4"><a href="#cb13-4"></a>  <span class="dt">type =</span> <span class="st">"HorizontalSymbolChart"</span>,</span>
+<span id="cb13-5"><a href="#cb13-5"></a>  <span class="dt">chart_dimension =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">id =</span> <span class="st">"SUBJECT"</span>),</span>
+<span id="cb13-6"><a href="#cb13-6"></a>  <span class="dt">highlight =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"DNK"</span>, <span class="st">"AUS"</span>, <span class="st">"CZE"</span>)),</span>
+<span id="cb13-7"><a href="#cb13-7"></a>  <span class="dt">baseline =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"CAN"</span>)</span>
+<span id="cb13-8"><a href="#cb13-8"></a>)</span></code></pre></div>
 <pre><code>## 
 ## Created file ../examples/horizontal_symbol.json</code></pre>
-<iframe src="https://stats.oecd.org/chart?id=4cGa" width="100%" height="700px">
+<iframe src="https://stats.oecd.org/chart?id=4cGu" width="100%" height="700px">
 </iframe>
 </div>
 <div id="multi-config" class="section level2">
 <h2 class="hasAnchor">
 <a href="#multi-config" class="anchor"></a>Multi Config</h2>
 <p>Create one chart per variable</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>var_ls &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</span>
-<span id="cb14-2"><a href="#cb14-2"></a>  <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">code =</span> <span class="st">"PRINTO01"</span>, <span class="dt">label =</span> <span class="st">"Industrial Production"</span>),</span>
-<span id="cb14-3"><a href="#cb14-3"></a>  <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">code =</span> <span class="st">"PRMNTO01"</span>, <span class="dt">label =</span> <span class="st">"Total Manufacturing"</span>)</span>
-<span id="cb14-4"><a href="#cb14-4"></a>)</span>
-<span id="cb14-5"><a href="#cb14-5"></a></span>
-<span id="cb14-6"><a href="#cb14-6"></a>cou_c &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"AUS"</span>, <span class="st">"AUT"</span>, <span class="st">"BEL"</span>, <span class="st">"CAN"</span>, <span class="st">"CHL"</span>, <span class="st">"CZE"</span>, <span class="st">"DNK"</span>, <span class="st">"EST"</span>, <span class="st">"FIN"</span>, <span class="st">"FRA"</span>)</span>
-<span id="cb14-7"><a href="#cb14-7"></a>cou_str &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(cou_c, <span class="dt">collapse =</span> <span class="st">"+"</span>)</span>
-<span id="cb14-8"><a href="#cb14-8"></a></span>
-<span id="cb14-9"><a href="#cb14-9"></a>subtitle &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Measure: Growth previous period"</span>, <span class="st">"Frequency: Annual"</span>, <span class="st">"Time: 2015"</span>)</span>
-<span id="cb14-10"><a href="#cb14-10"></a></span>
-<span id="cb14-11"><a href="#cb14-11"></a>query_url_ls &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span>(var_ls, <span class="cf">function</span>(x) {</span>
-<span id="cb14-12"><a href="#cb14-12"></a>  query1 &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(x<span class="op">$</span>code, cou_str, <span class="st">"GP"</span>, <span class="st">"A"</span>, <span class="dt">sep =</span> <span class="st">"."</span>)</span>
-<span id="cb14-13"><a href="#cb14-13"></a>  query2 &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span>(<span class="st">"KEI"</span>, query1, <span class="st">"all?startTime=2015&amp;endTime=2015"</span>)</span>
-<span id="cb14-14"><a href="#cb14-14"></a>  config &lt;-<span class="st"> </span><span class="kw"><a href="../reference/create_config.html">create_config</a></span>(<span class="dt">sdmx_data_query =</span> query2,</span>
-<span id="cb14-15"><a href="#cb14-15"></a>                          <span class="dt">title =</span> <span class="st">"Key Short-Term Economic Indicators"</span>,</span>
-<span id="cb14-16"><a href="#cb14-16"></a>                          <span class="dt">subtitle =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(x<span class="op">$</span>label, subtitle),</span>
-<span id="cb14-17"><a href="#cb14-17"></a>                          <span class="dt">type =</span> <span class="st">"BarChart"</span>,</span>
-<span id="cb14-18"><a href="#cb14-18"></a>                          <span class="co">## path = jsonfile</span></span>
-<span id="cb14-19"><a href="#cb14-19"></a>                          <span class="dt">path =</span> <span class="st">"../examples/bar.json"</span> <span class="co"># template</span></span>
-<span id="cb14-20"><a href="#cb14-20"></a>                          )</span>
-<span id="cb14-21"><a href="#cb14-21"></a>  <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</span>
-<span id="cb14-22"><a href="#cb14-22"></a>    <span class="dt">code =</span> x<span class="op">$</span>code,</span>
-<span id="cb14-23"><a href="#cb14-23"></a>    <span class="dt">label =</span> x<span class="op">$</span>label,</span>
-<span id="cb14-24"><a href="#cb14-24"></a>    <span class="dt">config =</span> config</span>
-<span id="cb14-25"><a href="#cb14-25"></a>  )</span>
-<span id="cb14-26"><a href="#cb14-26"></a>})</span>
-<span id="cb14-27"><a href="#cb14-27"></a></span>
-<span id="cb14-28"><a href="#cb14-28"></a><span class="co">## str(query_url_ls)</span></span></code></pre></div>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>chart_url_c &lt;-</span>
-<span id="cb15-2"><a href="#cb15-2"></a><span class="st">  </span><span class="co">## sapply(query_url_ls,</span></span>
-<span id="cb15-3"><a href="#cb15-3"></a><span class="st">  </span><span class="kw"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span>(query_url_ls,</span>
-<span id="cb15-4"><a href="#cb15-4"></a>         <span class="cf">function</span>(x) <span class="kw"><a href="../reference/post_config.html">post_config</a></span>(<span class="dt">config =</span> x<span class="op">$</span>config,</span>
-<span id="cb15-5"><a href="#cb15-5"></a>                                 <span class="dt">url =</span> <span class="st">"https://stats.oecd.org/share"</span>,</span>
-<span id="cb15-6"><a href="#cb15-6"></a>                                 <span class="dt">post =</span> <span class="ot">TRUE</span></span>
-<span id="cb15-7"><a href="#cb15-7"></a>                                 ))</span>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>var_ls &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</span>
+<span id="cb15-2"><a href="#cb15-2"></a>  <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">code =</span> <span class="st">"PRINTO01"</span>, <span class="dt">label =</span> <span class="st">"Industrial Production"</span>),</span>
+<span id="cb15-3"><a href="#cb15-3"></a>  <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">code =</span> <span class="st">"PRMNTO01"</span>, <span class="dt">label =</span> <span class="st">"Total Manufacturing"</span>)</span>
+<span id="cb15-4"><a href="#cb15-4"></a>)</span>
+<span id="cb15-5"><a href="#cb15-5"></a></span>
+<span id="cb15-6"><a href="#cb15-6"></a>cou_c &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"AUS"</span>, <span class="st">"AUT"</span>, <span class="st">"BEL"</span>, <span class="st">"CAN"</span>, <span class="st">"CHL"</span>, <span class="st">"CZE"</span>, <span class="st">"DNK"</span>, <span class="st">"EST"</span>, <span class="st">"FIN"</span>, <span class="st">"FRA"</span>)</span>
+<span id="cb15-7"><a href="#cb15-7"></a>cou_str &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(cou_c, <span class="dt">collapse =</span> <span class="st">"+"</span>)</span>
 <span id="cb15-8"><a href="#cb15-8"></a></span>
-<span id="cb15-9"><a href="#cb15-9"></a><span class="co">## print(chart_url_c)</span></span>
-<span id="cb15-10"><a href="#cb15-10"></a><span class="kw"><a href="https://rdrr.io/r/utils/str.html">str</a></span>(chart_url_c)</span></code></pre></div>
+<span id="cb15-9"><a href="#cb15-9"></a>subtitle &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Measure: Growth previous period"</span>, <span class="st">"Frequency: Annual"</span>, <span class="st">"Time: 2015"</span>)</span>
+<span id="cb15-10"><a href="#cb15-10"></a></span>
+<span id="cb15-11"><a href="#cb15-11"></a>query_url_ls &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span>(var_ls, <span class="cf">function</span>(x) {</span>
+<span id="cb15-12"><a href="#cb15-12"></a>  query1 &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(x<span class="op">$</span>code, cou_str, <span class="st">"GP"</span>, <span class="st">"A"</span>, <span class="dt">sep =</span> <span class="st">"."</span>)</span>
+<span id="cb15-13"><a href="#cb15-13"></a>  query2 &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span>(<span class="st">"KEI"</span>, query1, <span class="st">"all?startTime=2015&amp;endTime=2015"</span>)</span>
+<span id="cb15-14"><a href="#cb15-14"></a>  config &lt;-<span class="st"> </span><span class="kw"><a href="../reference/create_config.html">create_config</a></span>(<span class="dt">sdmx_data_query =</span> query2,</span>
+<span id="cb15-15"><a href="#cb15-15"></a>                          <span class="dt">title =</span> <span class="st">"Key Short-Term Economic Indicators"</span>,</span>
+<span id="cb15-16"><a href="#cb15-16"></a>                          <span class="dt">subtitle =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(x<span class="op">$</span>label, subtitle),</span>
+<span id="cb15-17"><a href="#cb15-17"></a>                          <span class="dt">type =</span> <span class="st">"BarChart"</span>,</span>
+<span id="cb15-18"><a href="#cb15-18"></a>                          <span class="dt">highlight =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(x<span class="op">$</span>code, <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"BEL"</span>, <span class="st">"FIN"</span>, <span class="st">"FRA"</span>)),</span>
+<span id="cb15-19"><a href="#cb15-19"></a>                          <span class="dt">baseline =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(x<span class="op">$</span>code, <span class="st">"AUS"</span>),</span>
+<span id="cb15-20"><a href="#cb15-20"></a>                          <span class="co">## path = jsonfile</span></span>
+<span id="cb15-21"><a href="#cb15-21"></a>                          <span class="dt">language =</span> <span class="st">"fr"</span>,</span>
+<span id="cb15-22"><a href="#cb15-22"></a>                          <span class="dt">path =</span> <span class="st">"../examples/bar.json"</span> <span class="co"># template</span></span>
+<span id="cb15-23"><a href="#cb15-23"></a>                          )</span>
+<span id="cb15-24"><a href="#cb15-24"></a>  <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</span>
+<span id="cb15-25"><a href="#cb15-25"></a>    <span class="dt">code =</span> x<span class="op">$</span>code,</span>
+<span id="cb15-26"><a href="#cb15-26"></a>    <span class="dt">label =</span> x<span class="op">$</span>label,</span>
+<span id="cb15-27"><a href="#cb15-27"></a>    <span class="dt">config =</span> config</span>
+<span id="cb15-28"><a href="#cb15-28"></a>  )</span>
+<span id="cb15-29"><a href="#cb15-29"></a>})</span>
+<span id="cb15-30"><a href="#cb15-30"></a></span>
+<span id="cb15-31"><a href="#cb15-31"></a><span class="co">## str(query_url_ls)</span></span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>chart_url_c &lt;-</span>
+<span id="cb16-2"><a href="#cb16-2"></a><span class="st">  </span><span class="co">## sapply(query_url_ls,</span></span>
+<span id="cb16-3"><a href="#cb16-3"></a><span class="st">  </span><span class="kw"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span>(query_url_ls,</span>
+<span id="cb16-4"><a href="#cb16-4"></a>         <span class="cf">function</span>(x) <span class="kw"><a href="../reference/post_config.html">post_config</a></span>(<span class="dt">config =</span> x<span class="op">$</span>config,</span>
+<span id="cb16-5"><a href="#cb16-5"></a>                                 <span class="dt">url =</span> <span class="st">"https://stats.oecd.org/share"</span>,</span>
+<span id="cb16-6"><a href="#cb16-6"></a>                                 <span class="dt">post =</span> <span class="ot">TRUE</span></span>
+<span id="cb16-7"><a href="#cb16-7"></a>                                 ))</span>
+<span id="cb16-8"><a href="#cb16-8"></a></span>
+<span id="cb16-9"><a href="#cb16-9"></a><span class="co">## print(chart_url_c)</span></span>
+<span id="cb16-10"><a href="#cb16-10"></a><span class="kw"><a href="https://rdrr.io/r/utils/str.html">str</a></span>(chart_url_c)</span></code></pre></div>
 <pre><code>## List of 2
 ##  $ :List of 5
 ##   ..$ status    : chr "Success"
-##   ..$ id        : chr "4cGb"
-##   ..$ config_url: chr "https://stats.oecd.org/share/chart?id=4cGb"
-##   ..$ viewer_url: chr "https://stats.oecd.org/chart?id=4cGb"
+##   ..$ id        : chr "4cGv"
+##   ..$ config_url: chr "https://stats.oecd.org/share/chart?id=4cGv"
+##   ..$ viewer_url: chr "https://stats.oecd.org/chart?id=4cGv"
 ##   ..$ path      : logi NA
 ##  $ :List of 5
 ##   ..$ status    : chr "Success"
-##   ..$ id        : chr "4cGc"
-##   ..$ config_url: chr "https://stats.oecd.org/share/chart?id=4cGc"
-##   ..$ viewer_url: chr "https://stats.oecd.org/chart?id=4cGc"
+##   ..$ id        : chr "4cGw"
+##   ..$ config_url: chr "https://stats.oecd.org/share/chart?id=4cGw"
+##   ..$ viewer_url: chr "https://stats.oecd.org/chart?id=4cGw"
 ##   ..$ path      : logi NA</code></pre>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>knitr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/knitr/man/include_url.html">include_url</a></span>(chart_url_c[[<span class="dv">1</span>]]<span class="op">$</span>viewer_url, <span class="dt">height =</span> <span class="st">"700px"</span>)</span></code></pre></div>
-<iframe src="https://stats.oecd.org/chart?id=4cGb" width="100%" height="700px">
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>knitr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/knitr/man/include_url.html">include_url</a></span>(chart_url_c[[<span class="dv">1</span>]]<span class="op">$</span>viewer_url, <span class="dt">height =</span> <span class="st">"700px"</span>)</span></code></pre></div>
+<iframe src="https://stats.oecd.org/chart?id=4cGv" width="100%" height="700px">
 </iframe>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>knitr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/knitr/man/include_url.html">include_url</a></span>(chart_url_c[[<span class="dv">2</span>]]<span class="op">$</span>viewer_url, <span class="dt">height =</span> <span class="st">"700px"</span>)</span></code></pre></div>
-<iframe src="https://stats.oecd.org/chart?id=4cGc" width="100%" height="700px">
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a>knitr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/knitr/man/include_url.html">include_url</a></span>(chart_url_c[[<span class="dv">2</span>]]<span class="op">$</span>viewer_url, <span class="dt">height =</span> <span class="st">"700px"</span>)</span></code></pre></div>
+<iframe src="https://stats.oecd.org/chart?id=4cGw" width="100%" height="700px">
 </iframe>
 <!-- ## Create debug information -->
 </div>
