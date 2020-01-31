@@ -269,9 +269,8 @@ query_url_ls <- lapply(var_ls, function(x) {
                           title = "Key Short-Term Economic Indicators",
                           subtitle = c(x$label, subtitle),
                           type = "BarChart",
-                          highlight = list(x$code, c("BEL", "FIN", "FRA")),
-                          baseline = list(x$code, "AUS"),
-                          ## path = jsonfile
+                          highlight = list(c("BEL", "FIN", "FRA")),
+                          baseline = list("AUS"),
                           language = "fr",
                           path = "../examples/bar.json" # template
                           )
@@ -294,7 +293,8 @@ chart_url_c <-
   lapply(query_url_ls,
          function(x) post_config(config = x$config,
                                  url = "https://stats.oecd.org/share",
-                                 post = TRUE
+                                 post = TRUE,
+                                 path = paste0("../examples/multi_", x$code, ".json")
                                  ))
 
 ## print(chart_url_c)
