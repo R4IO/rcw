@@ -51,7 +51,7 @@ res_ls <- post_config(
     path = "../examples/bar.json" # write config to disk
 )
 ## browseURL(res_ls$viewer_url)
-knitr::include_url(res_ls$viewer_url, height = "700px")
+knitr::include_url(res_ls$viewer_url, height = "750px")
 
 ```
 

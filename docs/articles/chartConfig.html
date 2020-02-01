@@ -69,7 +69,7 @@
     <div class="page-header toc-ignore">
       <h1>Chart Config</h1>
             
-            <h4 class="date">2020-01-31</h4>
+            <h4 class="date">2020-02-01</h4>
       
       
       <div class="hidden name"><code>chartConfig.Rmd</code></div>
@@ -92,7 +92,7 @@
 <span id="cb1-8"><a href="#cb1-8"></a>)</span></code></pre></div>
 <pre><code>## 
 ## Created file ../examples/bar.json</code></pre>
-<iframe src="https://stats.oecd.org/chart?id=4cGC" width="100%" height="700px">
+<iframe src="https://stats.oecd.org/chart?id=4cGQ" width="100%" height="750px">
 </iframe>
 </div>
 <div id="scatter-chart" class="section level2">
@@ -115,7 +115,7 @@
 <span id="cb3-15"><a href="#cb3-15"></a>)</span></code></pre></div>
 <pre><code>## 
 ## Created file ../examples/scatter.json</code></pre>
-<iframe src="https://stats.oecd.org/chart?id=4cGD" width="100%" height="500px">
+<iframe src="https://stats.oecd.org/chart?id=4cGR" width="100%" height="500px">
 </iframe>
 </div>
 <div id="stacked-bar-chart" class="section level2">
@@ -131,7 +131,7 @@
 <span id="cb5-8"><a href="#cb5-8"></a>)</span></code></pre></div>
 <pre><code>## 
 ## Created file ../examples/stacked_bar.json</code></pre>
-<iframe src="https://stats.oecd.org/chart?id=4cGE" width="100%" height="500px">
+<iframe src="https://stats.oecd.org/chart?id=4cGS" width="100%" height="500px">
 </iframe>
 </div>
 <div id="timeline-chart" class="section level2">
@@ -147,7 +147,7 @@
 <span id="cb7-8"><a href="#cb7-8"></a>)</span></code></pre></div>
 <pre><code>## 
 ## Created file ../examples/timeline.json</code></pre>
-<iframe src="https://stats.oecd.org/chart?id=4cGF" width="100%" height="500px">
+<iframe src="https://stats.oecd.org/chart?id=4cGT" width="100%" height="500px">
 </iframe>
 </div>
 <div id="row-chart" class="section level2">
@@ -162,7 +162,7 @@
 <span id="cb9-7"><a href="#cb9-7"></a>)</span></code></pre></div>
 <pre><code>## 
 ## Created file ../examples/row.json</code></pre>
-<iframe src="https://stats.oecd.org/chart?id=4cGG" width="100%" height="700px">
+<iframe src="https://stats.oecd.org/chart?id=4cGU" width="100%" height="700px">
 </iframe>
 </div>
 <div id="vertical-symbol-chart" class="section level2">
@@ -178,7 +178,7 @@
 <span id="cb11-8"><a href="#cb11-8"></a>)</span></code></pre></div>
 <pre><code>## 
 ## Created file ../examples/vertical_symbol.json</code></pre>
-<iframe src="https://stats.oecd.org/chart?id=4cGH" width="100%" height="700px">
+<iframe src="https://stats.oecd.org/chart?id=4cGV" width="100%" height="700px">
 </iframe>
 </div>
 <div id="horizontal-symbol-chart" class="section level2">
@@ -194,7 +194,7 @@
 <span id="cb13-8"><a href="#cb13-8"></a>)</span></code></pre></div>
 <pre><code>## 
 ## Created file ../examples/horizontal_symbol.json</code></pre>
-<iframe src="https://stats.oecd.org/chart?id=4cGI" width="100%" height="700px">
+<iframe src="https://stats.oecd.org/chart?id=4cGW" width="100%" height="700px">
 </iframe>
 </div>
 <div id="multi-config" class="section level2">
@@ -218,22 +218,19 @@
 <span id="cb15-15"><a href="#cb15-15"></a>                          <span class="dt">title =</span> <span class="st">"Key Short-Term Economic Indicators"</span>,</span>
 <span id="cb15-16"><a href="#cb15-16"></a>                          <span class="dt">subtitle =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(x<span class="op">$</span>label, subtitle),</span>
 <span id="cb15-17"><a href="#cb15-17"></a>                          <span class="dt">type =</span> <span class="st">"BarChart"</span>,</span>
-<span id="cb15-18"><a href="#cb15-18"></a>                          <span class="co">## highlight = list(x$code, c("BEL", "FIN", "FRA")),</span></span>
-<span id="cb15-19"><a href="#cb15-19"></a>                          <span class="co">## baseline = list(x$code, "AUS"),</span></span>
-<span id="cb15-20"><a href="#cb15-20"></a>                          <span class="dt">highlight =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"BEL"</span>, <span class="st">"FIN"</span>, <span class="st">"FRA"</span>)),</span>
-<span id="cb15-21"><a href="#cb15-21"></a>                          <span class="dt">baseline =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"AUS"</span>),</span>
-<span id="cb15-22"><a href="#cb15-22"></a>                          <span class="co">## path = jsonfile</span></span>
-<span id="cb15-23"><a href="#cb15-23"></a>                          <span class="dt">language =</span> <span class="st">"fr"</span>,</span>
-<span id="cb15-24"><a href="#cb15-24"></a>                          <span class="dt">path =</span> <span class="st">"../examples/bar.json"</span> <span class="co"># template</span></span>
-<span id="cb15-25"><a href="#cb15-25"></a>                          )</span>
-<span id="cb15-26"><a href="#cb15-26"></a>  <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</span>
-<span id="cb15-27"><a href="#cb15-27"></a>    <span class="dt">code =</span> x<span class="op">$</span>code,</span>
-<span id="cb15-28"><a href="#cb15-28"></a>    <span class="dt">label =</span> x<span class="op">$</span>label,</span>
-<span id="cb15-29"><a href="#cb15-29"></a>    <span class="dt">config =</span> config</span>
-<span id="cb15-30"><a href="#cb15-30"></a>  )</span>
-<span id="cb15-31"><a href="#cb15-31"></a>})</span>
-<span id="cb15-32"><a href="#cb15-32"></a></span>
-<span id="cb15-33"><a href="#cb15-33"></a><span class="co">## str(query_url_ls)</span></span></code></pre></div>
+<span id="cb15-18"><a href="#cb15-18"></a>                          <span class="dt">highlight =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"BEL"</span>, <span class="st">"FIN"</span>, <span class="st">"FRA"</span>)),</span>
+<span id="cb15-19"><a href="#cb15-19"></a>                          <span class="dt">baseline =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"AUS"</span>),</span>
+<span id="cb15-20"><a href="#cb15-20"></a>                          <span class="dt">language =</span> <span class="st">"fr"</span>,</span>
+<span id="cb15-21"><a href="#cb15-21"></a>                          <span class="dt">path =</span> <span class="st">"../examples/bar.json"</span> <span class="co"># template</span></span>
+<span id="cb15-22"><a href="#cb15-22"></a>                          )</span>
+<span id="cb15-23"><a href="#cb15-23"></a>  <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</span>
+<span id="cb15-24"><a href="#cb15-24"></a>    <span class="dt">code =</span> x<span class="op">$</span>code,</span>
+<span id="cb15-25"><a href="#cb15-25"></a>    <span class="dt">label =</span> x<span class="op">$</span>label,</span>
+<span id="cb15-26"><a href="#cb15-26"></a>    <span class="dt">config =</span> config</span>
+<span id="cb15-27"><a href="#cb15-27"></a>  )</span>
+<span id="cb15-28"><a href="#cb15-28"></a>})</span>
+<span id="cb15-29"><a href="#cb15-29"></a></span>
+<span id="cb15-30"><a href="#cb15-30"></a><span class="co">## str(query_url_ls)</span></span></code></pre></div>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>chart_url_c &lt;-</span>
 <span id="cb16-2"><a href="#cb16-2"></a><span class="st">  </span><span class="co">## sapply(query_url_ls,</span></span>
 <span id="cb16-3"><a href="#cb16-3"></a><span class="st">  </span><span class="kw"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span>(query_url_ls,</span>
@@ -251,21 +248,21 @@
 <pre><code>## List of 2
 ##  $ :List of 5
 ##   ..$ status    : chr "Success"
-##   ..$ id        : chr "4cGJ"
-##   ..$ config_url: chr "https://stats.oecd.org/share/chart?id=4cGJ"
-##   ..$ viewer_url: chr "https://stats.oecd.org/chart?id=4cGJ"
+##   ..$ id        : chr "4cGX"
+##   ..$ config_url: chr "https://stats.oecd.org/share/chart?id=4cGX"
+##   ..$ viewer_url: chr "https://stats.oecd.org/chart?id=4cGX"
 ##   ..$ path      : chr "../examples/multi_PRINTO01.json"
 ##  $ :List of 5
 ##   ..$ status    : chr "Success"
-##   ..$ id        : chr "4cGK"
-##   ..$ config_url: chr "https://stats.oecd.org/share/chart?id=4cGK"
-##   ..$ viewer_url: chr "https://stats.oecd.org/chart?id=4cGK"
+##   ..$ id        : chr "4cGY"
+##   ..$ config_url: chr "https://stats.oecd.org/share/chart?id=4cGY"
+##   ..$ viewer_url: chr "https://stats.oecd.org/chart?id=4cGY"
 ##   ..$ path      : chr "../examples/multi_PRMNTO01.json"</code></pre>
 <div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>knitr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/knitr/man/include_url.html">include_url</a></span>(chart_url_c[[<span class="dv">1</span>]]<span class="op">$</span>viewer_url, <span class="dt">height =</span> <span class="st">"700px"</span>)</span></code></pre></div>
-<iframe src="https://stats.oecd.org/chart?id=4cGJ" width="100%" height="700px">
+<iframe src="https://stats.oecd.org/chart?id=4cGX" width="100%" height="700px">
 </iframe>
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a>knitr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/knitr/man/include_url.html">include_url</a></span>(chart_url_c[[<span class="dv">2</span>]]<span class="op">$</span>viewer_url, <span class="dt">height =</span> <span class="st">"700px"</span>)</span></code></pre></div>
-<iframe src="https://stats.oecd.org/chart?id=4cGK" width="100%" height="700px">
+<iframe src="https://stats.oecd.org/chart?id=4cGY" width="100%" height="700px">
 </iframe>
 <!-- ## Create debug information -->
 </div>
